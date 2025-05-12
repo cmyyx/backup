@@ -1,0 +1,15 @@
+#!name = 测试
+#!desc = 测试性能
+#!openUrl = 
+#!author = @key
+#!homepage = https://github.com/Keywos
+#!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/Netease.png
+#!date = 2024-01-26 03:02:13
+
+[Script]
+http-request ^https?:\/\/surgetool\.com\/api\/ping\/binary script-path=https://raw.githubusercontent.com/Keywos/rule/main/script/net_test/js/ntbm.js, requires-body=true, binary-body-mode=1, timeout=20, max-size=-1, tag=测试加解密耗时二进制模式
+
+http-request ^https?:\/\/surgetool\.com\/api\/test script-path=https://raw.githubusercontent.com/Keywos/rule/main/script/net_test/js/nt.js, requires-body=true, timeout=20, max-size=-1, tag=测试加解密耗时
+
+[MITM]
+hostname = surgetool.com
