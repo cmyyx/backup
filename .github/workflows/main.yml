@@ -68,16 +68,13 @@ jobs:
           echo "添加源仓库 (Keywos/rule) 的远程地址..."
           git remote add source_repo "$FINAL_SOURCE_URL"
 
-          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交..."
-          # 拉取时不获取标签，并且只拉取指定分支以提高效率
-          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --depth=100 || git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --unshallow || git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags
+          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交 (确保完整历史)..."
+          # 确保获取完整历史，如果源仓库很大，可以考虑保留之前的 fetch 链，但完整 fetch 通常更稳妥
+          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
 
           echo "尝试将 source_repo/${{ env.SOURCE_REPO_BRANCH }} 合并到本地 ${{ env.TARGET_BRANCH_NAME }} 分支..."
           MERGE_COMMIT_MSG="Merge: 同步来自 Keywos/rule (${{ env.SOURCE_REPO_BRANCH }}) 的更新到 ${{ env.TARGET_BRANCH_NAME }}"
           
-          # 使用 'theirs' 策略进行合并，如果源仓库是完全覆盖目标分支的场景
-          # 如果希望是标准合并（可能冲突），则移除 --strategy-option theirs
-          # 注意：如果目标分支是新创建的空白分支，第一次合并实际上是将其内容设置为源分支的内容
           if git merge "source_repo/${{ env.SOURCE_REPO_BRANCH }}" --no-ff --no-edit -m "$MERGE_COMMIT_MSG" --allow-unrelated-histories; then
             echo "合并成功，推送更改到 origin/${{ env.TARGET_BRANCH_NAME }}..."
             git push origin "${{ env.TARGET_BRANCH_NAME }}"
@@ -145,11 +142,19 @@ jobs:
           echo "添加源仓库 (powerfullz/override-rules) 的远程地址..."
           git remote add source_repo "$FINAL_SOURCE_URL"
 
-          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交..."
-          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --depth=100 || git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --unshallow || git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags
+          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交 (确保完整历史)..."
+          # --- 修改点 ---
+          # 确保获取完整历史
+          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
+          # -------------
 
           echo "尝试将 source_repo/${{ env.SOURCE_REPO_BRANCH }} 合并到本地 ${{ env.TARGET_BRANCH_NAME }} 分支..."
           MERGE_COMMIT_MSG="Merge: 同步来自 powerfullz/override-rules (${{ env.SOURCE_REPO_BRANCH }}) 的更新到 ${{ env.TARGET_BRANCH_NAME }}"
+          
+          # 可选：在推送前检查本地仓库对象完整性
+          # echo "检查本地仓库对象完整性..."
+          # git fsck --full || true # 使用 || true 避免 fsck 报告的非致命问题导致 Action 失败
+
           if git merge "source_repo/${{ env.SOURCE_REPO_BRANCH }}" --no-ff --no-edit -m "$MERGE_COMMIT_MSG" --allow-unrelated-histories; then
             echo "合并成功，推送更改到 origin/${{ env.TARGET_BRANCH_NAME }}..."
             git push origin "${{ env.TARGET_BRANCH_NAME }}"
