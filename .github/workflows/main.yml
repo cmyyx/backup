@@ -1,0 +1,107 @@
+# .github/workflows/sync.yml
+name: 同步外部仓库到特定分支
+
+# 权限设置：允许 workflow 写入仓库内容
+permissions:
+  contents: write
+
+on:
+  schedule:
+    # 每天凌晨3点执行一次 (UTC时间) - 请根据你的项目更新频率调整
+    - cron: '0 3 * * *'
+  workflow_dispatch: # 允许从 GitHub Actions 界面手动触发
+
+jobs:
+  # 同步到 'rule' 分支的任务
+  sync_to_rule_branch:
+    name: 同步 Keywos/rule 到 'rule' 分支
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出目标仓库的 'rule' 分支 (完整历史)
+        uses: actions/checkout@v4
+        with:
+          ref: 'rule' # 指定要检出的分支
+          fetch-depth: 0 # 获取完整历史，以确保合并时有足够的共同祖先信息
+          # GITHUB_TOKEN 用于后续推送到本仓库，已由 permissions block 授权
+
+      - name: 配置 Git 用户信息
+        run: |
+          git config --global user.name 'GitHub Actions 同步机器人'
+          git config --global user.email 'actions-sync@users.noreply.github.com' # 使用 GitHub 提供的 noreply 邮箱
+
+      - name: 从 Keywos/rule 同步到 'rule' 分支
+        env:
+          SOURCE_REPO_URL: "https://github.com/Keywos/rule.git" # 源仓库1 URL
+          SOURCE_BRANCH: "main" # Keywos/rule 的主分支 (通常是 main 或 master，请确认)
+          TARGET_BRANCH: "rule"
+          # 如果 Keywos/rule 是私有的 (不太可能，因为是公开的URL)，你需要一个 PAT
+          # SOURCE_REPO_URL_WITH_PAT: "https://${{ secrets.KEYWOS_RULE_PAT }}@github.com/Keywos/rule.git"
+        run: |
+          FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-$SOURCE_REPO_URL}
+
+          echo "添加源仓库 (Keywos/rule) 的远程地址..."
+          git remote add source_repo "$FINAL_SOURCE_URL"
+
+          echo "从源仓库的 '$SOURCE_BRANCH' 分支拉取最新提交..."
+          git fetch source_repo "$SOURCE_BRANCH" --no-tags # --no-tags 可以避免拉取不必要的标签
+
+          echo "尝试将 source_repo/$SOURCE_BRANCH 合并到本地 $TARGET_BRANCH 分支..."
+          MERGE_COMMIT_MSG="Merge: 同步来自 Keywos/rule ($SOURCE_BRANCH) 的更新到 $TARGET_BRANCH"
+          if git merge "source_repo/$SOURCE_BRANCH" --no-ff --no-edit -m "$MERGE_COMMIT_MSG"; then
+            echo "合并成功，推送更改到 origin/$TARGET_BRANCH..."
+            git push origin "$TARGET_BRANCH"
+          else
+            echo "合并失败！可能存在冲突。请手动解决冲突。"
+            git status
+            # Action 会因为 git merge 的非零退出码而失败
+          fi
+
+          echo "移除源仓库 (Keywos/rule) 的远程地址..."
+          git remote remove source_repo
+
+  # 同步到 'override-rules' 分支的任务
+  sync_to_override_rules_branch:
+    name: 同步 powerfullz/override-rules 到 'override-rules' 分支
+    runs-on: ubuntu-latest
+    # 此任务默认与上一个任务并行执行
+    steps:
+      - name: 检出目标仓库的 'override-rules' 分支 (完整历史)
+        uses: actions/checkout@v4
+        with:
+          ref: 'override-rules'
+          fetch-depth: 0
+
+      - name: 配置 Git 用户信息
+        run: |
+          git config --global user.name 'GitHub Actions 同步机器人'
+          git config --global user.email 'actions-sync@users.noreply.github.com'
+
+      - name: 从 powerfullz/override-rules 同步到 'override-rules' 分支
+        env:
+          SOURCE_REPO_URL: "https://github.com/powerfullz/override-rules.git" # 源仓库2 URL
+          SOURCE_BRANCH: "main" # powerfullz/override-rules 的主分支 (通常是 main 或 master，请确认)
+          TARGET_BRANCH: "override-rules"
+          # 如果 powerfullz/override-rules 是私有的，你需要一个 PAT
+          # SOURCE_REPO_URL_WITH_PAT: "https://${{ secrets.POWERFULLZ_OVERRIDE_PAT }}@github.com/powerfullz/override-rules.git"
+        run: |
+          FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-$SOURCE_REPO_URL}
+
+          echo "添加源仓库 (powerfullz/override-rules) 的远程地址..."
+          git remote add source_repo "$FINAL_SOURCE_URL"
+
+          echo "从源仓库的 '$SOURCE_BRANCH' 分支拉取最新提交..."
+          git fetch source_repo "$SOURCE_BRANCH" --no-tags
+
+          echo "尝试将 source_repo/$SOURCE_BRANCH 合并到本地 $TARGET_BRANCH 分支..."
+          MERGE_COMMIT_MSG="Merge: 同步来自 powerfullz/override-rules ($SOURCE_BRANCH) 的更新到 $TARGET_BRANCH"
+          if git merge "source_repo/$SOURCE_BRANCH" --no-ff --no-edit -m "$MERGE_COMMIT_MSG"; then
+            echo "合并成功，推送更改到 origin/$TARGET_BRANCH..."
+            git push origin "$TARGET_BRANCH"
+          else
+            echo "合并失败！可能存在冲突。请手动解决冲突。"
+            git status
+            # Action 会因为 git merge 的非零退出码而失败
+          fi
+
+          echo "移除源仓库 (powerfullz/override-rules) 的远程地址..."
+          git remote remove source_repo
