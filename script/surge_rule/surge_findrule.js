@@ -1,4 +1,49 @@
-// 2025-05-14 01:52:36
+/**
+[首次使用需要设置以下参数]
+
+必须配置:
+   ├ [KEY_DIRECT] 默认: DIRECT
+   ├ [KEY_PROXY]  默认: 🇭🇰|🇸🇬|🇯🇵|🇺🇸
+   ├ 正则关键字 需要最终走向的节点名 策略组名不行 
+   └ Surge 内规则配置参考下面示例
+
+可选配置:
+   ├ [COUNT] 过滤 请求次数 > COUNT 的域名 默认 5
+   ├ [ON_DIRECT_IP] 生成直连 IP 规则 需要查询 Whois
+   ├ [ON_DIRECT_HOST] 生成 域名规则
+   ├ [ON_PROXY_IP] 生成代理 IP 规则 需要查询 Whois
+   ├ [ON_PROXY_HOST] 生成 域名规则
+   ├ 1：启用
+   └ 0：关闭
+
+捷径配置:
+   ├ 默认在 Surge 的 Rule / 下
+   ├ direct_file 为 直连规则集 文件名
+   └ proxy_file 为 代理规则集 文件名
+
+生成的规则说明
+   ├ 手动规则优先级最高
+   ├ 接下来是直连规则
+   ├ [直连 List] 里有的规则，[代理 List] 里不会有
+   ├ [KEYWORD] 命中的规则会排除掉
+   ├ [IP-CIDR] 重复包含的会去除
+   ├ [DOMAIN-SUFFIX,x.cn] 类似的会提取顶级域名[cn]
+   └ 首次请求需要一定的时间 有缓存后速度就快了
+
+[Proxy]
+CNN = direct // 为了区别正常的 DIRECT 策略 [可选]
+
+[Rule]
+RULE-SET, Rule/P.txt, Proxy, no-resolve  // [可选 可以捷径里设置对应对文件名]
+RULE-SET, Rule/D.txt, DIRECT, no-resolve //  
+GEOIP, CN, CNN // [可选] 对应 Proxy 的 CNN = direct
+FINAL, FINALUS, dns-failed // 需要节点名 包含 关键字 可以用 substore 加前缀 / 匹配国家国旗 [默认匹配: 🇭🇰|🇸🇬|🇯🇵|🇺🇸]
+
+捷径： https://www.icloud.com/shortcuts/4862991f0914475ea4fc6e7f99a8cf5a
+
+*/
+
+// 2025-05-14 21:51:12
 (async () => {
   // prettier-ignore
   let body = { d: "", p: "" },response = { body: JSON.stringify(body) },rule_direct_cidr = [], rule_proxy_cidr = [], ARGV = {}, reqbody, notif = "";
@@ -6,7 +51,7 @@
     // prettier-ignore
     try { ARGV = JSON.parse($argument); } catch (error) { throw new Error("$argument 解析错误" + error.message);}
     // prettier-ignore
-    let { CN = "CNN", FINAL = "FINAL", COUNT = 5, CNIP = 0, CNHOST = 1, FINALIP = 1,  FINALHOST = 1,} = ARGV
+    let { CN = "CNN", FINAL = "FINAL", COUNT = 5, CNIP = 1, CNHOST = 1, FINALIP = 1,  FINALHOST = 1,} = ARGV
     // prettier-ignore
     try { reqbody = JSON.parse($request?.body); } catch (error) {throw new Error("$request.body 解析错误" + error.message);}
     // prettier-ignore
@@ -34,6 +79,10 @@
         otherRules: f_p,
         fileLength: f_p_l,
       } = parseRulesAll(reqbody.file_proxy);
+
+    console.log("INCSV: \t" + lines?.length);
+    console.log("PROXY: \t" + f_p_l);
+    console.log("DIRECT: \t" + f_d_l);
 
     CNIP = toBool(CNIP);
     CNHOST = toBool(CNHOST);
@@ -78,10 +127,6 @@
       new Set([...f_p, ...rule_proxy_cidr, ...POBJ.hosts])
     );
 
-    console.log("INCSV: \t" + lines?.length);
-    console.log("PROXY: \t" + f_p_l);
-    console.log("DIRECT: \t" + f_d_l);
-
     // prettier-ignore
     rules_direct =`# 手动规则: 以下规则优先级最高 不参与规则数量统计\n${f_d_o.join("\n")}\n\n# 更新时间: ${today}\n# 规则数量：当前共 ${count_direct || 0} 条规则\n\n` + rules_direct;
     // prettier-ignore
@@ -100,12 +145,58 @@
     // prettier-ignore
     t += nt_b.length > 0? `\n\n去掉命中 KEYWORD 的规则: \n${nt_b.join("\n")}\n`: "";
     // prettier-ignore
-    t += nt_c.length > 0 ? `\n\n去掉命中 国家顶级域名 的多余规则: \n${nt_c.join("\n")}\n` : "";
+    t += nt_c.length > 0 ? `\n\n去掉命中 顶级域名 的多余规则: \n${nt_c.join("\n")}\n` : "";
     // prettier-ignore
-    t += nt_d.length > 0 ? `\n\n去掉命中 手动规则 的规则: \n${nt_d.join("\n")}\n` : "";
+    t += nt_d.length > 0 ? `\n\n去掉命中 手动规则的: \n${nt_d.join("\n")}\n` : "";
 
     $notification.post("FindRule", "", notif);
     console.log(t + "\n\n" + notif + "\n");
+
+    function parseRulesAll(text) {
+      const lines = text?.trim()?.split("\n") || [];
+      let excludeRules = [];
+      const otherRules = [];
+      let fileLength = 0;
+
+      let inExcludeSection = false;
+      let passedUpdate = false;
+
+      for (let line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith("# 手动规则")) {
+          inExcludeSection = true;
+          continue;
+        }
+
+        if (trimmed.startsWith("# 规则数量")) {
+          fileLength = trimmed.match(/\d+/)?.[0] || 0;
+          inExcludeSection = false;
+          passedUpdate = true;
+          continue;
+        }
+
+        if (!trimmed || trimmed.startsWith("# 更新时间")) continue;
+
+        if (inExcludeSection) {
+          excludeRules.push(trimmed);
+          const [type, ...domainParts] = trimmed.split(",");
+          if (domainParts.length === 0) continue;
+          const domain = domainParts.join(",").trim().replace(/\s+/g, "");
+          add_tld_set(domain);
+          type === "DOMAIN-KEYWORD"
+            ? key_set.add(domain)
+            : type === "DOMAIN-SUFFIX" && more_set.add(domain);
+        } else if (passedUpdate) {
+          otherRules.push(trimmed);
+        }
+      }
+      excludeRules.sort();
+      return {
+        excludeRules,
+        otherRules,
+        fileLength,
+      };
+    }
 
     function processRules(ruleSet, is_cn = false) {
       let isdp = is_cn ? CN : FINAL;
@@ -115,64 +206,67 @@
 
       let rule_split = [];
       for (const item of ruleSet) {
-        const [type, ...domainParts] = item.split(",");
-        if (domainParts.length === 0) continue;
-        const domain = domainParts.join(",").trim().replace(/\s+/g, "");
+        const [type, domain] = item.split(",");
+        add_tld_set(domain, is_cn);
         rule_split.push([type, domain]);
         if (type === "DOMAIN-KEYWORD") key_set.add(domain);
       }
+
       rule_split.forEach((i) => {
         const type = i[0];
         const domain = i[1];
+
+        if (checkMatch(domain)) return;
+
         if (type === "DOMAIN-SUFFIX") {
           const parts = domain.split(".");
           const part_len = parts.length;
           if (more_set.has(domain)) {
             nt_d.push(isdp + ": " + domain);
+
             return;
           }
-          if (!is_cn) {
-            if (re_set.has(domain)) {
-              nt_a.push(isdp + ": " + domain);
-              return;
-            }
-          } else re_set.add(domain);
-          if (part_len > 0) {
-            const tld = parts[part_len - 1];
-            if (TLDSet.has(tld)) {
-              part_one(part_len, is_cn, tld, domain);
-            } else part_other(parts, part_len, domain, is_cn);
+
+          if (!is_cn && re_set.has(domain)) {
+            nt_a.push(isdp + ": " + domain);
+            return;
           }
-        } else is_cidr(type, domain);
+
+          if (part_len === 0) return;
+          const tld = parts[part_len - 1];
+          if (TLDSet.has(tld)) {
+            part_one(tld, domain);
+          } else part_other(parts, part_len, domain, is_cn);
+        } else if (type === "IP-CIDR") {
+          ipcidr_set.add(type + "," + domain);
+        } else other_set.add(type + "," + domain);
       });
 
-      function part_other(parts, part_len, domain, is_cn) {
-        if (!checkMatch(domain)) {
-          if (part_len > 2) {
-            let mat = false;
-            const doma = parts.slice(-2).join(".");
-            if (is_cn) {
-              re_set.add(doma);
-              mat = true;
-            } else if (!re_set.has(doma)) mat = true;
-            mat && add_d_s(doma);
-          } else add_d_s(domain);
+      function part_one(tld, domain) {
+        if (!more_set.has(tld)) add_d_s(tld);
+        if (re_set.has(tld)) {
+          tld != domain && nt_a.push(`${isdp}: ${domain}`);
+          return;
+        } else {
+          add_d_s(tld);
+          tld_log(tld, domain);
         }
       }
 
-      function part_one(part_len, is_cn, tld, domain) {
-        if (part_len == 0) return;
-        if (is_cn) {
-          re_set.add(tld);
-          add_d_s(tld);
-          nt_c.push(`${isdp}: ${tld} -> ${domain}`);
-        } else if (re_set.has(tld)) {
-          nt_a.push(`${isdp}: ${domain}`);
-          return;
-        } else {
-          nt_c.push(`${isdp}: ${tld} -> ${domain}`);
-          add_d_s(tld);
-        }
+      function part_other(parts, part_len, domain, is_cn) {
+        if (part_len > 2) {
+          let mat = false;
+          const doma = parts.slice(-2).join(".");
+          if (is_cn) {
+            re_set.add(doma);
+            mat = true;
+          } else if (!re_set.has(doma)) mat = true;
+          mat && add_d_s(doma);
+        } else add_d_s(domain);
+      }
+
+      function tld_log(tld, domain) {
+        tld != domain && nt_c.push(`${isdp}: ${tld} -> ${domain}`);
       }
 
       function checkMatch(target) {
@@ -187,14 +281,6 @@
         return false;
       }
 
-      function is_cidr(type, domain) {
-        if (type === "IP-CIDR") {
-          if (!checkMatch(domain)) {
-            ipcidr_set.add(type + "," + domain);
-          }
-        } else other_set.add(type + "," + domain);
-      }
-
       function add_d_s(i) {
         direct_set.add("DOMAIN-SUFFIX," + i);
       }
@@ -204,11 +290,18 @@
         ...other_set,
         ...dedupeCIDRs([...ipcidr_set]),
       ].sort();
-
+      const logadd = diffSet(rules_direct, is_cn ? f_d : f_p);
+      logadd.length > 0 &&
+        console.log("\n\n" + isdp + "++\n" + logadd.join("\n") + "\n");
       return {
         rules: rules_direct.join("\n"),
         count: rules_direct.length,
       };
+    }
+
+    function diffSet(arr1, arr2) {
+      const set2 = new Set(arr2);
+      return arr1.filter((item) => !set2.has(item));
     }
 
     async function CidrRules(ipList) {
@@ -248,46 +341,6 @@
         return [...cidrRuleSet];
       }
       return [];
-    }
-    function parseRulesAll(text) {
-      const lines = text?.split("\n") || [];
-      const excludeRules = [];
-      const otherRules = [];
-      let fileLength = 0;
-
-      let inExcludeSection = false;
-      let passedUpdate = false;
-
-      for (let line of lines) {
-        const trimmed = line.trim();
-        if (trimmed.startsWith("# 手动规则")) {
-          inExcludeSection = true;
-          continue;
-        }
-        if (trimmed.startsWith("# 规则数量")) {
-          fileLength = trimmed.match(/\d+/)?.[0] || 0;
-          inExcludeSection = false;
-          passedUpdate = true;
-          continue;
-        }
-        if (!trimmed || trimmed.startsWith("# 更新时间")) continue;
-        if (inExcludeSection) {
-          excludeRules.push(trimmed);
-          const [type, ...domainParts] = trimmed.split(",");
-          if (domainParts.length > 0) {
-            const domain = domainParts.join(",").trim().replace(/\s+/g, "");
-            if (type === "DOMAIN-KEYWORD") {
-              key_set.add(domain);
-            } else if (type === "DOMAIN-SUFFIX") more_set.add(domain);
-          }
-        } else if (passedUpdate) otherRules.push(trimmed);
-      }
-
-      return {
-        excludeRules,
-        otherRules,
-        fileLength,
-      };
     }
 
     // 保存 CIDR 到缓存，并清理过期的
@@ -329,6 +382,16 @@
       $persistentStore.write(JSON.stringify(checkCacheCidr), CACHE_KEY);
       // 返回 CIDR 字符串数组
       return checkCacheCidr.map((item) => item.cidr);
+    }
+
+    function add_tld_set(domain, is_cn) {
+      // console.log(domain);
+      if (is_cn) re_set.add(domain);
+      // 如果有自定义 顶级域名去重
+      if (domain?.split(".").length === 1) {
+        re_set.add(domain);
+        TLDSet.add(domain);
+      }
     }
 
     function fetchWithTimeout(url) {
@@ -495,10 +558,13 @@
       }
       return cidrs;
     }
+
     // console.log("\nrules_direct\n");
     // console.log(rules_direct);
+
     // console.log("\nrules_proxy\n");
     // console.log(rules_proxy);
+
     response.body = JSON.stringify({ d: rules_direct, p: rules_proxy });
   } catch (error) {
     console.log(error.message);
