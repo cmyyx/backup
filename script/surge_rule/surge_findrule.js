@@ -1,6 +1,6 @@
 /** 2025-05-16 00:14:45
 
-[重点] 需要从 Surge 统计里导出到此 捷径 https://www.icloud.com/shortcuts/4862991f0914475ea4fc6e7f99a8cf5a
+[重点] 需要从 Surge 统计里导出到此 捷径 https://www.icloud.com/shortcuts/271eaa8b65f14a1cb401fde8e1e4653d
 
 [首次使用需要设置以下参数]
 
@@ -49,9 +49,10 @@ FINAL, FINALUS, dns-failed // 需要节点名 包含 关键字 可以用 substor
 */
 
 (async () => {
-  let response = { body: JSON.stringify({ d: "", p: "" }) };
+  let response = { body: JSON.stringify({}) };
   try {
     let ARGV = JSON.parse($argument);
+    if (!$request?.body) throw new Error("未传入数据");
     let reqbody = JSON.parse($request?.body);
     let { CN = "CNN", FINAL = "FINAL", COUNT = 5, CNIP = 1, CNHOST = 1, FINALIP = 1, FINALHOST = 1 } = ARGV;
     // prettier-ignore
