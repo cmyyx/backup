@@ -268,25 +268,6 @@ proxy-groups:
       - 落地节点
       - 手动切换
       - 全球直连
-  - name: 苹果服务
-    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
-    type: select
-    proxies:
-      - 节点选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 美国节点
-      - 英国节点
-      - 加拿大节点
-      - 澳洲节点
-      - 欧盟节点
-      - 非洲节点
-      - 落地节点
-      - 手动切换
-      - 全球直连
   - name: 搜狗输入
     icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Sougou.png
     type: select
@@ -665,13 +646,7 @@ rule-providers:
     interval: 86400
     path: ./ruleset/AdditionalFilter.list
     url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list
-  AppleServices:
-    type: http
-    behavior: classical
-    format: text
-    interval: 86400
-    url: https://ruleset.skk.moe/Clash/non_ip/apple_services.txt
-    path: ./sukkaw_ruleset/apple_services.txt
+
 rules:
   - "RULE-SET,reject_non_ip,广告拦截"
   - "RULE-SET,reject_domainset,广告拦截"
@@ -686,13 +661,11 @@ rules:
   - "RULE-SET,microsoft_cdn_non_ip,全球直连"
   - "RULE-SET,ai_non_ip,人工智能"
   - "RULE-SET,Microsoft,微软服务"
-  - "RULE-SET,AppleServices,苹果服务"
   - "RULE-SET,EHentai,E-Hentai"
   - "RULE-SET,TikTok,TikTok"
   - "RULE-SET,SteamFix,Steam修复"
   - "RULE-SET,PlayStoreFix,Play商店修复"
   - "RULE-SET,GoogleFCM,FCM推送"
-  - "GEOSITE,GOOGLEFCM,FCM推送"
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
   - "GEOSITE,GOOGLE,Google"
   - "GEOSITE,YOUTUBE@CN,全球直连"
@@ -707,7 +680,6 @@ rules:
   - "GEOSITE,CATEGORY-CRYPTOCURRENCY,加密货币"
   - "GEOSITE,TELEGRAM,Telegram"
   - "GEOSITE,PIKPAK,PikPak"
-  - "GEOSITE,GEOLOCATION-!CN,节点选择"
   - "GEOSITE,CN,全球直连"
   - "GEOSITE,PRIVATE,全球直连"
   - "GEOIP,NETFLIX,Netflix,no-resolve"
