@@ -15,74 +15,7 @@ tcp-concurrent: true      # 启用 TCP 并发连接。这允许 Clash 同时建�
 
 find-process-mode: strict  # 设置进程查找模式为严格模式，Clash 会更精确地识别和匹配网络流量来源的进程
 global-client-fingerprint: chrome  # 设置全局客户端指纹为 Chrome，使 Clash 在建立连接时模拟 Chrome 浏览器的 TLS 指纹，增强隐私性和绕过某些网站的指纹检测
-
-
-# 所有节点
-all: &all {type: select, use: [订阅 1, 订阅 2, 订阅 3, 订阅 4, 订阅 8]}
-
-# 订阅更新和延迟测试相关
-p: &p {type: http, interval: 21600, health-check: {enable: true, url: "http://www.google.com/generate_204", interval: 1800, filter: "(?i)^(?!unavailable).*$"}}
-
-proxy-providers:  # Meta支持机场通用订阅
-
-  订阅 1: # 井号后面是注释，可修改
-    <<: *p         #T02
-    # url:     
-    url: ""
-  
-  订阅 2: # 下面的订阅 3 是一个标准示例，非可用订阅
-    <<: *p       #雷霆
-    # url: 
-    url: ""
-  
-  订阅 3: # 
-    <<: *p
-    # url:
-    url: ""
- 
-  订阅 4: # 在你没有弄明白规则的写法之前，不要随意删减订阅 1 至订阅 8，哪怕 url 为空  自留地
-    <<: *p         #T02
-    # url:     
-    url: ""
-
-  订阅 5: # 
-    <<: *p
-    # url:
-    url: ""
-    
-  订阅 6: # 
-    <<: *p
-    url:
-    # url: ""
-    
-  订阅 7: # 
-    <<: *p
-    url:
-    # url: ""
-    
-  订阅 8: # 
-    <<: *p
-    # url:
-    url: ""
-
-
-
-proxies:
-# - name: webshare
-#   type: socks5  类型,如果ss 就写 ss
-#   server:  代理服务器域名/ip
-#   port: 50010  端口
-#   username:   用户名
-#   password:   密码
-#   tls: false
-#   skip-cert-verify: true
-#   udp: true
-#   dialer-proxy: dialer-selector
-
-
-
-
-# Profile Enhancement Merge Template for Clash Verge
+# Profile Enhancement Merge Template for Clash Verge, Adapted for Sub-Store
 proxy-groups:
   - name: 唯快不破
     include-all: true
@@ -557,7 +490,6 @@ rule-providers:
 
 
 
-
 # dns:
 #   enable: true
 #   ipv6: false
@@ -848,10 +780,6 @@ rules:
   - RULE-SET,China,DIRECT
   - GEOIP,lan,DIRECT
   - GEOIP,CN,DIRECT
-
-  
-
-
 # 服务类
   - RULE-SET,YouTube,国际媒体
   - RULE-SET,TikTok,国际媒体
@@ -860,9 +788,7 @@ rules:
   - DOMAIN-KEYWORD,oaifree,DIRECT
   - DOMAIN-SUFFIX,shared.oaifree.com,DIRECT
   
-
 # 屏蔽广告
-
   - RULE-SET,AdBlock,广告拦截
   - RULE-SET,reject,广告拦截
   - RULE-SET,BanAD,广告拦截
