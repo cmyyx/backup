@@ -16,524 +16,613 @@ tcp-concurrent: true      # 启用 TCP 并发连接。这允许 Clash 同时建�
 find-process-mode: strict  # 设置进程查找模式为严格模式，Clash 会更精确地识别和匹配网络流量来源的进程
 global-client-fingerprint: chrome  # 设置全局客户端指纹为 Chrome，使 Clash 在建立连接时模拟 Chrome 浏览器的 TLS 指纹，增强隐私性和绕过某些网站的指纹检测
 # Profile Enhancement Merge Template for Clash Verge, Adapted for Sub-Store
+
 proxy-groups:
-  - name: 唯快不破
-    include-all: true
+  - name: 节点选择
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
     proxies:
       - 自动选择
-    icon: https://github.com/clash-verge-rev/clash-verge-rev/raw/main/src-tauri/icons/icon.png
-
-  - name: dialer-selector
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+  - name: 手动切换
+    icon: https://cdn.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png
     include-all: true
     type: select
-    exclude-filter: "webshare|其他任何你的节点的名称,可以让AI告诉一下你的节点要怎么写"  # 排除你要链式代理的节点,避免循环引用
-    proxies:
-      - 自动选择
-    icon: https://github.com/clash-verge-rev/clash-verge-rev/raw/main/src-tauri/icons/icon.png
-
   - name: 自动选择
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png
     type: url-test
     include-all: true
-    url: http://www.gstatic.com/generate_204
+    exclude-filter: (?i)家宽|家庭|商宽|落地
     interval: 300
-    icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg
-
-  - name: AI
-    include-all: true
+    tolerance: 20
+    lazy: false
+  - name: 人工智能
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-
-  - name: 国外网站
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: 加密货币
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_3.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
-
-  - name: 国际媒体
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: Telegram
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
-
-  - name: 苹果服务
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: Google
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png
-
-  - name: 微软服务
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: YouTube
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
-
-  - name: 谷歌服务
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: Netflix
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
-
-  - name: 电报消息
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: TikTok
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
-
-  - name: 推特消息
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: E-Hentai
+    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
-
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: PikPak
+    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/PikPak.png
+    type: select
+    proxies:
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: 巴哈姆特
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png
+    type: select
+    proxies:
+      - 台湾节点
+      - 节点选择
+      - 手动切换
+      - 全球直连
+  - name: 哔哩哔哩
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png
+    type: select
+    proxies:
+      - 全球直连
+      - 台湾节点
+      - 香港节点
+  - name: 懂王社媒
+    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/TruthSocial.png
+    type: select
+    proxies:
+      - 美国节点
+      - 加拿大节点
+      - 节点选择
+      - 手动切换
+  - name: 学术资源
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Scholar.png
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 全球直连
   - name: 游戏平台
-    include-all: true
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
-
-  - name: Emby
-    include-all: true
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: 微软服务
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png
-
-  - name: 广告拦截
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: 静态资源
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
+    type: select
     include-all: true
+    proxies:
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: FCM推送
+    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
     type: select
     proxies:
-      - REJECT
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
-
-  - name: 兜底分流
-    include-all: true
+      - 全球直连
+      - 节点选择
+  - name: Steam修复
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png
     type: select
     proxies:
-      - 唯快不破
-      - Direct
-      - 自动选择
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
-
-  - name: Direct
-    include-all: true
+      - 全球直连
+      - 游戏平台
+      - 节点选择
+  - name: Play商店修复
+    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/GooglePlay.png
+    type: select
+    proxies:
+      - 全球直连
+      - 节点选择
+  - name: 全球直连
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png
     type: select
     proxies:
       - DIRECT
-
-
+      - 节点选择
+  - name: 广告拦截
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png
+    type: select
+    proxies:
+      - REJECT
+      - 全球直连
+  - name: 漏网之鱼
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png
+    type: select
+    proxies:
+      - 节点选择
+      - 全球直连
+  - name: 故障转移
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png
+    type: fallback
+    lazy: false
+    proxies:
+      - 台湾节点
+      - 香港节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
+      - 手动切换
+      - 全球直连
+  - name: 香港节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
+    include-all: true
+    filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 台湾节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png
+    include-all: true
+    filter: (?i)台|新北|彰化|TW|Taiwan
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 狮城节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
+    include-all: true
+    filter: (?i)新加坡|坡|狮城|SG|Singapore
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 日本节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
+    include-all: true
+    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 韩国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png
+    include-all: true
+    filter: (?i)KR|Korea|KOR|首尔|韩|韓
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 美国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
+    include-all: true
+    filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 加拿大节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Canada.png
+    include-all: true
+    filter: (?i)加拿大|多伦多|Toronto|温哥华|Vancouver|蒙特利尔|Montreal|卡尔加里|Calgary|渥太华|Ottawa
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 英国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png
+    include-all: true
+    filter: (?i)英国|UK|GB|伦敦|London|曼彻斯特|Manchester|伯明翰|Birmingham|利物浦|Liverpool|谢菲联|Sheffield
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 澳洲节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Australia.png
+    include-all: true
+    filter: (?i)澳洲|悉尼|墨尔本|布里斯班|堪培拉|黄金海岸|珀斯|阿德莱德|澳大利亚|AU|Australia
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: url-test
+    interval: 300
+    tolerance: 20
+    lazy: false
+  - name: 欧盟节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/European_Union.png
+    include-all: true
+    filter: (奥地利|Austria|AUT|AT|维也纳|Vienna|比利时|Belgium|BEL|BE|布鲁塞尔|Brussels|根特|Ghent|安特卫普|Antwerp|保加利亚|Bulgaria|BGR|BG|索菲亚|Sofia|克罗地亚|Croatia|HRV|HR|萨格勒布|Zagreb|塞浦路斯|Cyprus|CYP|CY|尼科西亚|Nicosia|捷克|Czechia|Czech|CZE|CZ|布拉格|Prague|丹麦|Denmark|DNK|DK|哥本哈根|Copenhagen|欧登塞|Odense|爱沙尼亚|Estonia|EST|EE|塔林|Tallinn|芬兰|Finland|FIN|FI|赫尔辛基|Helsinki|法国|France|FRA|FR|巴黎|Paris|马赛|Marseille|里昂|Lyon|德国|Germany|DEU|DE|法兰克福|Frankfurt|柏林|Berlin|慕尼黑|Munich|杜塞尔多夫|Dusseldorf|汉堡|Hamburg|希腊|Greece|GRC|EL|GR|雅典|Athens|匈牙利|Hungary|HUN|HU|布达佩斯|Budapest|爱尔兰|Ireland|IRL|IE|都柏林|Dublin|意大利|Italy|ITA|IT|米兰|Milan|罗马|Rome|拉脱维亚|Latvia|LVA|LV|里加|Riga|立陶宛|Lithuania|LTU|LT|维尔纽斯|Vilnius|卢森堡|Luxembourg|LUX|LU|卢森堡市|卢森堡|马耳他|Malta|MLT|MT|瓦莱塔|Valletta|荷兰|Netherlands|NLD|NL|阿姆斯特丹|Amsterdam|鹿特丹|Rotterdam|波兰|Poland|POL|PL|华沙|Warsaw|克拉科夫|Krakow|葡萄牙|Portugal|PRT|PT|里斯本|Lisbon|波尔图|Porto|罗马尼亚|Romania|ROU|RO|布加勒斯特|Bucharest|斯洛伐克|Slovakia|SVK|SK|布拉迪斯拉发|Bratislava|斯洛文尼亚|Slovenia|SVN|SI|卢布尔雅那|Ljubljana|西班牙|Spain|ESP|ES|马德里|Madrid|巴塞罗那|Barcelona|瑞典|Sweden|SWE|SE|斯德哥尔摩|Stockholm|马尔默|Malmö|Malmo)
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: select
+  - name: 非洲节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Africa_Map.png
+    include-all: true
+    filter: (?i)非洲|Africa|南非|South Africa|埃及|Egypt|开罗|Cairo|尼日利亚|Nigeria|拉各斯|Lagos
+    exclude-filter: (?i)家宽|家庭|商宽|落地
+    type: select
+  - name: GLOBAL
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
+    include-all: true
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 人工智能
+      - 加密货币
+      - Telegram
+      - Google
+      - YouTube
+      - Netflix
+      - TikTok
+      - E-Hentai
+      - PikPak
+      - 巴哈姆特
+      - 哔哩哔哩
+      - 懂王社媒
+      - 学术资源
+      - 游戏平台
+      - 微软服务
+      - 静态资源
+      - FCM推送
+      - Steam修复
+      - Play商店修复
+      - 全球直连
+      - 广告拦截
+      - 漏网之鱼
+      - 故障转移
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 美国节点
+      - 英国节点
+      - 加拿大节点
+      - 澳洲节点
+      - 欧盟节点
+      - 非洲节点
 
 rule-providers:
-  # AI 类
-  ai:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/ai.yaml
-    url: "https://fastly.jsdelivr.net/gh/MadisonWirtanen/WARP-Clash-with-ZJU-Rules@main/ai.yaml"
-    interval: 86400
-    
-  Gemini: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Gemini.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Gemini.yaml"
-    interval: 86400
-
-  Claude: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Claude.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Claude.yaml"
-    interval: 86400
-
-# 广告类
-  AdBlock:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/AdBlock.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/AdBlock.yaml"
-    interval: 86400
-    
-  BanAD:
+  ADBlock:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
-    path: ./ruleset/BanAD.yaml
+    format: text
     interval: 86400
-
-  BanProgramAD:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
-    path: ./ruleset/BanProgramAD.yaml
-    interval: 86400
-
-  BanEasyList:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list"
-    path: ./ruleset/BanEasyList.yaml
-    interval: 86400
-
-  reject:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
-    interval: 86400
-
-# 补丁类
-  collection: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/collection.yaml
-    url: "https://gist.githubusercontent.com/cnfree8964/0864fd1d2e88936a095fb40d74ce4993/raw/collection.yaml"
-
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-
-  proxy:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-
-  tld-not-cn:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
-    path: ./ruleset/tld-not-cn.yaml
-    interval: 86400
-
-  ProxyGFWlist:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
-    path: ./ruleset/BanEasyList.yaml
-    interval: 86400
-
-  ProxyClient: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/ProxyClient.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/ProxyClient.yaml"
-
-  ChinaDomain:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/ChinaDomain.yaml
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
-    interval: 86400
-
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/ChinaCompanyIp.yaml
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
-    interval: 86400
-
-  China: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/China.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/China.yaml"
-    interval: 86400
-
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-
-# 服务类
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-
-  PayPal: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/PayPal.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/PayPal.yaml"
-    interval: 86400
-
-  TikTok: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/TikTok.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/TikTok.yaml"
-    interval: 86400
-
-  IDM: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/IDM.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/IDM.yaml"
-
-# 流媒体
-  Amazon: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Amazon.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Amazon.yaml"
-    interval: 86400
-
-  Netflix: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Netflix.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Netflix.yaml"
-    interval: 86400
-
-  Spotify: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Spotify.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Spotify.yaml"
-    interval: 86400
-    
-  DisneyPlus: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/DisneyPlus.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/DisneyPlus.yaml"
-    
-  Hulu: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Hulu.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Hulu.yaml"
-
-  HBO: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/HBO.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/HBO.yaml"
-
-# 游戏类
-  Steam: 
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/Steam.yaml
-    url: "https://cdn.jsdelivr.net/gh/zuluion/Clash-Template-Config@master/Filter/Steam.yaml"
-    interval: 86400
-  AD:
-    type: http
-    behavior: classical
     url: https://adrules.top/adrules_domainset.txt
-    path: ./rule-providers/AD.list
-
-  Apple:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Apple.list
-    path: ./rule-providers/Apple.list
-
-  Google:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Google.list
-    path: ./rule-providers/Google.list
-
-  YouTube:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/YouTube.list
-    path: ./rule-providers/YouTube.list
-
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list
-    path: ./rule-providers/Telegram.list
-
-  Twitter:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Twitter.list
-    path: ./rule-providers/Twitter.list
-
-  Epic:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Epic.list
-    path: ./rule-providers/Epic.list
-
-  AI:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list
-    path: ./rule-providers/AI.list
-
-  Emby:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Emby.list
-    path: ./rule-providers/Emby.list
-
-
-  Bahamut:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Bahamut.list
-    path: ./rule-providers/Bahamut.list
-
-
-  Disney:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Disney.list
-    path: ./rule-providers/Disney.list
-
-  PrimeVideo:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/PrimeVideo.list
-    path: ./rule-providers/PrimeVideo.list
-
-  OneDrive:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/OneDrive.list
-    path: ./rule-providers/OneDrive.list
-
-  Github:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Github.list
-    path: ./rule-providers/Github.list
-
+    path: ./ADBlock.txt
   Microsoft:
     type: http
     behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Microsoft.list
-    path: ./rule-providers/Microsoft.list
-
-  Lan:
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
+    path: ./sukkaw_ruleset/microsoft_non_ip.txt
+  TruthSocial:
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list
+    path: ./ruleset/TruthSocial.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  cdn_domainset:
+    type: http
+    behavior: domain
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
+    path: ./sukkaw_ruleset/cdn_domainset.txt
+  cdn_non_ip:
     type: http
     behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Lan.list
-    path: ./rule-providers/Lan.list
-
-  ProxyGFW:
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
+    path: ./sukkaw_ruleset/cdn_non_ip.txt
+  apple_cdn:
+    type: http
+    behavior: domain
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt
+    path: ./sukkaw_ruleset/apple_cdn.txt
+  microsoft_cdn_non_ip:
     type: http
     behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list
-    path: ./rule-providers/ProxyGFW.list
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt
+    path: ./sukkaw_ruleset/microsoft_cdn_non_ip.txt
+  ai_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
+    path: ./sukkaw_ruleset/ai_non_ip.txt
+  TikTok:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list
+    path: ./ruleset/TikTok.list
+  EHentai:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list
+    path: ./ruleset/EHentai.list
+  PlayStoreFix:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/GooglePlayStoreFix.list
+    path: ./ruleset/GooglePlayStoreFix.list
+  SteamFix:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list
+  GoogleFCM:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./ruleset/FirebaseCloudMessaging.list
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list
+  AdditionalFilter:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    path: ./ruleset/AdditionalFilter.list
+    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list
 
-
-
-# dns:
-#   enable: true
-#   ipv6: false
-#   enhanced-mode: redir-host
-#   listen: 0.0.0.0:1053
-#   default-nameserver:
-#   - tls://1.12.12.12
-#   - 119.29.29.29
-#   nameserver:
-#   - 8.8.8.8
-#   - 8.8.4.4
-#   - tls://1.1.1.1
-#   - tls://8.8.8.8
-#   - https://cloudflare-dns.com/dns-query
-#   - https://dns.google/dns-query
-#   nameserver-policy:
-#     geosite:cn: https://doh.pub/dns-query
-
-# dns:
-#   enable: true
-#   ipv6: false
-#   default-nameserver:
-#     - 223.5.5.5
-#     - 223.6.6.6
-#   nameserver:
-#     - 1.1.1.1
-#     - 8.8.8.8
-#   fallback:
-#     - tls://1.1.1.1:853
-#     - tls://8.8.8.8:853
-#   fallback-filter:
-#     geoip: true
-#     geoip-code: CN
-#     ipcidr:
-#       - 240.0.0.0/4
-#   enhanced-mode: fake-ip
-#   fake-ip-range: 198.18.0.1/16
-#   fake-ip-filter:
-#     - '*.lan'
-#     - 'localhost.ptlogin2.qq.com'
-#     - 'dns.msftncsi.com'
-#     - 'www.msftncsi.com'
-#     - 'www.msftconnecttest.com'
-
+rules:
+  - RULE-SET,ADBlock,广告拦截
+  - RULE-SET,AdditionalFilter,广告拦截
+  - RULE-SET,TruthSocial,懂王社媒
+  - RULE-SET,cdn_domainset,静态资源
+  - RULE-SET,cdn_non_ip,静态资源
+  - RULE-SET,apple_cdn,全球直连
+  - RULE-SET,microsoft_cdn_non_ip,全球直连
+  - RULE-SET,ai_non_ip,人工智能
+  - RULE-SET,Microsoft,微软服务
+  - RULE-SET,EHentai,E-Hentai
+  - RULE-SET,TikTok,TikTok
+  - RULE-SET,SteamFix,Steam修复
+  - RULE-SET,PlayStoreFix,Play商店修复
+  - RULE-SET,GoogleFCM,FCM推送
+  - GEOSITE,GOOGLE-PLAY@CN,全球直连
+  - GEOSITE,GOOGLE,Google
+  - GEOSITE,YOUTUBE@CN,全球直连
+  - GEOSITE,YOUTUBE,YouTube
+  - GEOSITE,NETFLIX,Netflix
+  - GEOSITE,BAHAMUT,巴哈姆特
+  - GEOSITE,BILIBILI,哔哩哔哩
+  - GEOSITE,CATEGORY-GAMES@CN,全球直连
+  - GEOSITE,CATEGORY-GAMES,游戏平台
+  - GEOSITE,CATEGORY-SCHOLAR-!CN,学术资源
+  - GEOSITE,CATEGORY-SCHOLAR-CN,全球直连
+  - GEOSITE,CATEGORY-CRYPTOCURRENCY,加密货币
+  - GEOSITE,TELEGRAM,Telegram
+  - GEOSITE,PIKPAK,PikPak
+  - GEOSITE,CN,全球直连
+  - GEOSITE,PRIVATE,全球直连
+  - GEOIP,NETFLIX,Netflix,no-resolve
+  - GEOIP,GOOGLE,Google,no-resolve
+  - GEOIP,TELEGRAM,Telegram,no-resolve
+  - GEOIP,CN,全球直连,no-resolve
+  - GEOIP,LAN,全球直连,no-resolve
+  - GEOIP,PRIVATE,全球直连,no-resolve
+  - MATCH,漏网之鱼
 
 # DNS配置
 dns:
@@ -560,7 +649,7 @@ dns:
     - '*.battlenet.com'
     - '*.blzstatic.cn'
     - '*.battle.net'
-  
+
 
   # 建议多写点 DNS （ clash 的机制是同时向所有 DNS 发起解析请求，用返回最快那个，后续的直接丢弃）
   # 用来解析 nameserver 和 fallback 里面的域名的，必须为 IP, 可为加密 DNS
@@ -585,7 +674,7 @@ dns:
     - 180.76.76.76                       # 百度-联通
     - 112.124.47.27                      # OneDNS-南方
     - 114.215.126.16                     # OneDNS-北方
-  nameserver: 
+  nameserver:
     - https://8.8.8.8/dns-query#🚀 节点选择
     - https://1.1.1.1/dns-query#🚀 节点选择
   # 解析代理服务器域名的DNS服务器,就是节点本身中包含的域名
@@ -675,141 +764,3 @@ tun:
     - com.android.chrome
   exclude-package:
     - com.android.captiveportallogin
-
-rules:
-
-#自定义规则
-  - DOMAIN-KEYWORD,youtube,国际媒体
-  - DOMAIN-SUFFIX,googlevideo.com,国际媒体
-  - DOMAIN-KEYWORD,google,AI
-  - DOMAIN-KEYWORD,claude,AI
-  - DOMAIN,api-proxy.me,AI
-  - DOMAIN,grok.com,AI  
-  - DOMAIN-KEYWORD,ai,AI
-  - DOMAIN,api.theoremhub.asia,DIRECT
-  - DOMAIN-KEYWORD,cloudflare.com,唯快不破
-  - DOMAIN-SUFFIX,nvidia.com,AI
-  - DOMAIN-SUFFIX,cloudflare.com,DIRECT
-  - DOMAIN-SUFFIX,immersive-translate.owenyoung.com,REJECT
-  - DOMAIN-SUFFIX,immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,test-api2.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,api2.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,config.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,app.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,dash.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,api.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,immersive-translate.deno.dev,REJECT
-  - DOMAIN-SUFFIX,ai.immersivetranslate.com,REJECT
-  - DOMAIN-SUFFIX,test-ai.immersivetranslate.com,REJECT
-  - DOMAIN-KEYWORD,immersivetranslate,REJECT
-  - DOMAIN-KEYWORD,immersive-translate,REJECT
-
-  # 解锁AI
-  - RULE-SET,ai,AI
-  - RULE-SET,Gemini,AI
-  - RULE-SET,Claude,AI
-  - RULE-SET,Google,谷歌服务
-  - DOMAIN,meta.ai,AI
-  - DOMAIN,claude.ai,AI
-  - DOMAIN,groq.com,AI
-  - DOMAIN-SUFFIX,console.anthropic.com,AI
-  - DOMAIN,anthropic.com,AI
-  - DOMAIN,claude.ai,AI
-  - DOMAIN,console.anthropic.com,AI
-  - DOMAIN,anthropic.com,AI
-  - DOMAIN-SUFFIX,aistudio.google.com,AI
-  - DOMAIN,browser-intake-datadoghq.com,AI
-  - DOMAIN,static.cloudflareinsights.com,AI
-  - DOMAIN,ai-pro.org,AI
-  - DOMAIN-SUFFIX,ai.com,AI
-  - DOMAIN-SUFFIX,algolia.net,AI
-  - DOMAIN-SUFFIX,api.statsig.com,AI
-  - DOMAIN-SUFFIX,auth0.com,AI
-  - DOMAIN-SUFFIX,chatgpt.com,AI
-  - DOMAIN-SUFFIX,chatgpt.livekit.cloud,AI
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
-  - DOMAIN-SUFFIX,events.statsigapi.net,AI
-  - DOMAIN-SUFFIX,featuregates.org,AI
-  - DOMAIN-SUFFIX,host.livekit.cloud,AI
-  - DOMAIN-SUFFIX,identrust.com,AI
-  - DOMAIN-SUFFIX,intercom.io,AI
-  - DOMAIN-SUFFIX,intercomcdn.com,AI
-  - DOMAIN-SUFFIX,launchdarkly.com,AI
-  - DOMAIN-SUFFIX,oaistatic.com,AI
-  - DOMAIN-SUFFIX,oaiusercontent.com,AI
-  - DOMAIN-SUFFIX,observeit.net,AI
-  - DOMAIN-SUFFIX,poe.com,AI
-  - DOMAIN-SUFFIX,segment.io,AI
-  - DOMAIN-SUFFIX,sentry.io,AI
-  - DOMAIN-SUFFIX,stripe.com,AI
-  - DOMAIN-SUFFIX,turn.livekit.cloud,AI
-  - DOMAIN-KEYWORD,openai,AI
-
-  - DOMAIN-SUFFIX,googleapis.com,AI # Google chat 服务
-  - DOMAIN-SUFFIX,gstatic.com,AI # Google静态资源
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,AI # Google Play下载服务
-  - DOMAIN-SUFFIX,github.io,AI #Github Pages
-  - DOMAIN-SUFFIX,dadada.acaisbest.com,唯快不破
-  - DOMAIN-SUFFIX,isroots.com,AI
-  - DOMAIN-KEYWORD,marscode,AI
-  - DOMAIN-SUFFIX,appmiu.com,Direct
-  - DOMAIN,v2rayse.com,唯快不破 # V2rayse节点工具
-  - DOMAIN-KEYWORD,cocopilot.org,唯快不破
-  - DOMAIN-KEYWORD,n256,Direct
-  - DOMAIN-SUFFIX,quark.cn,Direct
-  - DOMAIN-KEYWORD,alipan,Direct
-  - DOMAIN-KEYWORD,learning.google.com,AI
-  - RULE-SET,AD,广告拦截
-  - RULE-SET,AI,AI
-  - RULE-SET,Apple,苹果服务
-  - RULE-SET,Telegram,电报消息
-  - RULE-SET,Twitter,推特消息
-  - RULE-SET,Steam,游戏平台
-  - RULE-SET,Epic,游戏平台
-  - RULE-SET,Emby,Emby
-  - RULE-SET,Spotify,国际媒体
-  - RULE-SET,Bahamut,国际媒体
-  - RULE-SET,Netflix,国际媒体
-  - RULE-SET,Disney,国际媒体
-  - RULE-SET,PrimeVideo,国际媒体
-  - RULE-SET,HBO,国际媒体
-  - GEOSITE,gfw,国外网站
-  - GEOSITE,onedrive,微软服务
-  - GEOSITE,github,微软服务
-  - GEOSITE,microsoft,微软服务
-  - RULE-SET,China,DIRECT
-  - GEOIP,lan,DIRECT
-  - GEOIP,CN,DIRECT
-# 服务类
-  - RULE-SET,YouTube,国际媒体
-  - RULE-SET,TikTok,国际媒体
-  - RULE-SET,PayPal,唯快不破
-  - RULE-SET,telegramcidr,唯快不破
-  - DOMAIN-KEYWORD,oaifree,DIRECT
-  - DOMAIN-SUFFIX,shared.oaifree.com,DIRECT
-  
-# 屏蔽广告
-  - RULE-SET,AdBlock,广告拦截
-  - RULE-SET,reject,广告拦截
-  - RULE-SET,BanAD,广告拦截
-  - RULE-SET,BanProgramAD,广告拦截
-  - RULE-SET,BanEasyList,广告拦截
-  
-# 补丁规则
-  - RULE-SET,gfw,唯快不破
-  - RULE-SET,proxy,唯快不破
-  - RULE-SET,tld-not-cn,唯快不破
-  - RULE-SET,ProxyGFWlist,唯快不破
-  - RULE-SET,ProxyClient,唯快不破
-  - RULE-SET,ChinaDomain,DIRECT,no-resolve
-  - RULE-SET,ChinaCompanyIp,DIRECT,no-resolve
-  - RULE-SET,cncidr,DIRECT,no-resolve
-  - RULE-SET,China,DIRECT,no-resolve
-  - RULE-SET,lancidr,DIRECT,no-resolve
-  - RULE-SET,collection,DIRECT,no-resolve
-
-# 默认规则 
-  - GEOIP,CN,DIRECT,no-resolve
-  - GEOSITE,geolocation-cn,DIRECT
-  - GEOSITE,geolocation-!cn,唯快不破
-  - MATCH,兜底分流
