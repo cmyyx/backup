@@ -619,11 +619,33 @@ rule-providers:
     interval: 86400
 
 rules:
-# 1. 优先处理需要拒绝的流量
+# 1. 最高优先级：处理局域网、私有地址和广告拦截，必须放在最前面
+  - GEOIP,LAN,全球直连,no-resolve
+  - GEOIP,PRIVATE,全球直连,no-resolve
   - RULE-SET,ADBlock,广告拦截,no-resolve
   - RULE-SET,AdditionalFilter,广告拦截,no-resolve
 
-# 2. 处理需要走特定代理的知名服务
+# 2. 国内域名和IP直连规则 (核心直连判断区)
+  - GEOSITE,geolocation-cn,全球直连,no-resolve  # 核心国内域名规则
+  - GEOSITE,CN,全球直连,no-resolve             # 对 geolocation-cn 的补充
+  - GEOSITE,BILIBILI,哔哩哔哩,no-resolve         # B站是国内服务，应直连
+  - GEOSITE,GOOGLE-PLAY@CN,全球直连,no-resolve
+  - GEOSITE,YOUTUBE@CN,全球直连,no-resolve
+  - GEOSITE,CATEGORY-GAMES@CN,全球直连,no-resolve
+  - GEOSITE,CATEGORY-SCHOLAR-CN,全球直连,no-resolve
+  - RULE-SET,ChinaDomain,全球直连,no-resolve
+  - RULE-SET,China,全球直连,no-resolve
+  - RULE-SET,apple_cdn,全球直连,no-resolve
+  - RULE-SET,microsoft_cdn_non_ip,全球直连,no-resolve
+  - GEOIP,CN,全球直连,no-resolve
+  - RULE-SET,ChinaCompanyIp,全球直连,no-resolve
+
+# 3. 国外服务代理规则 (如果流量没在上面被直连，则在这里判断)
+  # 3.1 GFW 黑名单 (范围最广的代理规则)
+  - GEOSITE,gfw,节点选择
+  - RULE-SET,gfw,节点选择
+  - RULE-SET,ProxyGFWlist,节点选择
+  # 3.2 特定服务/应用规则
   - RULE-SET,TruthSocial,懂王社媒
   - RULE-SET,Microsoft,微软服务
   - RULE-SET,EHentai,E-Hentai
@@ -641,39 +663,16 @@ rules:
   - GEOSITE,YOUTUBE,YouTube
   - GEOSITE,CATEGORY-GAMES,游戏平台
   - GEOSITE,CATEGORY-SCHOLAR-!CN,学术资源
-
-# 3. 处理需要强制走代理的流量 (GFW列表)
-  - GEOSITE,gfw,节点选择
-  - RULE-SET,gfw,节点选择
-  - RULE-SET,ProxyGFWlist,节点选择
-
-# 4. 处理国内流量，匹配后立即直连，不再向下判断
-  - GEOSITE,geolocation-cn,全球直连,no-resolve  # 核心国内域名规则
-  - GEOSITE,CN,全球直连,no-resolve             # 对 geolocation-cn 的补充
-  - GEOSITE,BILIBILI,哔哩哔哩,no-resolve         # B站是国内服务，应直连
-  - GEOSITE,GOOGLE-PLAY@CN,全球直连,no-resolve
-  - GEOSITE,YOUTUBE@CN,全球直连,no-resolve
-  - GEOSITE,CATEGORY-GAMES@CN,全球直连,no-resolve
-  - GEOSITE,CATEGORY-SCHOLAR-CN,全球直连,no-resolve
-  - RULE-SET,ChinaDomain,全球直连,no-resolve
-  - RULE-SET,China,全球直连,no-resolve
-
-# 5. 处理CDN和特殊直连流量
+  # 3.3 CDN 规则
   - RULE-SET,cdn_domainset,静态资源
   - RULE-SET,cdn_non_ip,静态资源
-  - RULE-SET,apple_cdn,全球直连
-  - RULE-SET,microsoft_cdn_non_ip,全球直连
 
-# 6. 基于IP的最终判断规则 (你的这部分已很完美)
+# 4. 基于IP的代理规则 (作为域名规则的补充)
   - GEOIP,NETFLIX,Netflix,no-resolve
   - GEOIP,GOOGLE,Google,no-resolve
   - GEOIP,TELEGRAM,Telegram,no-resolve
-  - GEOIP,CN,全球直连,no-resolve
-  - GEOIP,LAN,全球直连,no-resolve
-  - GEOIP,PRIVATE,全球直连,no-resolve
-  - RULE-SET,ChinaCompanyIp,全球直连,no-resolve # 这个本质是IP规则，放在这里
 
-# 7. 最终兜底规则
+# 5. 最终兜底规则
   - MATCH,漏网之鱼
 
 # DNS配置
