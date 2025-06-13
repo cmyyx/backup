@@ -603,12 +603,6 @@ rule-providers:
     path: ./rules/ChinaDomain.yaml
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
     interval: 86400
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ./rules/ChinaCompanyIp.yaml
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
     interval: 86400
   China: 
     type: http
@@ -638,7 +632,6 @@ rules:
   - RULE-SET,apple_cdn,全球直连,no-resolve
   - RULE-SET,microsoft_cdn_non_ip,全球直连,no-resolve
   - GEOIP,CN,全球直连,no-resolve
-  - RULE-SET,ChinaCompanyIp,全球直连,no-resolve
 
 # 3. 国外服务代理规则 (如果流量没在上面被直连，则在这里判断)
   # 3.1 GFW 黑名单 (范围最广的代理规则)
@@ -753,18 +746,12 @@ sniffer:
       ports: [80, 8080-8880]  # 要嗅探的 HTTP 流量端口，包括标准 HTTP 端口 80 和常用的 HTTP 端口范围 8080-8880
       override-destination: true  # 启用目标覆盖功能，允许 Clash 根据嗅探到的域名重写请求的目标地址
 
-# GeoData 配置
-geodata-mode: true        # 启用地理数据模式，使 Clash 使用 GeoIP/GeoSite 数据库进行流量的地理位置识别和规则匹配
-geo-auto-update: true     # 启用地理数据库自动更新功能，Clash 会定期检查并更新 GeoIP/GeoSite 数据库
-geo-update-interval: 24   # 设置地理数据库的更新间隔为24小时，Clash 会每24小时自动检查一次更新（小时）
-geodata-loader: standard  # 设置地理数据加载器为标准模式，使用标准的数据解析和加载方式处理地理数据库
-# GeoData下载源（使用国内加速下载源）
-# 备用下载域名https://ghfast.top、https://ghproxy.net、https://ghgo.xyz
+geodata-mode: true
 geox-url:
-  geoip: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
-  geosite: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-  mmdb: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb
-  asn: https://fastgh.lainbo.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb
+  geoip: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat'
+  geosite: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat'
+  mmdb: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb'
+  asn: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb'
 
 tun:
   enable: true
