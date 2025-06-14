@@ -5,3 +5,4 @@ DOMAIN,registry.npmjs.org
 DOMAIN-SUFFIX,magnode.ru
 DOMAIN,anybt.eth.limo
 DOMAIN,taikonfts.4everland.link
+DOMAIN-SUFFIX,github.com
