@@ -6,4 +6,4 @@ DOMAIN-SUFFIX,magnode.ru
 DOMAIN,anybt.eth.limo
 DOMAIN,taikonfts.4everland.link
 DOMAIN-SUFFIX,github.com
-DOMAIN,web.archive.org
+DOMAIN-SUFFIX,archive.org
