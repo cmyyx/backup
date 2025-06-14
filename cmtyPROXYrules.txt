@@ -1,0 +1,7 @@
+# 个人维护规则,代理
+DOMAIN,www.augmentcode.com
+DOMAIN,vercel.com
+DOMAIN,registry.npmjs.org
+DOMAIN-SUFFIX,magnode.ru
+DOMAIN,anybt.eth.limo
+DOMAIN,taikonfts.4everland.link
