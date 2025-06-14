@@ -603,7 +603,6 @@ rule-providers:
     path: ./rules/ChinaDomain.yaml
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
     interval: 86400
-    interval: 86400
   China: 
     type: http
     behavior: classical
