@@ -277,12 +277,6 @@ proxy-groups:
       - 非洲节点
       - 手动切换
       - 全球直连
-  - name: 搜狗输入
-    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Sougou.png
-    type: select
-    proxies:
-      - 全球直连
-      - REJECT
   - name: 静态资源
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
     type: select
@@ -480,7 +474,6 @@ proxy-groups:
       - 学术资源
       - 游戏平台
       - 微软服务
-      - 搜狗输入
       - 静态资源
       - FCM推送
       - Steam修复
@@ -524,13 +517,6 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  sogouinput:
-    type: http
-    behavior: classical
-    format: text
-    interval: 86400
-    url: https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt
-    path: ./sukkaw_ruleset/sogouinput.txt
   cdn_domainset:
     type: http
     behavior: domain
@@ -632,7 +618,6 @@ rule-providers:
 rules:
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AdditionalFilter,广告拦截"
-  - "RULE-SET,sogouinput,搜狗输入"
   - "RULE-SET,TruthSocial,懂王社媒"
   - "RULE-SET,cdn_domainset,静态资源"
   - "RULE-SET,cdn_non_ip,静态资源"
