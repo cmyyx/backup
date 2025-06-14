@@ -620,14 +620,14 @@ rule-providers:
     format: text
     interval: 86400
     path: ./ruleset/cmtyPROXYrules.txt
-    url: https://github.com/cmyyx/backup/blob/cmty-rules/cmtyPROXYrules.txt
+    url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyPROXYrules.txt
   cmtyDIRECTrules:
     type: http
     behavior: classical
     format: text
     interval: 86400
     path: ./ruleset/cmtyDIRECTrules.txt
-    url: https://github.com/cmyyx/backup/blob/cmty-rules/cmtyDIRECTrules.txt
+    url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyDIRECTrules.txt
 
 rules:
   - "RULE-SET,ADBlock,广告拦截"
