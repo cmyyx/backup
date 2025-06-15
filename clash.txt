@@ -606,6 +606,11 @@ rule-providers:
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
     path: ./ruleset/ProxyGFWlist.yaml
     interval: 86400
+  ProxyGFW:
+    type: http
+    behavior: classical
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list
+    path: ./rule-providers/ProxyGFW.list
   cmtyPROXYrules:
     type: http
     behavior: classical
@@ -638,6 +643,7 @@ rules:
   - "RULE-SET,GoogleFCM,FCM推送"
   - "RULE-SET,gfw,GFW"
   - "RULE-SET,ProxyGFWlist,GFW"
+  - "RULE-SET,ProxyGFW,GFW"
   - "RULE-SET,cmtyPROXYrules,节点选择"
   - "RULE-SET,cmtyDIRECTrules,全球直连"
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
