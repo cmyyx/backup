@@ -7,3 +7,4 @@ DOMAIN,anybt.eth.limo
 DOMAIN,taikonfts.4everland.link
 DOMAIN-SUFFIX,github.com
 DOMAIN-SUFFIX,archive.org
+DOMAIN-KEYWORD,discord
