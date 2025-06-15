@@ -9,3 +9,4 @@ DOMAIN-SUFFIX,github.com
 DOMAIN-SUFFIX,archive.org
 DOMAIN-KEYWORD,discord
 DOMAIN,www.nodeseek.com
+DOMAIN-KEYWORD,cloudflare
