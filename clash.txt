@@ -625,10 +625,18 @@ rule-providers:
     interval: 86400
     path: ./ruleset/cmtyDIRECTrules.txt
     url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyDIRECTrules.txt
+  AWAvenue-Ads-Rule:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./ruleset/AWAvenue-Ads-Rule-Clash.yaml
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
 
 rules:
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AdditionalFilter,广告拦截"
+  - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
   - "RULE-SET,TruthSocial,懂王社媒"
   - "RULE-SET,cdn_domainset,静态资源"
   - "RULE-SET,cdn_non_ip,静态资源"
