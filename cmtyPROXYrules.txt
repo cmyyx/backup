@@ -11,3 +11,4 @@ DOMAIN-KEYWORD,discord
 DOMAIN,www.nodeseek.com
 DOMAIN-KEYWORD,cloudflare
 DOMAIN,files.pythonhosted.org
+DOMAIN-SUFFIX,duckduckgo.com
