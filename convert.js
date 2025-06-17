@@ -344,6 +344,191 @@ const proxyGroups = [
     }
 ];
 
+const ruleProviders = {
+    "ADBlock": {
+        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
+        "url": "https://adrules.top/adrules_domainset.txt",
+        "path": "./ruleset/ADBlock.txt"
+    },
+    "Microsoft": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft.txt",
+        "path": "./sukkaw_ruleset/microsoft_non_ip.txt"
+    },
+    "TruthSocial": {
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list",
+        "path": "./ruleset/TruthSocial.list",
+        "behavior": "classical", "interval": 86400, "format": "text", "type": "http"
+    },
+    "sogouinput": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt",
+        "path": "./sukkaw_ruleset/sogouinput.txt"
+    },
+    "cdn_domainset": {
+        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/domainset/cdn.txt",
+        "path": "./sukkaw_ruleset/cdn_domainset.txt"
+    },
+    "cdn_non_ip": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/cdn.txt",
+        "path": "./sukkaw_ruleset/cdn_non_ip.txt"
+    },
+    "apple_cdn": {
+        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt",
+        "path": "./sukkaw_ruleset/apple_cdn.txt"
+    },
+    "microsoft_cdn_non_ip": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt",
+        "path": "./sukkaw_ruleset/microsoft_cdn_non_ip.txt"
+    },
+    "ai_non_ip": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/ai.txt",
+        "path": "./sukkaw_ruleset/ai_non_ip.txt"
+    },
+    "TikTok": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list",
+        "path": "./ruleset/TikTok.list"
+    },
+    "EHentai": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
+        "path": "./ruleset/EHentai.list"
+    },
+    "PlayStoreFix": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/GooglePlayStoreFix.list",
+        "path": "./ruleset/GooglePlayStoreFix.list"
+    },
+    "SteamFix": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list"
+    },
+    "GoogleFCM": {
+        "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
+        "path": "./ruleset/FirebaseCloudMessaging.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list"
+    },
+    "AdditionalFilter": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "path": "./ruleset/AdditionalFilter.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list"
+    }
+}
+
+const rules = [
+    "RULE-SET,ADBlock,广告拦截",
+    "RULE-SET,AdditionalFilter,广告拦截",
+    "RULE-SET,sogouinput,搜狗输入",
+    "RULE-SET,TruthSocial,懂王社媒",
+    "RULE-SET,cdn_domainset,静态资源",
+    "RULE-SET,cdn_non_ip,静态资源",
+    "RULE-SET,apple_cdn,全球直连",
+    "RULE-SET,microsoft_cdn_non_ip,全球直连",
+    "RULE-SET,ai_non_ip,人工智能",
+    "RULE-SET,Microsoft,微软服务",
+    "RULE-SET,EHentai,E-Hentai",
+    "RULE-SET,TikTok,TikTok",
+    "RULE-SET,SteamFix,Steam修复",
+    "RULE-SET,PlayStoreFix,Play商店修复",
+    "RULE-SET,GoogleFCM,FCM推送",
+    "GEOSITE,GOOGLE-PLAY@CN,全球直连",
+    "GEOSITE,GOOGLE,Google",
+    "GEOSITE,YOUTUBE@CN,全球直连",
+    "GEOSITE,YOUTUBE,YouTube",
+    "GEOSITE,NETFLIX,Netflix",
+    "GEOSITE,BAHAMUT,巴哈姆特",
+    "GEOSITE,BILIBILI,哔哩哔哩",
+    "GEOSITE,CATEGORY-GAMES@CN,全球直连",
+    "GEOSITE,CATEGORY-GAMES,游戏平台",
+    "GEOSITE,CATEGORY-SCHOLAR-!CN,学术资源",
+    "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连",
+    "GEOSITE,CATEGORY-CRYPTOCURRENCY,加密货币",
+    "GEOSITE,TELEGRAM,Telegram",
+    "GEOSITE,PIKPAK,PikPak",
+    "GEOSITE,CN,全球直连",
+    "GEOSITE,PRIVATE,全球直连",
+    "GEOIP,NETFLIX,Netflix,no-resolve",
+    "GEOIP,GOOGLE,Google,no-resolve",
+    "GEOIP,TELEGRAM,Telegram,no-resolve",
+    "GEOIP,CN,全球直连,no-resolve",
+    "GEOIP,LAN,全球直连,no-resolve",
+    "GEOIP,PRIVATE,全球直连,no-resolve",
+    "MATCH,漏网之鱼"
+];
+
+const snifferConfig = {
+    "sniff": {
+        "TLS": {
+            "ports": [443, 8443],
+            "override-destination": true
+        },
+        "HTTP": {
+            "ports": [80, 8080, 8880],
+            "override-destination": false
+        },
+        "QUIC": {
+            "ports": [443, 8443],
+            "override-destination": true
+        }
+    },
+    "enable": true,
+    "parse-pure-ip": true,
+    "force-dns-mapping": true,
+    "skip-domain": [
+        "Mijia Cloud",
+        "dlg.io.mi.com",
+        "+.push.apple.com"
+    ]
+};
+
+const dnsConfig = {
+    "enable": true,
+    "ipv6": true,
+    "prefer-h3": true,
+    "enhanced-mode": "redir-host",
+    "use-system-hosts": true,
+    "default-nameserver": [
+        "119.28.28.28",
+        "119.29.29.29",
+        "223.5.5.5",
+        "223.6.6.6"
+    ],
+    "nameserver": [
+        "system",
+        "quic://223.5.5.5",
+        "tls://dot.pub:853",
+        "tls://dns.alidns.com:853",
+        "https://doh.pub/dns-query",
+        "https://dns.alidns.com/dns-query"
+    ],
+    "fallback": [
+        "https://dns.cloudflare.com/dns-query",
+        "https://dns.sb/dns-query",
+        "https://dns.google/dns-query",
+        "https://public.dns.iij.jp/dns-query",
+        "https://jp.tiar.app/dns-query",
+        "https://jp.tiarap.org/dns-query"
+    ],
+    "proxy-server-nameserver": [
+        "quic://223.5.5.5",
+        "tls://dot.pub",
+        "https://223.5.5.5/dns-query"
+    ]
+};
+
+const geoxURL = {
+    "geoip": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
+    "geosite": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
+    "mmdb": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb",
+    "asn": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+};
+
 function handleLoadBalance(group) {
     const targetNames = ["香港节点", "台湾节点", "狮城节点", "日本节点",
         "韩国节点", "美国节点", "英国节点", "加拿大节点", "澳洲节点"];
@@ -413,197 +598,21 @@ function main(config) {
     }
 
     // rule-providers
-    if (!config["rule-providers"]) config["rule-providers"] = {};
-    Object.assign(config["rule-providers"], {
-        "ADBlock": {
-            "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
-            "url": "https://adrules.top/adrules_domainset.txt",
-            "path": "./ruleset/ADBlock.txt"
-        },
-        "Microsoft": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft.txt",
-            "path": "./sukkaw_ruleset/microsoft_non_ip.txt"
-        },
-        "TruthSocial": {
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list",
-            "path": "./ruleset/TruthSocial.list",
-            "behavior": "classical", "interval": 86400, "format": "text", "type": "http"
-        },
-        "sogouinput": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt",
-            "path": "./sukkaw_ruleset/sogouinput.txt"
-        },
-        "cdn_domainset": {
-            "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/domainset/cdn.txt",
-            "path": "./sukkaw_ruleset/cdn_domainset.txt"
-        },
-        "cdn_non_ip": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/non_ip/cdn.txt",
-            "path": "./sukkaw_ruleset/cdn_non_ip.txt"
-        },
-        "apple_cdn": {
-            "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt",
-            "path": "./sukkaw_ruleset/apple_cdn.txt"
-        },
-        "microsoft_cdn_non_ip": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt",
-            "path": "./sukkaw_ruleset/microsoft_cdn_non_ip.txt"
-        },
-        "ai_non_ip": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://ruleset.skk.moe/Clash/non_ip/ai.txt",
-            "path": "./sukkaw_ruleset/ai_non_ip.txt"
-        },
-        "TikTok": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list",
-            "path": "./ruleset/TikTok.list"
-        },
-        "EHentai": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
-            "path": "./ruleset/EHentai.list"
-        },
-        "PlayStoreFix": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/GooglePlayStoreFix.list",
-            "path": "./ruleset/GooglePlayStoreFix.list"
-        },
-        "SteamFix": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list"
-        },
-        "GoogleFCM": {
-            "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
-            "path": "./ruleset/FirebaseCloudMessaging.list",
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list"
-        },
-        "AdditionalFilter": {
-            "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-            "path": "./ruleset/AdditionalFilter.list",
-            "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list"
-        }
-    });
+    config["rule-providers"] = ruleProviders;
 
     // rules
-    config["rules"] = [
-        "RULE-SET,ADBlock,广告拦截",
-        "RULE-SET,AdditionalFilter,广告拦截",
-        "RULE-SET,sogouinput,搜狗输入",
-        "RULE-SET,TruthSocial,懂王社媒",
-        "RULE-SET,cdn_domainset,静态资源",
-        "RULE-SET,cdn_non_ip,静态资源",
-        "RULE-SET,apple_cdn,全球直连",
-        "RULE-SET,microsoft_cdn_non_ip,全球直连",
-        "RULE-SET,ai_non_ip,人工智能",
-        "RULE-SET,Microsoft,微软服务",
-        "RULE-SET,EHentai,E-Hentai",
-        "RULE-SET,TikTok,TikTok",
-        "RULE-SET,SteamFix,Steam修复",
-        "RULE-SET,PlayStoreFix,Play商店修复",
-        "RULE-SET,GoogleFCM,FCM推送",
-        "GEOSITE,GOOGLE-PLAY@CN,全球直连",
-        "GEOSITE,GOOGLE,Google",
-        "GEOSITE,YOUTUBE@CN,全球直连",
-        "GEOSITE,YOUTUBE,YouTube",
-        "GEOSITE,NETFLIX,Netflix",
-        "GEOSITE,BAHAMUT,巴哈姆特",
-        "GEOSITE,BILIBILI,哔哩哔哩",
-        "GEOSITE,CATEGORY-GAMES@CN,全球直连",
-        "GEOSITE,CATEGORY-GAMES,游戏平台",
-        "GEOSITE,CATEGORY-SCHOLAR-!CN,学术资源",
-        "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连",
-        "GEOSITE,CATEGORY-CRYPTOCURRENCY,加密货币",
-        "GEOSITE,TELEGRAM,Telegram",
-        "GEOSITE,PIKPAK,PikPak",
-        "GEOSITE,CN,全球直连",
-        "GEOSITE,PRIVATE,全球直连",
-        "GEOIP,NETFLIX,Netflix,no-resolve",
-        "GEOIP,GOOGLE,Google,no-resolve",
-        "GEOIP,TELEGRAM,Telegram,no-resolve",
-        "GEOIP,CN,全球直连,no-resolve",
-        "GEOIP,LAN,全球直连,no-resolve",
-        "GEOIP,PRIVATE,全球直连,no-resolve",
-        "MATCH,漏网之鱼"
-    ];
+    config["rules"] = rules;
 
     // sniffer
-    config["sniffer"] = {
-        "sniff": {
-            "TLS": {
-                "ports": [443, 8443],
-                "override-destination": true
-            },
-            "HTTP": {
-                "ports": [80, 8080, 8880],
-                "override-destination": false
-            },
-            "QUIC": {
-                "ports": [443, 8443],
-                "override-destination": true
-            }
-        },
-        "enable": true,
-        "parse-pure-ip": true,
-        "force-dns-mapping": true,
-        "skip-domain": [
-            "Mijia Cloud",
-            "dlg.io.mi.com",
-            "+.push.apple.com"
-        ]
-    };
+    config["sniffer"] = snifferConfig;
 
     // dns
-    config["dns"] = {
-        "enable": true,
-        "ipv6": true,
-        "prefer-h3": true,
-        "enhanced-mode": "redir-host",
-        "use-system-hosts": true,
-        "default-nameserver": [
-            "119.28.28.28",
-            "119.29.29.29",
-            "223.5.5.5",
-            "223.6.6.6"
-        ],
-        "nameserver": [
-            "system",
-            "quic://223.5.5.5",
-            "tls://dot.pub:853",
-            "tls://dns.alidns.com:853",
-            "https://doh.pub/dns-query",
-            "https://dns.alidns.com/dns-query"
-        ],
-        "fallback": [
-            "https://dns.cloudflare.com/dns-query",
-            "https://dns.sb/dns-query",
-            "https://dns.google/dns-query",
-            "https://public.dns.iij.jp/dns-query",
-            "https://jp.tiar.app/dns-query",
-            "https://jp.tiarap.org/dns-query"
-        ],
-        "proxy-server-nameserver": [
-            "quic://223.5.5.5",
-            "tls://dot.pub",
-            "https://223.5.5.5/dns-query"
-        ]
-    };
+    config["dns"] = dnsConfig;
 
     //geox-url
     if (!config["geox-url"]) config["geox-url"] = {};
     config["geodata-mode"] = true;
-    config["geox-url"] = {
-        "geoip": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
-        "geosite": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
-        "mmdb": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb",
-        "asn": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
-    };
+    config["geox-url"] = geoxURL;
 
     return config;
 }
