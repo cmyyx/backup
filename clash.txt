@@ -705,7 +705,6 @@ dns:
   fake-ip-range: 198.18.0.1/16  # 设置 fake-ip 的 IP 地址范围为 198.18.0.1/16
   use-hosts: true
   use-system-hosts: true
-  respect-rules: true
   fake-ip-filter:
     - '*.lan'
     - localhost.ptlogin2.qq.com
@@ -754,22 +753,16 @@ dns:
     - "tls://dns.alidns.com:853"
     - "https://doh.pub/dns-query"
     - "https://dns.alidns.com/dns-query"
-    - https://dns.google/dns-query
-    - https://dns.cloudflare.com/dns-query
+    - "https://dns.google/dns-query"
+    - "https://dns.cloudflare.com/dns-query"
   fallback:
     - "https://dns.sb/dns-query"
     - "https://dns.google/dns-query"
     - "https://public.dns.iij.jp/dns-query"
     - "https://jp.tiar.app/dns-query"
     - "https://jp.tiarap.org/dns-query"
-    - https://1.0.0.1/dns-query
-    - https://dns.quad9.net/dns-query
-  proxy-server-nameserver:
-    - 'quic://223.5.5.5'
-    - 'tls://dot.pub'
-    - 'https://223.5.5.5/dns-query
-    - https://dns.cloudflare.com/dns-query
-    - "https://dns.google/dns-query"
+    - "https://1.0.0.1/dns-query"
+    - "https://dns.quad9.net/dns-query"
 
 geodata-mode: true
 geox-url:
@@ -777,7 +770,3 @@ geox-url:
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
-
-profile:
-  store-selected: true    # 保存用户选择的代理配置，在 Clash 重启后仍然记住上次选择的代理服务器
-  store-fake-ip: true     # 适用于 Clash 在 Fake IP 模式下工作时。它会将域名到 Fake IP 的映射关系保存下来，确保 Clash 重启后依然能使用相同的 Fake IP 分配给相同的域名，保持连接的一致性和稳定性
