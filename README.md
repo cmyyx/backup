@@ -25,13 +25,19 @@
 
 参考[最速 Substore 订阅管理指南](https://blog.l3zc.com/2025/03/clash-subscription-convert/)。
 
+2025/06/17更新：新增 JavaScript 格式覆写，支持传入参数，更易于维护，推荐使用。例如，有链式代理需求，使用如下覆写脚本链接即可：
+
+```
+https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/convert.js#landing=true
+```
+
 **Clash Verge 系**
 
 直接复制粘贴到覆写规则（无法自动更新）。
 
 ### 关于各 Mihomo 客户端覆盖 GeoIP/GeoSite 下载地址的说明
 
-大多数 Mihomo 客户端都会覆写 GeoIP/GeoSite 数据库资源链接，为了获得更好的分流体验，建议手动修改客户端内的覆写设置。以 Mihomo Party 为例，点击侧栏中的「外部资源」，分别将资源链接替换为以下值：
+这覆写规则大量引用了 Loyalsoldier/v2ray-rules-dat，大多数 Mihomo 客户端都会覆写 GeoIP/GeoSite 数据库资源链接，为了获得更好的分流体验，建议手动修改客户端内的覆写设置。以 Mihomo Party 为例，点击侧栏中的「外部资源」，分别将资源链接替换为以下值：
 
 | 项目           | 链接                                                                           |
 | -------------- | ------------------------------------------------------------------------------ |
