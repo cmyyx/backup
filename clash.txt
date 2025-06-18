@@ -748,6 +748,7 @@ dns:
     - 223.6.6.6         # 阿里DNS
     - 180.76.76.76      # 百度DNS
   nameserver:
+    - system
     - "quic://223.5.5.5"
     - "tls://dot.pub:853"
     - "tls://dns.alidns.com:853"
@@ -756,7 +757,6 @@ dns:
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
   fallback:
-    - "https://dns.cloudflare.com/dns-query"
     - "https://dns.sb/dns-query"
     - "https://dns.google/dns-query"
     - "https://public.dns.iij.jp/dns-query"
