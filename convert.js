@@ -494,31 +494,24 @@ const dnsConfig = {
     "enhanced-mode": "redir-host",
     "use-system-hosts": true,
     "default-nameserver": [
-        "119.28.28.28",
         "119.29.29.29",
         "223.5.5.5",
-        "223.6.6.6"
     ],
     "nameserver": [
         "system",
         "quic://223.5.5.5",
-        "tls://dot.pub:853",
-        "tls://dns.alidns.com:853",
-        "https://doh.pub/dns-query",
-        "https://dns.alidns.com/dns-query"
+        "tls://dot.pub",
+        "tls://dns.alidns.com",
     ],
     "fallback": [
         "https://dns.cloudflare.com/dns-query",
         "https://dns.sb/dns-query",
-        "https://dns.google/dns-query",
-        "https://public.dns.iij.jp/dns-query",
-        "https://jp.tiar.app/dns-query",
-        "https://jp.tiarap.org/dns-query"
+        "tcp://208.67.222.222",
+        "tcp://8.26.56.2"
     ],
     "proxy-server-nameserver": [
         "quic://223.5.5.5",
         "tls://dot.pub",
-        "https://223.5.5.5/dns-query"
     ]
 };
 
