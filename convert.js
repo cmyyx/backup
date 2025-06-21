@@ -29,19 +29,19 @@ const globalProxies = [
 const proxyGroups = [
     {
         "name": "节点选择",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
         "type": "select",
         "proxies": defaultSelector
     },
     {
         "name": "手动切换",
-        "icon": "https://cdn.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
+        "icon": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
         "include-all": true,
         "type": "select"
     },
     {
         "name": "自动选择",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png",
         "type": "url-test",
         "include-all": true,
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -51,61 +51,61 @@ const proxyGroups = [
     },
     {
         "name": "人工智能",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "加密货币",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_3.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_3.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "Telegram",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "Google",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "YouTube",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "Netflix",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "TikTok",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "E-Hentai",
-        "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
+        "icon": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "PikPak",
-        "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/PikPak.png",
+        "icon": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/icons/PikPak.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "巴哈姆特",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png",
         "type": "select",
         "proxies": [
             "台湾节点", "节点选择", "手动切换", "全球直连"
@@ -113,7 +113,7 @@ const proxyGroups = [
     },
     {
         "name": "哔哩哔哩",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png",
         "type": "select",
         "proxies": [
             "全球直连", "台湾节点", "香港节点"
@@ -121,7 +121,7 @@ const proxyGroups = [
     },
     {
         "name": "懂王社媒",
-        "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/TruthSocial.png",
+        "icon": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/icons/TruthSocial.png",
         "type": "select",
         "proxies": [
             "美国节点", "加拿大节点", "节点选择", "手动切换"
@@ -129,7 +129,7 @@ const proxyGroups = [
     },
     {
         "name": "学术资源",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Scholar.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Scholar.png",
         "type": "select",
         "proxies": [
             "节点选择", "手动切换", "全球直连"
@@ -137,19 +137,19 @@ const proxyGroups = [
     },
     {
         "name": "游戏平台",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "微软服务",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
         "type": "select",
         "proxies": defaultProxies,
     },
     {
         "name": "搜狗输入",
-        "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Sougou.png",
+        "icon": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Sougou.png",
         "type": "select",
         "proxies": [
             "全球直连", "REJECT"
@@ -157,7 +157,7 @@ const proxyGroups = [
     },
     {
         "name": "静态资源",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
         "type": "select",
         "include-all": true,
         "proxies": defaultProxies,
@@ -172,7 +172,7 @@ const proxyGroups = [
     },
     {
         "name": "Steam修复",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png",
         "type": "select",
         "proxies": [
             "全球直连", "游戏平台", "节点选择"
@@ -180,7 +180,7 @@ const proxyGroups = [
     },
     {
         "name": "Play商店修复",
-        "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/GooglePlay.png",
+        "icon": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/icons/GooglePlay.png",
         "type": "select",
         "proxies": [
             "全球直连", "节点选择"
@@ -188,7 +188,7 @@ const proxyGroups = [
     },
     {
         "name": "全球直连",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
         "type": "select",
         "proxies": [
             "DIRECT", "节点选择"
@@ -196,7 +196,7 @@ const proxyGroups = [
     },
     {
         "name": "广告拦截",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
         "type": "select",
         "proxies": [
             "REJECT", "全球直连"
@@ -204,7 +204,7 @@ const proxyGroups = [
     },
     {
         "name": "漏网之鱼",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png",
         "type": "select",
         "proxies": [
             "节点选择", "全球直连"
@@ -212,7 +212,7 @@ const proxyGroups = [
     },
     {
         "name": "故障转移",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png",
         "type": "fallback",
         "lazy": false,
         "proxies": [
@@ -222,7 +222,7 @@ const proxyGroups = [
     },
     {
         "name": "香港节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png",
         "include-all": true,
         "filter": "(?i)港|HK|hk|Hong Kong|HongKong|hongkong",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -233,7 +233,7 @@ const proxyGroups = [
     },
     {
         "name": "台湾节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png",
         "include-all": true,
         "filter": "(?i)台|新北|彰化|TW|Taiwan",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -244,7 +244,7 @@ const proxyGroups = [
     },
     {
         "name": "狮城节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png",
         "include-all": true,
         "filter": "(?i)新加坡|坡|狮城|SG|Singapore",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -255,7 +255,7 @@ const proxyGroups = [
     },
     {
         "name": "日本节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png",
         "include-all": true,
         "filter": "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -266,7 +266,7 @@ const proxyGroups = [
     },
     {
         "name": "韩国节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png",
         "include-all": true,
         "filter": "(?i)KR|Korea|KOR|首尔|韩|韓",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -277,7 +277,7 @@ const proxyGroups = [
     },
     {
         "name": "美国节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png",
         "include-all": true,
         "filter": "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -288,7 +288,7 @@ const proxyGroups = [
     },
     {
         "name": "加拿大节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Canada.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Canada.png",
         "include-all": true,
         "filter": "(?i)加拿大|多伦多|Toronto|温哥华|Vancouver|蒙特利尔|Montreal|卡尔加里|Calgary|渥太华|Ottawa",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -299,7 +299,7 @@ const proxyGroups = [
     },
     {
         "name": "英国节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png",
         "include-all": true,
         "filter": "(?i)英国|UK|GB|伦敦|London|曼彻斯特|Manchester|伯明翰|Birmingham|利物浦|Liverpool|谢菲联|Sheffield",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -310,7 +310,7 @@ const proxyGroups = [
     },
     {
         "name": "澳洲节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Australia.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Australia.png",
         "include-all": true,
         "filter": "(?i)澳洲|悉尼|墨尔本|布里斯班|堪培拉|黄金海岸|珀斯|阿德莱德|澳大利亚|AU|Australia",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -321,7 +321,7 @@ const proxyGroups = [
     },
     {
         "name": "欧盟节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/European_Union.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/European_Union.png",
         "include-all": true,
         "filter": "(奥地利|Austria|AUT|AT|维也纳|Vienna|比利时|Belgium|BEL|BE|布鲁塞尔|Brussels|根特|Ghent|安特卫普|Antwerp|保加利亚|Bulgaria|BGR|BG|索菲亚|Sofia|克罗地亚|Croatia|HRV|HR|萨格勒布|Zagreb|塞浦路斯|Cyprus|CYP|CY|尼科西亚|Nicosia|捷克|Czechia|Czech|CZE|CZ|布拉格|Prague|丹麦|Denmark|DNK|DK|哥本哈根|Copenhagen|欧登塞|Odense|爱沙尼亚|Estonia|EST|EE|塔林|Tallinn|芬兰|Finland|FIN|FI|赫尔辛基|Helsinki|法国|France|FRA|FR|巴黎|Paris|马赛|Marseille|里昂|Lyon|德国|Germany|DEU|DE|法兰克福|Frankfurt|柏林|Berlin|慕尼黑|Munich|杜塞尔多夫|Dusseldorf|汉堡|Hamburg|希腊|Greece|GRC|EL|GR|雅典|Athens|匈牙利|Hungary|HUN|HU|布达佩斯|Budapest|爱尔兰|Ireland|IRL|IE|都柏林|Dublin|意大利|Italy|ITA|IT|米兰|Milan|罗马|Rome|拉脱维亚|Latvia|LVA|LV|里加|Riga|立陶宛|Lithuania|LTU|LT|维尔纽斯|Vilnius|卢森堡|Luxembourg|LUX|LU|卢森堡市|卢森堡|马耳他|Malta|MLT|MT|瓦莱塔|Valletta|荷兰|Netherlands|NLD|NL|阿姆斯特丹|Amsterdam|鹿特丹|Rotterdam|波兰|Poland|POL|PL|华沙|Warsaw|克拉科夫|Krakow|葡萄牙|Portugal|PRT|PT|里斯本|Lisbon|波尔图|Porto|罗马尼亚|Romania|ROU|RO|布加勒斯特|Bucharest|斯洛伐克|Slovakia|SVK|SK|布拉迪斯拉发|Bratislava|斯洛文尼亚|Slovenia|SVN|SI|卢布尔雅那|Ljubljana|西班牙|Spain|ESP|ES|马德里|Madrid|巴塞罗那|Barcelona|瑞典|Sweden|SWE|SE|斯德哥尔摩|Stockholm|马尔默|Malmö|Malmo)",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -329,7 +329,7 @@ const proxyGroups = [
     },
     {
         "name": "非洲节点",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Africa_Map.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Africa_Map.png",
         "include-all": true,
         "filter": "(?i)非洲|Africa|南非|South Africa|埃及|Egypt|开罗|Cairo|尼日利亚|Nigeria|拉各斯|Lagos",
         "exclude-filter": "(?i)家宽|家庭|商宽|落地",
@@ -337,7 +337,7 @@ const proxyGroups = [
     },
     {
         "name": "GLOBAL",
-        "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
+        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
         "include-all": true,
         "type": "select",
         "proxies": globalProxies
@@ -356,7 +356,7 @@ const ruleProviders = {
         "path": "./sukkaw_ruleset/microsoft_non_ip.txt"
     },
     "TruthSocial": {
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list",
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list",
         "path": "./ruleset/TruthSocial.list",
         "behavior": "classical", "interval": 86400, "format": "text", "type": "http"
     },
@@ -392,32 +392,32 @@ const ruleProviders = {
     },
     "TikTok": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list",
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list",
         "path": "./ruleset/TikTok.list"
     },
     "EHentai": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
         "path": "./ruleset/EHentai.list"
     },
     "PlayStoreFix": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/GooglePlayStoreFix.list",
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/GooglePlayStoreFix.list",
         "path": "./ruleset/GooglePlayStoreFix.list"
     },
     "SteamFix": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list"
     },
     "GoogleFCM": {
         "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
         "path": "./ruleset/FirebaseCloudMessaging.list",
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list"
     },
     "AdditionalFilter": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "path": "./ruleset/AdditionalFilter.list",
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list"
     }
 }
 
@@ -492,7 +492,6 @@ const dnsConfig = {
     "ipv6": true,
     "prefer-h3": true,
     "enhanced-mode": "redir-host",
-    "use-system-hosts": true,
     "default-nameserver": [
         "119.29.29.29",
         "223.5.5.5",
@@ -516,10 +515,10 @@ const dnsConfig = {
 };
 
 const geoxURL = {
-    "geoip": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
-    "geosite": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
-    "mmdb": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb",
-    "asn": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+    "geoip": "https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
+    "geosite": "https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
+    "mmdb": "https://fastly.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb",
+    "asn": "https://fastly.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
 };
 
 function handleLoadBalance(group) {
@@ -544,14 +543,14 @@ function handleLanding(group) {
     const landingGroups = [
         {
             "name": "落地节点",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
             "type": "select",
             "include-all": true,
             "filter": "(?i)家宽|家庭|商宽|落地",
         },
         {
             "name": "前置代理",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
             "type": "select",
             "include-all": true,
             "exclude-filter": "(?i)家宽|家庭|商宽|落地",
