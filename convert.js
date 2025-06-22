@@ -1,13 +1,16 @@
 /*
 powerfullz 的 Substore 订阅转换脚本
+https://github.com/powerfullz/override-rules
 传入参数：
 - loadbalance: 启用负载均衡 (默认false)
 - landing: 启用落地节点功能 (默认false)
+- ipv6: 启用 DNS 配置的 IPv6 支持 (默认false)
 */
 
 const inArg = $arguments; // console.log(inArg)
 const loadbalance = inArg.loadbalance || false,
     landing = inArg.landing || false;
+    ipv6Enabled = inArg.ipv6 || false;
 
 const defaultProxies = [
     "节点选择", "香港节点", "台湾节点", "狮城节点", "日本节点", "韩国节点", "美国节点", "英国节点", "加拿大节点",
@@ -489,7 +492,7 @@ const snifferConfig = {
 
 const dnsConfig = {
     "enable": true,
-    "ipv6": true,
+    "ipv6": ipv6Enabled,
     "prefer-h3": true,
     "enhanced-mode": "redir-host",
     "default-nameserver": [
