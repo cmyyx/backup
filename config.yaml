@@ -66,7 +66,6 @@ sniffer:
 dns:
   enable: true
   ipv6: false
-  respect-rules: true
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -79,21 +78,13 @@ dns:
     - 'geosite:apple-cn'
     - '*.lan'
     - localhost.ptlogin2.qq.com
-  default-nameserver:
-    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
-    - 8.8.8.8           # Google DNS
-    - 1.1.1.1           # Cloudflare DNS
-    - 119.29.29.29      # 腾讯DNSPod
-    - 223.5.5.5         # 阿里DNS
-    - 223.6.6.6         # 阿里DNS
-    - 180.76.76.76      # 百度DNS
   nameserver:
     - system
     - 114.114.114.114
     - 223.5.5.5
     - 119.29.29.29
-    - "https://dns.google/dns-query"
-    - "https://dns.cloudflare.com/dns-query"
+    - '8.8.8.8#自动选择'
+    - '1.1.1.1#自动选择'
 
 # geodata-mode: true/false
 geo-auto-update: true # 是否自动更新 geodata
