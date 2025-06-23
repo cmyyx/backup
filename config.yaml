@@ -38,14 +38,14 @@ profile:
   store-fake-ip: true # 持久化 fake-ip
 
 # 入站  
-#tun:
-#  enable: true
-#  # system/gvisor/mixed
-#  stack: mixed
-#  dns-hijack: ["any:53", "tcp://any:53"]
-#  auto-route: true
-#  auto-redirect: true
-#  auto-detect-interface: true
+tun:
+  enable: true
+  # system/gvisor/mixed
+  stack: mixed
+  dns-hijack: ["any:53", "tcp://any:53"]
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
 
 # 嗅探
 sniffer:
@@ -81,14 +81,14 @@ dns:
     - localhost.ptlogin2.qq.com
   # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
   # 只能使用纯 IP 地址，可使用加密 DNS
-  default-nameserver:
-    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
+#  default-nameserver:
+#    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
 #    - 8.8.8.8           # Google DNS
 #    - 1.1.1.1           # Cloudflare DNS
-    - 119.29.29.29      # 腾讯DNSPod
-    - 223.5.5.5         # 阿里DNS
-    - 223.6.6.6         # 阿里DNS
-    - 180.76.76.76      # 百度DNS
+#    - 119.29.29.29      # 腾讯DNSPod
+#    - 223.5.5.5         # 阿里DNS
+#    - 223.6.6.6         # 阿里DNS
+#    - 180.76.76.76      # 百度DNS
   # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
 #  direct-nameserver-follow-policy: false # 是否遵循nameserver-policy，默认为不遵守，仅当direct-nameserver不为空时生效
 #  direct-nameserver:
@@ -105,7 +105,7 @@ dns:
 #    - https://dns.google/dns-query
 #    - tls://one.one.one.one
   nameserver:
-    - system
+#    - system
     - 114.114.114.114
     - 223.5.5.5
     - 119.29.29.29
@@ -217,7 +217,6 @@ proxy-groups:
   - name: 媒体CDN
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Filter.png
     type: select
-    include-all: true
     proxies:
       - 日本负载-轮询
       - 美国负载-轮询
@@ -258,7 +257,6 @@ proxy-groups:
     type: fallback
     # lazy: false
     proxies:
-      - 台湾节点
       - 香港节点
       - 台湾节点
       - 日本节点
