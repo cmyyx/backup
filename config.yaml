@@ -79,33 +79,16 @@ dns:
     - 'geosite:apple-cn'
     - '*.lan'
     - localhost.ptlogin2.qq.com
-  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
-  # 只能使用纯 IP 地址，可使用加密 DNS
-#  default-nameserver:
-#    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
-#    - 8.8.8.8           # Google DNS
-#    - 1.1.1.1           # Cloudflare DNS
-#    - 119.29.29.29      # 腾讯DNSPod
-#    - 223.5.5.5         # 阿里DNS
-#    - 223.6.6.6         # 阿里DNS
-#    - 180.76.76.76      # 百度DNS
-  # 专用于direct出口域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
-#  direct-nameserver-follow-policy: false # 是否遵循nameserver-policy，默认为不遵守，仅当direct-nameserver不为空时生效
-#  direct-nameserver:
-#    - system
-#    - https://doh.pub/dns-query
-#    - https://dns.alidns.com/dns-query
-#    - 114.114.114.114
-#    - 223.5.5.5
-#    - 119.29.29.29
-  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
-#  proxy-server-nameserver:
-#    - 223.5.5.5
-#    - 119.29.29.29
-#    - https://dns.google/dns-query
-#    - tls://one.one.one.one
+  default-nameserver:
+    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
+    - 8.8.8.8           # Google DNS
+    - 1.1.1.1           # Cloudflare DNS
+    - 119.29.29.29      # 腾讯DNSPod
+    - 223.5.5.5         # 阿里DNS
+    - 223.6.6.6         # 阿里DNS
+    - 180.76.76.76      # 百度DNS
   nameserver:
-#    - system
+    - system
     - 114.114.114.114
     - 223.5.5.5
     - 119.29.29.29
