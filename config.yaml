@@ -66,25 +66,32 @@ sniffer:
 dns:
   enable: true
   ipv6: false
-  prefer-h3: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  respect-rules: true
   use-hosts: true
   use-system-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'geosite:private'
-    - 'geosite:cn'
-    - 'geosite:apple-cn'
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
+    - "GEOSITE:PRIVATE,CN"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "time.*.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
+  # namesever尽量用运营商提供的DNS
   nameserver:
     - system
-    - 114.114.114.114
     - 223.5.5.5
     - 119.29.29.29
-    - '8.8.8.8#自动选择'
-    - '1.1.1.1#自动选择'
+    - 8.8.8.8
+    - 1.1.1.1
 
 # geodata-mode: true/false
 geo-auto-update: true # 是否自动更新 geodata
