@@ -9,7 +9,7 @@ https://github.com/powerfullz/override-rules
 
 const inArg = $arguments; // console.log(inArg)
 const loadbalance = inArg.loadbalance || false,
-    landing = inArg.landing || false;
+    landing = inArg.landing || false,
     ipv6Enabled = inArg.ipv6 || false;
 
 const defaultProxies = [
@@ -25,7 +25,7 @@ const defaultSelector = [
 const globalProxies = [
     "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "Telegram", "Google", "YouTube", "Netflix", "TikTok",
     "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "懂王社媒", "学术资源", "游戏平台", "微软服务", "搜狗输入", "静态资源",
-    "FCM推送", "Steam修复", "Play商店修复", "全球直连", "广告拦截", "漏网之鱼", "故障转移", "香港节点", "台湾节点",
+    "FCM推送", "Steam修复", "Play商店修复", "全球直连", "广告拦截", "故障转移", "香港节点", "台湾节点",
     "狮城节点", "日本节点", "韩国节点", "美国节点", "英国节点", "加拿大节点", "澳洲节点", "欧盟节点", "非洲节点"
 ];
 
@@ -203,14 +203,6 @@ const proxyGroups = [
         "type": "select",
         "proxies": [
             "REJECT", "全球直连"
-        ]
-    },
-    {
-        "name": "漏网之鱼",
-        "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png",
-        "type": "select",
-        "proxies": [
-            "节点选择", "全球直连"
         ]
     },
     {
@@ -441,9 +433,9 @@ const rules = [
     "RULE-SET,PlayStoreFix,Play商店修复",
     "RULE-SET,GoogleFCM,FCM推送",
     "GEOSITE,GOOGLE-PLAY@CN,全球直连",
-    "GEOSITE,GOOGLE,Google",
     "GEOSITE,YOUTUBE@CN,全球直连",
     "GEOSITE,YOUTUBE,YouTube",
+    "GEOSITE,GOOGLE,Google",
     "GEOSITE,NETFLIX,Netflix",
     "GEOSITE,BAHAMUT,巴哈姆特",
     "GEOSITE,BILIBILI,哔哩哔哩",
@@ -462,7 +454,7 @@ const rules = [
     "GEOIP,CN,全球直连,no-resolve",
     "GEOIP,LAN,全球直连,no-resolve",
     "GEOIP,PRIVATE,全球直连,no-resolve",
-    "MATCH,漏网之鱼"
+    "MATCH,节点选择"
 ];
 
 const snifferConfig = {
@@ -524,11 +516,11 @@ const geoxURL = {
     "asn": "https://fastly.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
 };
 
-function handleLoadBalance(group) {
+function handleLoadBalance() {
     const targetNames = ["香港节点", "台湾节点", "狮城节点", "日本节点",
         "韩国节点", "美国节点", "英国节点", "加拿大节点", "澳洲节点"];
     for (names of targetNames) {
-        for (groups of group) {
+        for (groups of proxyGroups) {
             if (groups.name === names) {
                 groups.type = "load-balance";
                 groups["strategy"] = "consistent-hashing";
@@ -539,10 +531,9 @@ function handleLoadBalance(group) {
             }
         }
     }
-    return group;
 }
 
-function handleLanding(group) {
+function handleLanding() {
     const landingGroups = [
         {
             "name": "落地节点",
@@ -561,7 +552,7 @@ function handleLanding(group) {
         }
     ];
 
-    group.splice(2, 0, ...landingGroups);
+    proxyGroups.splice(2, 0, ...landingGroups);
 
     idx = defaultProxies.indexOf("自动选择");
     defaultProxies.splice(idx, 0, "落地节点");
@@ -571,26 +562,15 @@ function handleLanding(group) {
 
     idx = globalProxies.indexOf("自动选择");
     globalProxies.splice(idx, 0, ...["落地节点", "前置代理"]);
-
-    return group;
 }
 
 function main(config) {
+    // 传入参数处理
+    if(landing) handleLanding();
+    if(loadbalance) handleLoadBalance();
+    
     // proxy-groups
-    if (landing && loadbalance) {
-        config["proxy-groups"] = handleLanding(handleLoadBalance(proxyGroups));
-    }
-    else {
-        if (loadbalance) {
-            config["proxy-groups"] = handleLoadBalance(proxyGroups);
-        }
-        else if (landing) {
-            config["proxy-groups"] = handleLanding(proxyGroups);
-        }
-        else {
-            config["proxy-groups"] = proxyGroups;
-        }
-    }
+    config["proxy-groups"] = proxyGroups;
 
     // rule-providers
     config["rule-providers"] = ruleProviders;

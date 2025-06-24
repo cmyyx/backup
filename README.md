@@ -8,13 +8,15 @@
 - 引入 [Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat) 完整版 GeoSite/GeoIP 数据库
 - 针对 IP 规则添加 `no-resolve` 参数，避免本地 DNS 解析，提升上网速度，无 DNS 泄露
 
-谨此声明：本覆写规则为本人自用，现特此公开分享于公共平台。在未有回馈意见的情况下，自然优先满足个人需求及修正自己发现的问题。如有高见，欢迎提 Issue/PR。
+谨此声明：本覆写规则为本人自用，现特此公开分享于公共平台。在未有回馈意见的情况下，自然优先满足个人需求及修正自己发现的问题。如有高见，欢迎 PR。
+
+
 
 ### 使用方法
 
 **Mihomo Party**
 
-1. 复制对应文件 raw 链接 `https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/override.yaml`。
+1. 复制对应文件 raw 链接，例如： `https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/override.yaml`。
 2. 打开 Mihomo Party，左侧导航栏打开「覆写」页面，粘贴链接后导入，即可看到对应的覆写脚本/配置。
 3. 左侧导航栏打开「订阅管理」，点击需要覆写的订阅右上角的三个点，选择「编辑信息」。
 4. 在打开的对话框中最后一项「覆写」，选择刚刚导入的覆写脚本/配置，保存即可。
@@ -30,6 +32,14 @@
 ```
 https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/convert.js#landing=true
 ```
+
+传入多个参数时，用`&`分隔，例如`landing=true&loadbalance=true`。
+
+目前支持的参数：
+
+- `loadbalance`: 启用负载均衡 (默认false)
+- `landing`: 启用落地节点功能 (默认false)
+- `ipv6`: 启用 DNS 配置的 IPv6 支持 (默认false)
 
 **Clash Verge 系**
 

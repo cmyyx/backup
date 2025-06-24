@@ -313,12 +313,6 @@ proxy-groups:
     proxies:
       - REJECT
       - 全球直连
-  - name: 漏网之鱼
-    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png
-    type: select
-    proxies:
-      - 节点选择
-      - 全球直连
   - name: 故障转移
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png
     type: fallback
@@ -451,7 +445,6 @@ proxy-groups:
       - Play商店修复
       - 全球直连
       - 广告拦截
-      - 漏网之鱼
       - 故障转移
       - 香港节点
       - 台湾节点
@@ -588,9 +581,9 @@ rules:
   - "RULE-SET,PlayStoreFix,Play商店修复"
   - "RULE-SET,GoogleFCM,FCM推送"
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
-  - "GEOSITE,GOOGLE,Google"
   - "GEOSITE,YOUTUBE@CN,全球直连"
   - "GEOSITE,YOUTUBE,YouTube"
+  - "GEOSITE,GOOGLE,Google"
   - "GEOSITE,NETFLIX,Netflix"
   - "GEOSITE,BAHAMUT,巴哈姆特"  
   - "GEOSITE,BILIBILI,哔哩哔哩"
@@ -609,7 +602,7 @@ rules:
   - "GEOIP,CN,全球直连,no-resolve"
   - "GEOIP,LAN,全球直连,no-resolve"
   - "GEOIP,PRIVATE,全球直连,no-resolve"
-  - "MATCH,漏网之鱼"
+  - "MATCH,节点选择"
 
 sniffer:
   sniff:
@@ -637,24 +630,17 @@ dns:
   enhanced-mode: redir-host
   use-system-hosts: true
   default-nameserver:
-    - "119.28.28.28"
     - "119.29.29.29"
     - "223.5.5.5"
-    - "223.6.6.6"
   nameserver:
     - "system"
     - "quic://223.5.5.5"
     - "tls://dot.pub:853"
-    - "tls://dns.alidns.com:853"
-    - "https://doh.pub/dns-query"
-    - "https://dns.alidns.com/dns-query"
   fallback:
     - "https://dns.cloudflare.com/dns-query"
     - "https://dns.sb/dns-query"
-    - "https://dns.google/dns-query"
-    - "https://public.dns.iij.jp/dns-query"
-    - "https://jp.tiar.app/dns-query"
-    - "https://jp.tiarap.org/dns-query"
+    - "tcp://208.67.222.222"
+    - "tcp://8.26.56.2"
   proxy-server-nameserver:
     - "quic://223.5.5.5"
     - "tls://dot.pub"
