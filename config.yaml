@@ -418,7 +418,7 @@ rules:
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
   - "GEOSITE,GOOGLE,Google" 
   - "GEOSITE,CATEGORY-GAMES@CN,全球直连"
-  - "GEOSITE,CATEGORY-GAMES,游戏平台,no-resolve"
+  - "GEOSITE,CATEGORY-GAMES,游戏平台"
   - "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连"
   - "GEOSITE,TELEGRAM,Telegram"
   - "GEOSITE,CN,全球直连"
