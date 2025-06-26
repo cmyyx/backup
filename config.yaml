@@ -372,17 +372,6 @@ rule-providers:
     interval: 86400
     path: ./ruleset/gfw.txt
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
-  ProxyGFWlist:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
-    path: ./ruleset/ProxyGFWlist.yaml
-    interval: 86400
-  ProxyGFW:
-    type: http
-    behavior: classical
-    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list
-    path: ./rule-providers/ProxyGFW.list
   cmtyPROXYrules:
     type: http
     behavior: classical
@@ -413,25 +402,23 @@ rule-providers:
     interval: 86400
 
 rules:
-  - "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN"
   - "RULE-SET,cmtyPROXYrules,节点选择"
   - "RULE-SET,cmtyDIRECTrules,全球直连"
+  - "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN,no-resolve"
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AdditionalFilter,广告拦截"
   - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
-  - "RULE-SET,cdn_domainset,静态资源"
-  - "RULE-SET,cdn_non_ip,静态资源"
-  - "RULE-SET,EHentai,E-Hentai"
+  - "RULE-SET,cdn_domainset,静态资源,no-resolve"
+  - "RULE-SET,cdn_non_ip,静态资源,no-resolve"
+  - "RULE-SET,EHentai,E-Hentai,no-resolve"
   - "RULE-SET,GoogleFCM,全球直连"
   - "RULE-SET,gfw,节点选择"
-  - "RULE-SET,ProxyGFWlist,节点选择"
-  - "RULE-SET,ProxyGFW,节点选择"
   - "GEOSITE,YOUTUBE@CN,全球直连"
   - "GEOSITE,YOUTUBE,YouTube"
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
   - "GEOSITE,GOOGLE,Google" 
   - "GEOSITE,CATEGORY-GAMES@CN,全球直连"
-  - "GEOSITE,CATEGORY-GAMES,游戏平台"
+  - "GEOSITE,CATEGORY-GAMES,游戏平台,no-resolve"
   - "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连"
   - "GEOSITE,TELEGRAM,Telegram"
   - "GEOSITE,CN,全球直连"
