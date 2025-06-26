@@ -80,6 +80,7 @@ dns:
     - "system"
     - "quic://223.5.5.5"
     - "tls://dot.pub:853"
+    - "tls://dns.alidns.com"
   fallback:
     - "https://dns.cloudflare.com/dns-query"
     - "https://dns.sb/dns-query"
