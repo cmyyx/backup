@@ -1,3 +1,28 @@
+# Powerfullz 的 Mihomo 覆写规则
+
+# 通用配置
+mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7893
+authentication: [""]
+routing-mark: 7894
+allow-lan: true
+mode: Rule
+log-level: info
+ipv6: true
+unified-delay: true
+tcp-concurrent: true
+
+# 外部 Dashboard
+external-ui-name: zashboard
+external-ui: /etc/mihomo/zashboard
+external-ui-url: https://ghfast.top/?q=https%3A%2F%2Fgithub.com%2FZephyruso%2Fzashboard%2Farchive%2Frefs%2Fheads%2Fgh-pages.zip
+
+profile:
+  # 储存 API 对策略组的选择，以供下次启动时使用
+  store-selected: true
+
+# 代理组
 proxy-groups:
   - name: 节点选择
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png

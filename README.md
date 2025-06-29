@@ -7,10 +7,9 @@
 - 移除冗余规则集
 - 引入 [Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat) 完整版 GeoSite/GeoIP 数据库
 - 针对 IP 规则添加 `no-resolve` 参数，避免本地 DNS 解析，提升上网速度，无 DNS 泄露
+- JS 格式覆写现已实现节点国家动态识别与分组，自动为实际存在的各国家/地区节点生成对应代理组，节点变动时分组自动变化，省心省力。例如：你的订阅没有韩国的节点，则最终生成的配置中「韩国节点」这个代理组就不会出现。
 
 谨此声明：本覆写规则为本人自用，现特此公开分享于公共平台。在未有回馈意见的情况下，自然优先满足个人需求及修正自己发现的问题。如有高见，欢迎 PR。
-
-
 
 ### 使用方法
 
@@ -39,7 +38,8 @@ https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/conv
 
 - `loadbalance`: 启用负载均衡 (默认false)
 - `landing`: 启用落地节点功能 (默认false)
-- `ipv6`: 启用 DNS 配置的 IPv6 支持 (默认false)
+- `ipv6`: 启用 IPv6 支持 (默认false)
+- `full`：生成完整配置（默认false，用于纯内核启动）
 
 **Clash Verge 系**
 
