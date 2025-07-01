@@ -6,13 +6,15 @@ https://github.com/powerfullz/override-rules
 - landing: 启用落地节点功能 (默认false)
 - ipv6: 启用 IPv6 支持 (默认false)
 - full: 启用完整配置，用于纯内核启动 (默认false)
+- keepalive: 启用 tcp-keep-alive (默认false)
 */
 
 const inArg = $arguments; // console.log(inArg)
 const loadBalance = parseBool(inArg.loadbalance) || false,
     landing = parseBool(inArg.landing) || false,
     ipv6Enabled = parseBool(inArg.ipv6) || false,
-    fullConfig = parseBool(inArg.full) || false;
+    fullConfig = parseBool(inArg.full) || false,
+    enableKeepAlive = parseBool(inArg.keepalive) || false;
 
 // 生成默认代理组
 const defaultProxies = [
@@ -30,7 +32,7 @@ const defaultSelector = [
 const globalProxies = [
     "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "Telegram", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
     "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "瑟琴网站", "游戏平台", "微软服务", "Speedtest", "静态资源",
-    "FCM推送", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
+    "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
 
 const ruleProviders = {
@@ -156,6 +158,7 @@ const rules = [
     "GEOIP,CN,全球直连,no-resolve",
     "GEOIP,LAN,全球直连,no-resolve",
     "GEOIP,PRIVATE,全球直连,no-resolve",
+    "DST-PORT,22,SSH(22端口)",
     "MATCH,节点选择"
 ];
 
@@ -525,6 +528,12 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             ]
         },
         {
+            "name": "SSH(22端口)",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
+            "type": "select",
+            "proxies": defaultProxies
+        },
+        {
             "name": "Steam修复",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png",
             "type": "select",
@@ -616,6 +625,7 @@ function main(config) {
         "log-level": "info",
         "geodata-loader": "standard",
         "external-controller": ":9999",
+        "disable-keep-alive": !enableKeepAlive,
         "profile": {
             "store-selected": true,
         }
