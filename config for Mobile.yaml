@@ -315,6 +315,17 @@ proxy-groups:
       - 美国节点
       - 手动切换
       - 全球直连
+    - name: 游戏平台
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
+    type: select
+    proxies:
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 手动切换
+      - 全球直连
   - name: FCM推送
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
     type: select
@@ -417,6 +428,7 @@ proxy-groups:
       - Telegram
       - Google
       - YouTube
+      - 游戏平台
       - FCM推送
       - 全球直连
       - 广告拦截
