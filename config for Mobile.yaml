@@ -265,7 +265,6 @@ proxy-groups:
     type: select
     proxies:
       - 自动选择
-      - 故障转移
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -288,7 +287,6 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - 故障转移
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -300,7 +298,6 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - 故障转移
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -312,7 +309,6 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - 故障转移
       - 香港节点
       - 台湾节点
       - 日本节点
