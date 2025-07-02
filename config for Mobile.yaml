@@ -417,8 +417,6 @@ proxy-groups:
       - Telegram
       - Google
       - YouTube
-      - 游戏平台
-      - 静态资源
       - FCM推送
       - 全球直连
       - 广告拦截
