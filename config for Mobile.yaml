@@ -315,7 +315,7 @@ proxy-groups:
       - 美国节点
       - 手动切换
       - 全球直连
-    - name: 游戏平台
+  - name: 游戏平台
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
     type: select
     proxies:
