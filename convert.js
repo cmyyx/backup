@@ -30,8 +30,8 @@ const defaultSelector = [
 ];
 
 const globalProxies = [
-    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "Telegram", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
-    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "瑟琴网站", "游戏平台", "微软服务", "Speedtest", "静态资源",
+    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
+    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
     "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
 
@@ -41,40 +41,30 @@ const ruleProviders = {
         "url": "https://adrules.top/adrules_domainset.txt",
         "path": "./ruleset/ADBlock.txt"
     },
-    "Microsoft": {
-        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft.txt",
-        "path": "./sukkaw_ruleset/microsoft_non_ip.txt"
-    },
     "TruthSocial": {
         "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TruthSocial.list",
         "path": "./ruleset/TruthSocial.list",
         "behavior": "classical", "interval": 86400, "format": "text", "type": "http"
     },
-    "sogouinput": {
+    "SougouInput": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt",
-        "path": "./sukkaw_ruleset/sogouinput.txt"
+        "url": "https://ruleset.skk.moe/Clash/non_ip/sougouinput.txt",
+        "path": "./ruleset/SougouInput.txt"
     },
-    "cdn_domainset": {
+    "StaticResources": {
         "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
         "url": "https://ruleset.skk.moe/Clash/domainset/cdn.txt",
-        "path": "./sukkaw_ruleset/cdn_domainset.txt"
+        "path": "./ruleset/StaticResources.txt"
     },
-    "cdn_non_ip": {
+    "CDNResources": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://ruleset.skk.moe/Clash/non_ip/cdn.txt",
-        "path": "./sukkaw_ruleset/cdn_non_ip.txt"
+        "path": "./ruleset/CDNResources.txt"
     },
-    "microsoft_cdn_non_ip": {
-        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt",
-        "path": "./sukkaw_ruleset/microsoft_cdn_non_ip.txt"
-    },
-    "ai_non_ip": {
+    "AI": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://ruleset.skk.moe/Clash/non_ip/ai.txt",
-        "path": "./sukkaw_ruleset/ai_non_ip.txt"
+        "path": "./ruleset/AI.txt"
     },
     "TikTok": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
@@ -93,17 +83,18 @@ const ruleProviders = {
     },
     "SteamFix": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
+        "path": "./ruleset/SteamFix.list"
     },
     "GoogleFCM": {
         "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
         "path": "./ruleset/FirebaseCloudMessaging.list",
-        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list",
     },
     "AdditionalFilter": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "path": "./ruleset/AdditionalFilter.list",
-        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list"
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list",
+        "path": "./ruleset/AdditionalFilter.list"
     },
     "Weibo": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
@@ -115,13 +106,11 @@ const ruleProviders = {
 const rules = [
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
-    "RULE-SET,sogouinput,搜狗输入",
+    "RULE-SET,SougouInput,搜狗输入",
     "RULE-SET,TruthSocial,Truth Social",
-    "RULE-SET,cdn_domainset,静态资源",
-    "RULE-SET,cdn_non_ip,静态资源",
-    "RULE-SET,microsoft_cdn_non_ip,全球直连",
-    "RULE-SET,ai_non_ip,人工智能",
-    "RULE-SET,Microsoft,微软服务",
+    "RULE-SET,StaticResources,静态资源",
+    "RULE-SET,CDNResources,静态资源",
+    "RULE-SET,AI,人工智能",
     "RULE-SET,EHentai,E-Hentai",
     "RULE-SET,TikTok,TikTok",
     "RULE-SET,SteamFix,Steam修复",
@@ -131,6 +120,8 @@ const rules = [
     "GEOSITE,GOOGLE-PLAY@CN,全球直连",
     "GEOSITE,APPLE@CN,全球直连",
     "GEOSITE,APPLE,Apple",
+    "GEOSITE,MICROSOFT@CN,全球直连",
+    "GEOSITE,MICROSOFT,Microsoft",
     "GEOSITE,YOUTUBE@CN,全球直连",
     "GEOSITE,YOUTUBE,YouTube",
     "GEOSITE,GOOGLE,Google",
@@ -501,7 +492,7 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             "proxies": defaultProxies,
         },
         {
-            "name": "微软服务",
+            "name": "Microsoft",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
             "type": "select",
             "proxies": defaultProxies,
