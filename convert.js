@@ -46,10 +46,10 @@ const ruleProviders = {
         "path": "./ruleset/TruthSocial.list",
         "behavior": "classical", "interval": 86400, "format": "text", "type": "http"
     },
-    "SougouInput": {
+    "SogouInput": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://ruleset.skk.moe/Clash/non_ip/sougouinput.txt",
-        "path": "./ruleset/SougouInput.txt"
+        "url": "https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt",
+        "path": "./ruleset/SogouInput.txt"
     },
     "StaticResources": {
         "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
@@ -106,7 +106,7 @@ const ruleProviders = {
 const rules = [
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
-    "RULE-SET,SougouInput,搜狗输入",
+    "RULE-SET,SogouInput,搜狗输入",
     "RULE-SET,TruthSocial,Truth Social",
     "RULE-SET,StaticResources,静态资源",
     "RULE-SET,CDNResources,静态资源",
