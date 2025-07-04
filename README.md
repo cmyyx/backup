@@ -1,6 +1,6 @@
 ## powerfullz 的覆写规则仓库
 
-此处存放我用于 Mihomo 内核的覆写规则，以 [mihomo-party-org/override-hub](https://github.com/mihomo-party-org/override-hub) 内的 ACL4SSR 规则为灵感，几乎完全重新编写，具有以下优点：
+此处存放我用于 Mihomo/Substore 的覆写规则，以 [mihomo-party-org/override-hub](https://github.com/mihomo-party-org/override-hub) 内的 ACL4SSR 规则为灵感，几乎完全重新编写，具有以下优点：
 
 - 集成 [SukkaW/Surge](https://github.com/SukkaW/Surge) 和 [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) 规则集，优化广告拦截、隐私保护及流量分流精度
 - 新增 Truth Social、E-Hentai、TikTok、加密货币等实用分流规则
@@ -40,6 +40,9 @@ https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/conv
 - `landing`: 启用落地节点功能 (默认false)
 - `ipv6`: 启用 IPv6 支持 (默认false)
 - `full`：生成完整配置（默认false，用于纯内核启动）
+- `keepalive`: 启用 TCP Keep Alive（默认 false）[^fn2]
+
+[^fn2]: 无特殊需求不要启用，否则会造成[移动设备异常耗电问题](https://github.com/vernesong/OpenClash/issues/2614)。
 
 **Clash Verge 系**
 
@@ -58,7 +61,9 @@ https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/conv
 
 ### 关于部分特殊代理组的说明
 
-**静态资源**：这代理组包含所有常见静态资源 CDN 域名、对象存储域名。如果你的机场提供按低倍率结算流量消耗的节点，可使用这个代理组将这部分流量分流到这些节点。
+**静态资源**：这代理组包含所有常见静态资源 CDN 域名、对象存储域名。大部分网站的静态资源（如图片、视频、音频、字体、JS、CSS）都有独立域名、不设置风控措施、不设置鉴权，这些静态资源可以使用 IP 不一定干净（例如 IDC 类 IP）、但是带宽更大、延时更低、而且有和大部分主流 CDN（如 Cloudflare、Akamai、Fastly、EdgeCast）在 IXP 有互联的网络出口。一般就实践经验来看，在正常上网中这部分域名产生的流量占据约 70% 左右。如果你在使用商业性质的远端策略服务提供商、且该服务上提供了低倍率节点，你可以将这部分域名分流至低倍率节点以节省流量。[^fn1]
+
+[^fn1]: 来源：[我有特别的 Surge 配置和使用技巧](https://blog.skk.moe/post/i-have-my-unique-surge-setup/)
 
 **搜狗输入**：这代理组默认放行，作用是避免搜狗输入法将你输入的每一个字符自动收集并通过`get.sogou.com/q`等域名回传。隐私担忧者可以将其设置为`REJECT`，开启后会影响搜狗输入法账号同步、词库更新、问题反馈，但语音输入等其他功能可以正常使用。
 
@@ -68,7 +73,7 @@ https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/main/conv
 
 ### 关于链式代理的说明
 
-若有链式代理需求，可以使用`override_with_landing.yaml`和`override_loadbalance_landing.yaml`。这两个配置文件新增了「落地资源」和「前置代理」两个代理组，其中「落地资源」代理组会自动匹配名称包含「家宽」、「商宽」和「落地」的节点，并且其他诸如「香港节点」的代理组会自动剔除落地节点。需要被链式代理的落地节点配置需要将`dialer-proxy`字段设置为「前置代理」，以下是一个例子：
+若有链式代理需求，可以使用`landing=true`参数，或者使用`override_with_landing.yaml`和`override_loadbalance_landing.yaml`。会新增「落地资源」和「前置代理」两个代理组，其中「落地资源」代理组会自动匹配名称包含「家宽」、「商宽」和「落地」的节点，并且其他诸如「香港节点」的代理组会自动剔除落地节点。需要被链式代理的落地节点配置需要将`dialer-proxy`字段设置为「前置代理」，以下是一个例子：
 
 ```yaml
 proxies:

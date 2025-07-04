@@ -257,7 +257,7 @@ function parseCountries(config) {
                 // 防止重复添加国家名称
                 if (!seen.has(country)) {
                     seen.add(country);
-                    result.unshift(country);
+                    result.push(country);
                 }
             }
         }
@@ -578,14 +578,18 @@ function buildProxyGroups(countryList, countryProxyGroups) {
 function main(config) {
     // 查看当前有哪些国家的节点
     const countryList = parseCountries(config);
+    const countryProxies = [];
+    
     // 修改默认代理组
-    globalProxies.push(...countryList.reverse().map(c => `${c}节点`));
-    for (const country of countryList.reverse()) {
+    for (const country of countryList) {
         const groupName = `${country}节点`;
-        defaultProxies.splice(1, 0, groupName);
-        defaultSelector.splice(1, 0, groupName);
-        defaultProxiesDirect.splice(2, 0, groupName);
+        globalProxies.push(groupName);
+        countryProxies.push(groupName);
     }
+    defaultProxies.splice(1, 0, ...countryProxies);
+    defaultSelector.splice(1, 0, ...countryProxies);
+    defaultProxiesDirect.splice(2, 0, ...countryProxies);
+
     // 处理落地
     if (landing) {
         idx = defaultProxies.indexOf("自动选择");
