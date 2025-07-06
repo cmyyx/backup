@@ -30,7 +30,7 @@ const defaultSelector = [
 ];
 
 const globalProxies = [
-    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
+    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
     "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
     "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
@@ -117,6 +117,8 @@ const rules = [
     "RULE-SET,PlayStoreFix,Play商店修复",
     "RULE-SET,GoogleFCM,FCM推送",
     "RULE-SET,Weibo,新浪微博",
+    "GEOSITE,PAYPAL@CN,全球直连",
+    "GEOSITE,PAYPAL,PayPal",
     "GEOSITE,GOOGLE-PLAY@CN,全球直连",
     "GEOSITE,APPLE@CN,全球直连",
     "GEOSITE,APPLE,Apple",
@@ -194,6 +196,7 @@ const dnsConfig = {
         "tls://dns.alidns.com",
     ],
     "fallback": [
+        "quic://dns0.eu",
         "https://dns.cloudflare.com/dns-query",
         "https://dns.sb/dns-query",
         "tcp://208.67.222.222",
@@ -371,6 +374,12 @@ function buildProxyGroups(countryList, countryProxyGroups) {
         {
             "name": "加密货币",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_3.png",
+            "type": "select",
+            "proxies": defaultProxies
+        },
+        {
+            "name": "PayPal",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/PayPal.png",
             "type": "select",
             "proxies": defaultProxies
         },
