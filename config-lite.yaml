@@ -282,6 +282,17 @@ proxy-groups:
     interval: 300
     tolerance: 20
     # lazy: false
+  - name: 人工智能
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
+    type: select
+    proxies:
+      - 节点选择
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 手动切换
+      - 全球直连
   - name: Telegram
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     type: select
@@ -425,6 +436,7 @@ proxy-groups:
       - 节点选择
       - 手动切换
       - 自动选择
+      - 人工智能
       - Telegram
       - Google
       - YouTube
@@ -482,6 +494,13 @@ rule-providers:
     path: ./ruleset/AWAvenue-Ads-Rule-Clash.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
+  ai_non_ip:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    path: ./ruleset/ai_non_ip.txt
+    url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
 
 rules:
   - "RULE-SET,cmtyPROXYrules,节点选择"
@@ -489,6 +508,7 @@ rules:
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
   - "RULE-SET,GoogleFCM,全球直连"
+  - "RULE-SET,ai_non_ip,人工智能"
   - "RULE-SET,gfw,节点选择"
   - "GEOSITE,YOUTUBE@CN,全球直连"
   - "GEOSITE,YOUTUBE,YouTube"
