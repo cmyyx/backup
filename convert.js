@@ -244,6 +244,7 @@ function parseBool(value) {
 
 function parseCountries(config) {
     const proxies = config["proxies"];
+    const ispRegex = new RegExp(/家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地/, 'i');    // 排除落地节点
     const result = [];
     const seen = new Set(); // 用于去重
 
@@ -256,7 +257,7 @@ function parseCountries(config) {
 
         for (const proxy of proxies) {
             const name = proxy.name;
-            if (regex.test(name)) {
+            if (regex.test(name) && !ispRegex.test(name)) {
                 // 防止重复添加国家名称
                 if (!seen.has(country)) {
                     seen.add(country);
@@ -303,7 +304,7 @@ function buildCountryProxyGroups(countryList) {
                 "icon": countryIconURLs[country],
                 "include-all": true,
                 "filter": pattern,
-                "exclude-filter": "(?i)家宽|家庭|商宽|落地",
+                "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
                 "type": (loadBalance) ? "load-balance" : "url-test",
             };
 
@@ -339,14 +340,14 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
             "type": "select",
             "include-all": true,
-            "filter": "(?i)家宽|家庭|商宽|落地",
+            "filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
         } : null,
         (landing) ? {
             "name": "前置代理",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
             "type": "select",
             "include-all": true,
-            "exclude-filter": "(?i)家宽|家庭|商宽|落地",
+            "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
             "proxies": defaultSelector
         } : null,
         {
@@ -360,7 +361,7 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png",
             "type": "url-test",
             "include-all": true,
-            "exclude-filter": "(?i)家宽|家庭|商宽|落地",
+            "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
             "interval": 300,
             "tolerance": 20,
             "lazy": false
