@@ -31,7 +31,7 @@ const defaultSelector = [
 
 const globalProxies = [
     "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
-    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
+    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "开发者资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
     "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
 
@@ -135,6 +135,7 @@ const rules = [
     "GEOSITE,BAHAMUT,巴哈姆特",
     "GEOSITE,BILIBILI,哔哩哔哩",
     "GEOSITE,OOKLA-SPEEDTEST,Speedtest",
+    "GEOSITE,CATEGORY-DEV,开发者资源",
     "GEOSITE,CATEGORY-PORN,瑟琴网站",
     "GEOSITE,CATEGORY-GAMES@CN,全球直连",
     "GEOSITE,CATEGORY-GAMES,游戏平台",
@@ -344,7 +345,7 @@ function buildProxyGroups(countryList, countryProxyGroups) {
         } : null,
         (landing) ? {
             "name": "前置代理",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png",
             "type": "select",
             "include-all": true,
             "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
@@ -488,6 +489,12 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             "proxies": [
                 "节点选择", "手动切换", "全球直连"
             ]
+        },
+        {
+            "name": "开发者资源",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/GitHub.png",
+            "type": "select",
+            "proxies": defaultProxies
         },
         {
             "name": "瑟琴网站",
