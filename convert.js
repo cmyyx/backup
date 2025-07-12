@@ -100,6 +100,11 @@ const ruleProviders = {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/Weibo.list",
         "path": "./ruleset/Weibo.list"
+    },
+    "AdditionalCDNResources": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalCDNResources.list",
+        "path": "./ruleset/AdditionalCDNResources.list"
     }
 }
 
@@ -110,6 +115,7 @@ const rules = [
     "RULE-SET,TruthSocial,Truth Social",
     "RULE-SET,StaticResources,静态资源",
     "RULE-SET,CDNResources,静态资源",
+    "RULE-SET,AdditionalCDNResources,静态资源",
     "RULE-SET,AI,人工智能",
     "RULE-SET,EHentai,E-Hentai",
     "RULE-SET,TikTok,TikTok",
@@ -122,8 +128,7 @@ const rules = [
     "GEOSITE,GOOGLE-PLAY@CN,全球直连",
     "GEOSITE,APPLE@CN,全球直连",
     "GEOSITE,APPLE,Apple",
-    "GEOSITE,MICROSOFT@CN,全球直连",
-    "GEOSITE,MICROSOFT,Microsoft",
+    "GEOSITE,TELEGRAM,Telegram",
     "GEOSITE,YOUTUBE@CN,全球直连",
     "GEOSITE,YOUTUBE,YouTube",
     "GEOSITE,GOOGLE,Google",
@@ -142,7 +147,8 @@ const rules = [
     "GEOSITE,CATEGORY-SCHOLAR-!CN,学术资源",
     "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连",
     "GEOSITE,CATEGORY-CRYPTOCURRENCY,加密货币",
-    "GEOSITE,TELEGRAM,Telegram",
+    "GEOSITE,MICROSOFT@CN,全球直连",
+    "GEOSITE,MICROSOFT,Microsoft",
     "GEOSITE,PIKPAK,PikPak",
     "GEOSITE,CN,全球直连",
     "GEOSITE,PRIVATE,全球直连",
