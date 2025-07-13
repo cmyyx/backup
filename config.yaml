@@ -329,6 +329,7 @@ proxy-groups:
       - 节点选择
       - 手动切换
       - 自动选择
+      - 人工智能
       - Telegram
       - Google
       - YouTube
@@ -344,7 +345,9 @@ proxy-groups:
       - 香港节点
       - 台湾节点
       - 日本节点
+      - 日本负载-轮询
       - 美国节点
+      - 美国负载-轮询
       - CF Workers-轮询
 
 rule-providers:
