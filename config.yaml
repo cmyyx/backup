@@ -196,6 +196,7 @@ proxy-groups:
     proxies:
       - 日本负载-轮询
       - 美国负载-轮询
+      - CF Workers-轮询
       - 节点选择
       - 自动选择
       - 香港节点
@@ -210,6 +211,7 @@ proxy-groups:
     proxies:
       - 日本负载-轮询
       - 美国负载-轮询
+      - CF Workers-轮询
       - 节点选择
       - 自动选择
       - 香港节点
@@ -309,6 +311,16 @@ proxy-groups:
     include-all: true
     filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
     exclude-filter: (?i)家宽|家庭|商宽|落地
+  - name: CF Workers-轮询
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
+    type: load-balance
+    strategy: round-robin  # <-- 核心策略：轮询
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    # lazy: false
+    include-all: true
+    filter: (?i)中非共和国
+    exclude-filter: (?i)家宽|家庭|商宽|落地
   - name: GLOBAL
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
     include-all: true
@@ -333,6 +345,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CF Workers-轮询
 
 rule-providers:
   ADBlock:
