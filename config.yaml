@@ -196,6 +196,7 @@ proxy-groups:
     proxies:
       - 日本负载-轮询
       - 美国负载-轮询
+      - CF Workers
       - CF Workers-轮询
       - 节点选择
       - 自动选择
@@ -211,6 +212,7 @@ proxy-groups:
     proxies:
       - 日本负载-轮询
       - 美国负载-轮询
+      - CF Workers
       - CF Workers-轮询
       - 节点选择
       - 自动选择
