@@ -311,6 +311,15 @@ proxy-groups:
     include-all: true
     filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
     exclude-filter: (?i)家宽|家庭|商宽|落地
+  - name: CF Workers
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
+    type: url-test
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    # lazy: false
+    include-all: true
+    filter: (?i)中非共和国
+    exclude-filter: (?i)家宽|家庭|商宽|落地
   - name: CF Workers-轮询
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
     type: load-balance
