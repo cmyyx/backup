@@ -357,6 +357,7 @@ proxy-groups:
       - 日本负载-轮询
       - 美国节点
       - 美国负载-轮询
+      - CF Workers
       - CF Workers-轮询
 
 rule-providers:
