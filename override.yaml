@@ -5,10 +5,10 @@ mixed-port: 7890
 redir-port: 7892
 tproxy-port: 7893
 authentication: [""]
-routing-mark: 7894
+routing-mark: 123
 allow-lan: true
-mode: Rule
-log-level: info
+mode: "rule"
+log-level: "info"
 ipv6: true
 unified-delay: true
 tcp-concurrent: true
