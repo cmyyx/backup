@@ -2,3 +2,4 @@ DOMAIN,production.cloudflare.docker.com
 DOMAIN,dl.flathub.org
 DOMAIN-SUFFIX,gvt1.com
 DOMAIN,assets.ppy.sh
+DOMAIN,autoupdate.termius.com

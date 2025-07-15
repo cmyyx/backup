@@ -249,6 +249,18 @@ function parseBool(value) {
     return false;
 }
 
+function hasLowCost(config) {
+    // 检查是否有低倍率节点
+    const proxies = config["proxies"];
+    const lowCostRegex = new RegExp(/0\.[0-5]|低倍率|省流|大流量|实验性/, 'i');
+    for (const proxy of proxies) {
+        if (lowCostRegex.test(proxy.name)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function parseCountries(config) {
     const proxies = config["proxies"];
     const ispRegex = new RegExp(/家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地/, 'i');    // 排除落地节点
@@ -311,7 +323,7 @@ function buildCountryProxyGroups(countryList) {
                 "icon": countryIconURLs[country],
                 "include-all": true,
                 "filter": pattern,
-                "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
+                "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地|0\.[0-5]|低倍率|省流|大流量|实验性",
                 "type": (loadBalance) ? "load-balance" : "url-test",
             };
 
@@ -330,7 +342,7 @@ function buildCountryProxyGroups(countryList) {
     return countryProxyGroups;
 }
 
-function buildProxyGroups(countryList, countryProxyGroups) {
+function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
     // 查看是否有特定国家的节点
     const hasTW = countryList.includes("台湾");
     const hasHK = countryList.includes("香港");
@@ -588,6 +600,13 @@ function buildProxyGroups(countryList, countryProxyGroups) {
             ]
         },
         ...countryProxyGroups,
+        lowCost ? {
+            "name": "低倍率节点",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
+            "type": (loadBalance) ? "load-balance" : "url-test",
+            "include-all": true,
+            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
+        } : null,
         {
             "name": "GLOBAL",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
@@ -601,6 +620,7 @@ function buildProxyGroups(countryList, countryProxyGroups) {
 function main(config) {
     // 查看当前有哪些国家的节点
     const countryList = parseCountries(config);
+    const lowCost = hasLowCost(config);
     const countryProxies = [];
     
     // 修改默认代理组
@@ -609,6 +629,12 @@ function main(config) {
         globalProxies.push(groupName);
         countryProxies.push(groupName);
     }
+
+    if (lowCost) {
+        countryProxies.push("低倍率节点");     // 懒得再搞一个低倍率节点组了
+        globalProxies.push("低倍率节点");
+    }
+
     defaultProxies.splice(1, 0, ...countryProxies);
     defaultSelector.splice(1, 0, ...countryProxies);
     defaultProxiesDirect.splice(2, 0, ...countryProxies);
@@ -627,7 +653,7 @@ function main(config) {
     // 生成国家节点组
     const countryProxyGroups = buildCountryProxyGroups(countryList);
     // 生成代理组
-    const proxyGroups = buildProxyGroups(countryList, countryProxyGroups);
+    const proxyGroups = buildProxyGroups(countryList, countryProxyGroups, lowCost);
 
     if (fullConfig) Object.assign(config, {
         "mixed-port": 7890,
