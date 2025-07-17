@@ -76,14 +76,16 @@ dns:
   default-nameserver:
     - "119.29.29.29"
     - "223.5.5.5"
+    - "114.114.114.114"
   nameserver:
     - "system"
     - "quic://223.5.5.5"
     - "tls://dot.pub:853"
     - "tls://dns.alidns.com"
   fallback:
-    - "https://dns.cloudflare.com/dns-query"
-    - "https://dns.sb/dns-query"
+    - "tls://1.1.1.1:853"
+    - "https://dns.google/dns-query"
+    - "tls://dns.google"
     - "tcp://208.67.222.222"
     - "tcp://8.26.56.2"
   proxy-server-nameserver:
