@@ -7,3 +7,4 @@ DOMAIN,assets.ppy.sh
 DOMAIN,autoupdate.termius.com
 DOMAIN-REGEX,downloads[1-9].broadcom.com
 DOMAIN,update.ayugram.one
+DOMAIN,sh.nfs.pub
