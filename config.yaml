@@ -435,6 +435,13 @@ rule-providers:
     interval: 86400
     path: ./ruleset/cmtyPROXYmedia_cdn.list
     url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyPROXYmedia_cdn.list
+  cmtyJPrules:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    path: ./ruleset/cmtyJPrules.list
+    url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyJPrules.list
   AWAvenue-Ads-Rule:
     type: http
     behavior: domain
@@ -460,6 +467,7 @@ rules:
   - "RULE-SET,cmtyPROXYrules,节点选择"
   - "RULE-SET,cmtyDIRECTrules,全球直连"
   - "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN,no-resolve"
+  - "RULE-SET,cmtyJPrules,日本节点"
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AdditionalFilter,广告拦截"
   - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
