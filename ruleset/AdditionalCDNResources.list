@@ -8,3 +8,9 @@ DOMAIN,autoupdate.termius.com
 DOMAIN-REGEX,downloads[1-9].broadcom.com
 DOMAIN,update.ayugram.one
 DOMAIN,sh.nfs.pub
+
+# Brave
+DOMAIN,updates-cdn.bravesoftware.com
+DOMAIN,updates.bravesoftware.com
+DOMAIN,dl.brave.com
+DOMAIN,referrals.brave.com
