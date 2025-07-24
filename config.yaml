@@ -106,6 +106,11 @@ geox-url:
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 
 proxy-groups:
+  - name: 订阅信息
+    icon: https://testingcf.jsdelivr.net/gh/aihdde/Rules@master/icon/Color/Yin_Yang.png
+    type: select
+    include-all: true
+    filter: "Info-" # 这是一个独特的“接头暗号”
   - name: 节点选择
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -227,12 +232,6 @@ proxy-groups:
       - 美国节点
       - 手动切换
       - 全球直连
-  - name: FCM推送
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
-    type: select
-    proxies:
-      - 全球直连
-      - 节点选择
   - name: 全球直连
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png
     type: select
@@ -325,7 +324,7 @@ proxy-groups:
     interval: 300
     # lazy: false
     include-all: true
-    filter: (?i)中非共和国
+    filter: (?i)Cloudflare
     exclude-filter: (?i)家宽|家庭|商宽|落地
   - name: CF Workers-轮询
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png
@@ -335,7 +334,7 @@ proxy-groups:
     interval: 300
     # lazy: false
     include-all: true
-    filter: (?i)中非共和国
+    filter: (?i)Cloudflare
     exclude-filter: (?i)家宽|家庭|商宽|落地
   - name: GLOBAL
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
@@ -353,7 +352,6 @@ proxy-groups:
       - 游戏平台
       - 静态资源
       - 媒体CDN
-      - FCM推送
       - 全球直连
       - 广告拦截
       - 漏网之鱼
