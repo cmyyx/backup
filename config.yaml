@@ -24,7 +24,7 @@ tcp-concurrent: true # TCP 并发
 #  - always, 开启，强制匹配所有进程
 #  - strict, 默认，由 mihomo 判断是否开启
 #  - off, 不匹配进程，推荐在路由器上使用此模式
-find-process-mode: strict
+find-process-mode: always
 global-client-fingerprint: chrome
 
 #  TCP keep alive interval
@@ -43,8 +43,8 @@ tun:
   # system/gvisor/mixed
   stack: mixed
   dns-hijack: ["any:53", "tcp://any:53"]
+  mtu: 1500 # 最大传输单元,默认 9000
   auto-route: true
-  auto-redirect: true
   auto-detect-interface: true
 
 # 嗅探
@@ -72,11 +72,14 @@ dns:
   ipv6: false
   prefer-h3: true
   enhanced-mode: redir-host
+  cache-algorithm: arc
   use-system-hosts: true
   default-nameserver:
     - "119.29.29.29"
     - "223.5.5.5"
     - "114.114.114.114"
+    - tls://1.12.12.12:853
+    - tls://223.5.5.5:853
   nameserver:
     - "system"
     - "quic://223.5.5.5"
@@ -97,10 +100,10 @@ dns:
 geo-auto-update: true # 是否自动更新 geodata
 geo-update-interval: 24 # 更新间隔，单位：小时
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 
 proxy-groups:
   - name: 节点选择
@@ -393,13 +396,6 @@ rule-providers:
     interval: 86400
     url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list
     path: ./ruleset/EHentai.list
-  GoogleFCM:
-    type: http
-    behavior: classical
-    interval: 86400
-    format: text
-    path: ./ruleset/FirebaseCloudMessaging.list
-    url: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list
   AdditionalFilter:
     type: http
     behavior: classical
@@ -473,11 +469,10 @@ rules:
   - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
   - "RULE-SET,cdn_domainset,静态资源,no-resolve"
   - "RULE-SET,cdn_non_ip,静态资源,no-resolve"
-  - "RULE-SET,EHentai,E-Hentai,no-resolve"
-  - "RULE-SET,GoogleFCM,全球直连"
+  - "RULE-SET,EHentai,E-Hentai,no-resolve""
   - "RULE-SET,SteamFix,全球直连"
   - "RULE-SET,ai_non_ip,人工智能"
-  - "RULE-SET,gfw,节点选择"
+  # - "RULE-SET,gfw,节点选择"
   - "GEOSITE,YOUTUBE@CN,全球直连"
   - "GEOSITE,YOUTUBE,YouTube"
   - "GEOSITE,GOOGLE-PLAY@CN,全球直连"
@@ -486,6 +481,8 @@ rules:
   - "GEOSITE,CATEGORY-GAMES,游戏平台"
   - "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连"
   - "GEOSITE,TELEGRAM,Telegram"
+  # - "GEOSITE,proxy,节点选择"
+  - "GEOSITE,gfw,节点选择"
   - "GEOSITE,CN,全球直连"
   - "GEOSITE,PRIVATE,全球直连"
   - "GEOIP,GOOGLE,Google,no-resolve"
