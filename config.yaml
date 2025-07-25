@@ -341,6 +341,7 @@ proxy-groups:
     include-all: true
     type: select
     proxies:
+      - 订阅信息
       - 节点选择
       - 手动切换
       - 自动选择
@@ -436,6 +437,13 @@ rule-providers:
     interval: 86400
     path: ./ruleset/cmtyJPrules.list
     url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyJPrules.list
+  cmtyREJECTrules:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    path: ./ruleset/cmtyREJECTrules.list
+    url: https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/cmtyREJECTrules.list
   AWAvenue-Ads-Rule:
     type: http
     behavior: domain
@@ -462,6 +470,7 @@ rules:
   - "RULE-SET,cmtyDIRECTrules,全球直连"
   - "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN,no-resolve"
   - "RULE-SET,cmtyJPrules,日本节点"
+  - "RULE-SET,cmtyREJECTrules,广告拦截"
   - "RULE-SET,ADBlock,广告拦截"
   - "RULE-SET,AdditionalFilter,广告拦截"
   - "RULE-SET,AWAvenue-Ads-Rule,广告拦截"
