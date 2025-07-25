@@ -479,7 +479,7 @@ rules:
   - "GEOSITE,CATEGORY-GAMES,游戏平台"
   - "GEOSITE,CATEGORY-SCHOLAR-CN,全球直连"
   - "GEOSITE,TELEGRAM,Telegram"
-  - "GEOSITE,proxy,节点选择"
+  # - "GEOSITE,proxy,节点选择"
   # - "GEOSITE,gfw,节点选择"
   - "GEOSITE,CN,全球直连"
   - "GEOSITE,PRIVATE,全球直连"
