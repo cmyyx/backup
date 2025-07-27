@@ -31,9 +31,9 @@ async function operator(proxies = [], targetPlatform, context) {
   };
 
   // --- 1. 前置清洁工 ---
-  const junkNodeKeywords = ['剩余流量', '可用流量', '套餐到期', '重置', '到期时间', '流量信息'];
+  const junkNodeRegex = /(套餐|到期|有效|剩余|版本|已用|过期|失联|测试|关注|官方|网址|备用|群|TEST|客服|网站|获取|订阅|流量|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL)/i;
   const cleanedProxies = proxies.filter(p => {
-    return !p.name.startsWith('Info-') && !junkNodeKeywords.some(keyword => p.name.includes(keyword));
+    return !p.name.startsWith('Info-') && !junkNodeRegex.test(p.name);
   });
 
   // --- 2. 核心逻辑 ---
