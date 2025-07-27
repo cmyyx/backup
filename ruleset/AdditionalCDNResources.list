@@ -8,6 +8,7 @@ DOMAIN,autoupdate.termius.com
 DOMAIN-REGEX,downloads[1-9].broadcom.com
 DOMAIN,update.ayugram.one
 DOMAIN,sh.nfs.pub
+DOMAIN,download.calibre-ebook.com
 
 # Brave
 DOMAIN,updates-cdn.bravesoftware.com
