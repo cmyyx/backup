@@ -43,6 +43,13 @@ async function operator(proxies = [], targetPlatform, context) {
   if (!sub) {
     return cleanedProxies;
   }
+  
+  // 为所有节点添加服务商前缀
+  const providerName = args.providerName || sub.name;
+  const prefixedProxies = cleanedProxies.map(p => {
+    p.name = `[${providerName}] ${p.name}`;
+    return p;
+  });
 
   let subInfo;
   try {
@@ -117,8 +124,8 @@ async function operator(proxies = [], targetPlatform, context) {
       name: finalName,
     };
     
-    cleanedProxies.unshift(infoNode);
+    prefixedProxies.unshift(infoNode);
   }
 
-  return cleanedProxies;
+  return prefixedProxies;
 }
