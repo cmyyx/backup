@@ -30,7 +30,7 @@ const defaultSelector = [
 ];
 
 const globalProxies = [
-    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Disney", "HBO Max", "Spotify", "TikTok",
+    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Spotify", "TikTok",
     "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "开发者资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
     "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
@@ -135,8 +135,6 @@ const rules = [
     "GEOSITE,NETFLIX,Netflix",
     "GEOSITE,SPOTIFY,Spotify",
     "GEOSITE,TWITTER,Twitter(X)",
-    "GEOSITE,DISNEY,Disney",
-    "GEOSITE,HBO,HBO Max",
     "GEOSITE,BAHAMUT,巴哈姆特",
     "GEOSITE,BILIBILI,哔哩哔哩",
     "GEOSITE,OOKLA-SPEEDTEST,Speedtest",
@@ -369,6 +367,13 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
             "proxies": defaultSelector
         } : null,
+        (lowCost) ? {
+            "name": "低倍率节点",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
+            "type": (loadBalance) ? "load-balance" : "url-test",
+            "include-all": true,
+            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
+        } : null,
         {
             "name": "手动切换",
             "icon": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
@@ -410,6 +415,12 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "proxies": defaultProxies
         },
         {
+            "name": "Microsoft",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
+            "type": "select",
+            "proxies": defaultProxies,
+        },
+        {
             "name": "Apple",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple_2.png",
             "type": "select",
@@ -430,18 +441,6 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
         {
             "name": "Netflix",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
-            "type": "select",
-            "proxies": defaultProxies
-        },
-        {
-            "name": "Disney",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney.png",
-            "type": "select",
-            "proxies": defaultProxies
-        },
-        {
-            "name": "HBO Max",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/HBO.png",
             "type": "select",
             "proxies": defaultProxies
         },
@@ -527,12 +526,6 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "proxies": defaultProxies,
         },
         {
-            "name": "Microsoft",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
-            "type": "select",
-            "proxies": defaultProxies,
-        },
-        {
             "name": "Speedtest",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png",
             "type": "select",
@@ -600,13 +593,6 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             ]
         },
         ...countryProxyGroups,
-        lowCost ? {
-            "name": "低倍率节点",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
-            "type": (loadBalance) ? "load-balance" : "url-test",
-            "include-all": true,
-            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
-        } : null,
         {
             "name": "GLOBAL",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
@@ -631,8 +617,9 @@ function main(config) {
     }
 
     if (lowCost) {
+        idx = globalProxies.indexOf("自动选择");
+        globalProxies.splice(idx, 0, "低倍率节点");
         countryProxies.push("低倍率节点");     // 懒得再搞一个低倍率节点组了
-        globalProxies.push("低倍率节点");
     }
 
     defaultProxies.splice(1, 0, ...countryProxies);
@@ -644,8 +631,7 @@ function main(config) {
         idx = defaultProxies.indexOf("自动选择");
         defaultProxies.splice(idx, 0, "落地节点");
 
-        idx = defaultSelector.indexOf("手动切换");
-        defaultSelector.splice(idx, 0, "落地节点");
+        defaultSelector.unshift("落地节点");
 
         idx = globalProxies.indexOf("自动选择");
         globalProxies.splice(idx, 0, ...["落地节点", "前置代理"]);
