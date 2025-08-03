@@ -86,8 +86,6 @@ dns:
     - "quic://223.5.5.5"
     - "tls://dot.pub:853"
     - "tls://dns.alidns.com"
-    - "119.29.29.29"
-    - "223.5.5.5"
   fallback:
     - "tls://1.1.1.1:853"
     - "https://dns.google/dns-query"
