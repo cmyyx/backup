@@ -30,8 +30,8 @@ const defaultSelector = [
 ];
 
 const globalProxies = [
-    "节点选择", "手动切换", "自动选择", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Spotify", "TikTok",
-    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "开发者资源", "瑟琴网站", "游戏平台", "Speedtest", "静态资源",
+    "节点选择", "手动切换", "自动选择", "静态资源", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Spotify", "TikTok",
+    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "开发者资源", "瑟琴网站", "游戏平台", "测速服务", 
     "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
 ];
 
@@ -105,7 +105,13 @@ const ruleProviders = {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://fastly.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalCDNResources.list",
         "path": "./ruleset/AdditionalCDNResources.list"
-    }
+    },
+    "SpeedTest": {
+        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
+        "url": " https://ruleset.skk.moe/Clash/domainset/speedtest.txt",
+        "path": "./ruleset/SpeedTest.list"
+    },
+
 }
 
 const rules = [
@@ -123,6 +129,7 @@ const rules = [
     "RULE-SET,PlayStoreFix,Play商店修复",
     "RULE-SET,GoogleFCM,FCM推送",
     "RULE-SET,Weibo,新浪微博",
+    "RULE-SET,SpeedTest,测速服务",
     "GEOSITE,PAYPAL@CN,全球直连",
     "GEOSITE,PAYPAL,PayPal",
     "GEOSITE,GOOGLE-PLAY@CN,全球直连",
@@ -137,7 +144,6 @@ const rules = [
     "GEOSITE,TWITTER,Twitter(X)",
     "GEOSITE,BAHAMUT,巴哈姆特",
     "GEOSITE,BILIBILI,哔哩哔哩",
-    "GEOSITE,OOKLA-SPEEDTEST,Speedtest",
     "GEOSITE,CATEGORY-DEV,开发者资源",
     "GEOSITE,CATEGORY-PORN,瑟琴网站",
     "GEOSITE,CATEGORY-GAMES@CN,全球直连",
@@ -327,7 +333,8 @@ function buildCountryProxyGroups(countryList) {
 
             if (!loadBalance) {
                 Object.assign(groupConfig, {
-                    "interval": 300,
+                    "url": "https://www.gstatic.com/generate_204",
+                    "interval": 180,
                     "tolerance": 20,
                     "lazy": false
                 });
@@ -389,6 +396,13 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "interval": 300,
             "tolerance": 20,
             "lazy": false
+        },
+        {
+            "name": "静态资源",
+            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
+            "type": "select",
+            "include-all": true,
+            "proxies": defaultProxies,
         },
         {
             "name": "人工智能",
@@ -526,16 +540,9 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "proxies": defaultProxies,
         },
         {
-            "name": "Speedtest",
+            "name": "测速服务",
             "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png",
             "type": "select",
-            "proxies": defaultProxies,
-        },
-        {
-            "name": "静态资源",
-            "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
-            "type": "select",
-            "include-all": true,
             "proxies": defaultProxies,
         },
         {
