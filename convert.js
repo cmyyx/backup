@@ -16,6 +16,7 @@ const loadBalance = parseBool(inArg.loadbalance) || false,
     fullConfig = parseBool(inArg.full) || false,
     enableKeepAlive = parseBool(inArg.keepalive) || false;
 
+
 // 生成默认代理组
 const defaultProxies = [
     "节点选择", "手动切换", "全球直连"
@@ -110,7 +111,7 @@ const ruleProviders = {
     },
     "SpeedTest": {
         "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
-        "url": " https://ruleset.skk.moe/Clash/domainset/speedtest.txt",
+        "url": "https://ruleset.skk.moe/Clash/domainset/speedtest.txt",
         "path": "./ruleset/SpeedTest.list"
     },
 
@@ -274,11 +275,11 @@ function parseCountries(config) {
     // 用来累计各国节点数
     const countryCounts = Object.create(null);
 
-    // 构建国家正则表达式，去掉 (?i) 前缀
+    // 构建地区正则表达式，去掉 (?i) 前缀
     const compiledRegex = {};
     for (const [country, pattern] of Object.entries(countryRegex)) {
         compiledRegex[country] = new RegExp(
-            pattern.replace(/^\(\?i\)/, ''),   // 去掉 (?i)
+            pattern.replace(/^\(\?i\)/, ''),
             'i'
         );
     }
@@ -290,11 +291,11 @@ function parseCountries(config) {
         // 过滤掉不想统计的 ISP 节点
         if (ispRegex.test(name)) continue;
 
-        // 找到第一个匹配到的国家就计数并终止本轮
+        // 找到第一个匹配到的地区就计数并终止本轮
         for (const [country, regex] of Object.entries(compiledRegex)) {
             if (regex.test(name)) {
                 countryCounts[country] = (countryCounts[country] || 0) + 1;
-                break;          // 避免一个节点同时累计到多个国家
+                break;    // 避免一个节点同时累计到多个地区
             }
         }
     }
@@ -305,7 +306,7 @@ function parseCountries(config) {
         result.push({ country, count });
     }
 
-    return result;   // 形如 [{ country: 'Japan', count: 12 }, ...]
+    return result;   // [{ country: 'Japan', count: 12 }, ...]
 }
 
 
@@ -328,13 +329,13 @@ function buildCountryProxyGroups(countryList) {
         "澳门": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Macao.png",
         "法国": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/France.png",
     };
-    // 获取实际存在的国家列表
+    // 获取实际存在的地区列表
 
     const countryProxyGroups = [];
 
-    // 为实际存在的国家创建节点组
+    // 为实际存在的地区创建节点组
     for (const country of countryList) {
-        // 确保国家名称在预设的国家配置中存在
+        // 确保地区名称在预设的地区配置中存在
         if (countryRegex[country]) {
             const groupName = `${country}节点`;
             const pattern = countryRegex[country];
@@ -365,7 +366,7 @@ function buildCountryProxyGroups(countryList) {
 }
 
 function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
-    // 查看是否有特定国家的节点
+    // 查看是否有特定地区的节点
     const hasTW = countryList.includes("台湾");
     const hasHK = countryList.includes("香港");
     const hasUS = countryList.includes("美国");
@@ -628,16 +629,20 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
 }
 
 function main(config) {
-    // 查看当前有哪些国家的节点
+    // 查看当前有哪些地区的节点
     const countryInfo = parseCountries(config);
     const lowCost = hasLowCost(config);
     const countryProxies = [];
+
+    if (lowCost) {
+        globalProxies.push("低倍率节点");     // 懒得再搞一个低倍率节点组了
+    }
     
     // 修改默认代理组
     const targetCountryList = [];
     for (const { country, count } of countryInfo) {
         if (count > 2) {
-            // 仅为节点数大于 2 的国家创建节点组
+            // 仅为节点数大于 2 的地区创建节点组
             const groupName = `${country}节点`;
             globalProxies.push(groupName);
             countryProxies.push(groupName);
@@ -646,28 +651,26 @@ function main(config) {
     }
 
     if (lowCost) {
-        idx = globalProxies.indexOf("节点选择");
-        globalProxies.splice(idx, 0, "低倍率节点");
         countryProxies.push("低倍率节点");     // 懒得再搞一个低倍率节点组了
     }
 
+    // 将地区代理组插入默认代理组
     defaultFallback.splice(0, 0, ...countryProxies);
-    defaultProxies.splice(0, 0, ...countryProxies);
-    defaultSelector.splice(0, 0, ...countryProxies);
+    defaultProxies.splice(1, 0, ...countryProxies); // 插入节点选择的后面
+    defaultSelector.splice(1, 0, ...countryProxies); // 在第二个位置插入
     defaultProxiesDirect.splice(2, 0, ...countryProxies);
 
     // 处理落地
     if (landing) {
         idx = defaultProxies.indexOf("节点选择");
-        defaultProxies.splice(idx, 0, "落地节点");
+        defaultProxies.splice(idx + 1, 0, "落地节点");  //插入到节点选择之后
 
         defaultSelector.unshift("落地节点");
         defaultFallback.unshift("落地节点");
 
         idx = globalProxies.indexOf("节点选择");
-        globalProxies.splice(idx, 0, ...["落地节点", "前置代理"]);
+        globalProxies.splice(idx + 1, 0, ...["落地节点", "前置代理"]);    //插入到节点选择之后
     }
-    // 生成国家节点组
     const countryProxyGroups = buildCountryProxyGroups(targetCountryList);
     // 生成代理组
     const proxyGroups = buildProxyGroups(targetCountryList, countryProxyGroups, lowCost);
