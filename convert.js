@@ -14,7 +14,7 @@ const loadBalance = parseBool(inArg.loadbalance) || false,
     landing = parseBool(inArg.landing) || false,
     ipv6Enabled = parseBool(inArg.ipv6) || false,
     fullConfig = parseBool(inArg.full) || false,
-    enableKeepAlive = parseBool(inArg.keepalive) || false;
+    keepAliveEnabled = parseBool(inArg.keepalive) || false;
 
 
 // 生成默认代理组
@@ -31,12 +31,6 @@ const defaultSelector = [
 ];
 
 const defaultFallback = [];
-
-const globalProxies = [
-    "节点选择", "手动切换", "故障转移", "静态资源", "人工智能", "加密货币", "PayPal", "Telegram", "Microsoft", "Apple", "Google", "YouTube", "Netflix", "Spotify", "TikTok",
-    "E-Hentai", "PikPak", "巴哈姆特", "哔哩哔哩", "新浪微博", "Twitter(X)", "Truth Social", "学术资源", "开发者资源", "瑟琴网站", "游戏平台", "测速服务", 
-    "FCM推送", "SSH(22端口)", "Steam修复", "Play商店修复", "搜狗输入", "全球直连", "广告拦截"
-];
 
 const ruleProviders = {
     "ADBlock": {
@@ -392,13 +386,6 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
             "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
             "proxies": defaultSelector
         } : null,
-        (lowCost) ? {
-            "name": "低倍率节点",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
-            "type": (loadBalance) ? "load-balance" : "url-test",
-            "include-all": true,
-            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
-        } : null,
         {
             "name": "手动切换",
             "icon": "https://cdn.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
@@ -617,14 +604,15 @@ function buildProxyGroups(countryList, countryProxyGroups, lowCost) {
                 "REJECT", "全球直连"
             ]
         },
-        ...countryProxyGroups,
-        {
-            "name": "GLOBAL",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
+        (lowCost) ? {
+            "name": "低倍率节点",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
+            "type": "url-test",
+            "url": "https://cp.cloudflare.com/generate_204",
             "include-all": true,
-            "type": "select",
-            "proxies": globalProxies
-        }
+            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
+        } : null,
+        ...countryProxyGroups
     ].filter(Boolean); // 过滤掉 null 值
 }
 
@@ -633,10 +621,6 @@ function main(config) {
     const countryInfo = parseCountries(config);
     const lowCost = hasLowCost(config);
     const countryProxies = [];
-
-    if (lowCost) {
-        globalProxies.push("低倍率节点");     // 懒得再搞一个低倍率节点组了
-    }
     
     // 修改默认代理组
     const targetCountryList = [];
@@ -644,7 +628,6 @@ function main(config) {
         if (count > 2) {
             // 仅为节点数大于 2 的地区创建节点组
             const groupName = `${country}节点`;
-            globalProxies.push(groupName);
             countryProxies.push(groupName);
             targetCountryList.push(country);
         }
@@ -667,13 +650,21 @@ function main(config) {
 
         defaultSelector.unshift("落地节点");
         defaultFallback.unshift("落地节点");
-
-        idx = globalProxies.indexOf("节点选择");
-        globalProxies.splice(idx + 1, 0, ...["落地节点", "前置代理"]);    //插入到节点选择之后
     }
     const countryProxyGroups = buildCountryProxyGroups(targetCountryList);
     // 生成代理组
     const proxyGroups = buildProxyGroups(targetCountryList, countryProxyGroups, lowCost);
+    const globalProxies = proxyGroups.map(item => item.name);
+    
+    proxyGroups.push(
+        {
+            "name": "GLOBAL",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
+            "include-all": true,
+            "type": "select",
+            "proxies": globalProxies
+        }
+    );
 
     if (fullConfig) Object.assign(config, {
         "mixed-port": 7890,
@@ -689,7 +680,7 @@ function main(config) {
         "log-level": "info",
         "geodata-loader": "standard",
         "external-controller": ":9999",
-        "disable-keep-alive": !enableKeepAlive,
+        "disable-keep-alive": !keepAliveEnabled,
         "profile": {
             "store-selected": true,
         }
