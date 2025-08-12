@@ -19,11 +19,6 @@ jobs:
       TARGET_BRANCH_NAME: "rule"
       SOURCE_REPO_URL: "https://github.com/Keywos/rule.git"
       SOURCE_REPO_BRANCH: "main"
-      # --- 私有仓库配置 (已注释) ---
-      # 如果 Keywos/rule 是私有仓库，请在仓库的 Settings -> Secrets -> Actions 中添加名为 SOURCE_REPO_URL_WITH_PAT 的密钥
-      # 其值为 https://<your_pat>@github.com/Keywos/rule.git
-      # 然后取消下面这行的注释。
-      # SOURCE_REPO_URL_WITH_PAT: ${{ secrets.SOURCE_REPO_URL_WITH_PAT }}
       
     steps:
       - name: 检出目标仓库
@@ -56,15 +51,8 @@ jobs:
       - name: 从 Keywos/rule 同步内容
         run: |
           set -e
-          # --- URL 选择逻辑 (私有仓库部分已注释) ---
-          # 如果是私有仓库，请取消下面一行的注释，并注释掉 `git remote add` 命令中的公开 URL
-          # FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-${{ env.SOURCE_REPO_URL }}}
-          
           echo "添加源仓库 (Keywos/rule) 的远程地址..."
-          # 当前使用公开仓库 URL
           git remote add source_repo "${{ env.SOURCE_REPO_URL }}"
-          # 如果是私有仓库，请注释掉上面一行，并取消下面一行的注释
-          # git remote add source_repo "$FINAL_SOURCE_URL"
           
           echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交..."
           git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
@@ -89,6 +77,8 @@ jobs:
     name: 同步 powerfullz/override-rules 并存档工作流
     runs-on: ubuntu-latest
     
+    # 关键：这个任务需要修改工作流文件，因此需要 'workflows: write' 权限。
+    # 这必须在仓库的 Settings -> Actions -> General -> Workflow permissions 中被允许。
     permissions:
       contents: write
       workflows: write
@@ -97,11 +87,6 @@ jobs:
       TARGET_BRANCH_NAME: "override-rules"
       SOURCE_REPO_URL: "https://github.com/powerfullz/override-rules.git"
       SOURCE_REPO_BRANCH: "main"
-      # --- 私有仓库配置 (已注释) ---
-      # 如果 powerfullz/override-rules 是私有仓库，请在仓库的 Settings -> Secrets -> Actions 中添加名为 SOURCE_REPO_URL_WITH_PAT 的密钥
-      # 其值为 https://<your_pat>@github.com/powerfullz/override-rules.git
-      # 然后取消下面这行的注释。
-      # SOURCE_REPO_URL_WITH_PAT: ${{ secrets.SOURCE_REPO_URL_WITH_PAT }}
       
     steps:
       - name: 检出目标仓库
@@ -134,15 +119,8 @@ jobs:
       - name: 从 powerfullz/override-rules 同步并存档工作流
         run: |
           set -e
-          # --- URL 选择逻辑 (私有仓库部分已注释) ---
-          # 如果是私有仓库，请取消下面一行的注释，并注释掉 `git remote add` 命令中的公开 URL
-          # FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-${{ env.SOURCE_REPO_URL }}}
-
           echo "添加源仓库 (powerfullz/override-rules) 的远程地址..."
-          # 当前使用公开仓库 URL
           git remote add source_repo "${{ env.SOURCE_REPO_URL }}"
-          # 如果是私有仓库，请注释掉上面一行，并取消下面一行的注释
-          # git remote add source_repo "$FINAL_SOURCE_URL"
           
           echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交..."
           git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
