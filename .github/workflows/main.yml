@@ -1,100 +1,29 @@
-# .github/workflows/sync.yml
+# .github/workflows/main.yml
+
 name: 同步外部仓库到特定分支
 
-# 权限设置：允许 workflow 写入仓库内容
+# 权限设置：在顶层为所有 job 设置默认权限
+# - contents: write 允许检出代码、创建分支、推送更改
+# - workflows: write 允许修改 .github/workflows/ 目录 (用于移动文件)
 permissions:
   contents: write
+  workflows: write
 
 on:
   schedule:
-    # 每天凌晨3点执行一次 (UTC时间) - 请根据你的项目更新频率调整
+    # 每天凌晨3点执行一次 (UTC时间)
     - cron: '0 3 * * *'
   workflow_dispatch: # 允许从 GitHub Actions 界面手动触发
 
 jobs:
-  # 同步到 'rule' 分支的任务
+  # 任务1: 同步到 'rule' 分支
   sync_to_rule_branch:
     name: 同步 Keywos/rule 到 'rule' 分支
     runs-on: ubuntu-latest
     env:
-      TARGET_BRANCH_NAME: "rule" # 目标分支的名称
+      TARGET_BRANCH_NAME: "rule"
       SOURCE_REPO_URL: "https://github.com/Keywos/rule.git"
-      SOURCE_REPO_BRANCH: "main" # Keywos/rule 的主分支 (请确认)
-    steps:
-      - name: 检出目标仓库 (默认分支)
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # 获取完整历史，以便正确检查和创建分支
-
-      - name: 配置 Git 用户信息
-        run: |
-          git config --global user.name 'GitHub Actions 同步机器人'
-          git config --global user.email 'actions-sync@users.noreply.github.com'
-
-      - name: 检查并创建目标分支 (如果不存在)
-        run: |
-          set -e # 如果任何命令失败，则立即退出脚本
-          BRANCH_NAME="${{ env.TARGET_BRANCH_NAME }}"
-          
-          echo "检查远程分支 'origin/$BRANCH_NAME' 是否存在..."
-          if git rev-parse --verify "origin/$BRANCH_NAME" >/dev/null 2>&1; then
-            echo "分支 '$BRANCH_NAME' 已存在于远程 'origin'."
-            echo "正在检出 '$BRANCH_NAME' 并确保其为最新..."
-            git checkout "$BRANCH_NAME"
-            # 确保本地分支与远程分支一致 (如果远程分支可能在别处被更新)
-            git reset --hard "origin/$BRANCH_NAME" 
-          else
-            echo "分支 '$BRANCH_NAME' 不存在于远程 'origin'。"
-            echo "正在创建新的孤立分支 '$BRANCH_NAME'..."
-            git checkout --orphan "$BRANCH_NAME"
-            echo "清理工作目录以创建空白分支..."
-            git rm -rf . # 清除从默认分支带来的文件
-            echo "创建初始空提交..."
-            git commit --allow-empty -m "feat: Initialize new orphan branch $BRANCH_NAME"
-            echo "将新的孤立分支 '$BRANCH_NAME' 推送到远程 'origin'..."
-            git push -u origin "$BRANCH_NAME"
-          fi
-          echo "当前分支已设置为 '$BRANCH_NAME'."
-          git status
-
-      - name: 从 Keywos/rule 同步到 '${{ env.TARGET_BRANCH_NAME }}' 分支
-        # 如果 Keywos/rule 是私有的，你需要一个 PAT
-        # env:
-        #   SOURCE_REPO_URL_WITH_PAT: "https://${{ secrets.KEYWOS_RULE_PAT }}@github.com/Keywos/rule.git"
-        run: |
-          set -e
-          FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-${{ env.SOURCE_REPO_URL }}}
-
-          echo "添加源仓库 (Keywos/rule) 的远程地址..."
-          git remote add source_repo "$FINAL_SOURCE_URL"
-
-          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交 (确保完整历史)..."
-          # 确保获取完整历史，如果源仓库很大，可以考虑保留之前的 fetch 链，但完整 fetch 通常更稳妥
-          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
-
-          echo "尝试将 source_repo/${{ env.SOURCE_REPO_BRANCH }} 合并到本地 ${{ env.TARGET_BRANCH_NAME }} 分支..."
-          MERGE_COMMIT_MSG="Merge: 同步来自 Keywos/rule (${{ env.SOURCE_REPO_BRANCH }}) 的更新到 ${{ env.TARGET_BRANCH_NAME }}"
-          
-          if git merge "source_repo/${{ env.SOURCE_REPO_BRANCH }}" --no-ff --no-edit -m "$MERGE_COMMIT_MSG" --allow-unrelated-histories; then
-            echo "合并成功，推送更改到 origin/${{ env.TARGET_BRANCH_NAME }}..."
-            git push origin "${{ env.TARGET_BRANCH_NAME }}"
-          else
-            echo "合并失败！可能存在冲突。请手动解决冲突。"
-            git status
-            exit 1 # 标记 Action 失败
-          fi
-
-          echo "移除源仓库 (Keywos/rule) 的远程地址..."
-          git remote remove source_repo
-
-  # 同步到 'override-rules' 分支的任务
-  sync_to_override_rules_branch:
-    name: 同步 powerfullz/override-rules 到 'override-rules' 分支
-    runs-on: ubuntu-latest
-    env:
-      TARGET_BRANCH_NAME: "override-rules" # 目标分支的名称
-      SOURCE_REPO_URL: "https://github.com/powerfullz/override-rules.git"
-      SOURCE_REPO_BRANCH: "main" # powerfullz/override-rules 的主分支 (请确认)
+      SOURCE_REPO_BRANCH: "main"
     steps:
       - name: 检出目标仓库 (默认分支)
         uses: actions/checkout@v4
@@ -111,58 +40,114 @@ jobs:
           set -e
           BRANCH_NAME="${{ env.TARGET_BRANCH_NAME }}"
           
-          echo "检查远程分支 'origin/$BRANCH_NAME' 是否存在..."
           if git rev-parse --verify "origin/$BRANCH_NAME" >/dev/null 2>&1; then
-            echo "分支 '$BRANCH_NAME' 已存在于远程 'origin'."
-            echo "正在检出 '$BRANCH_NAME' 并确保其为最新..."
+            echo "分支 '$BRANCH_NAME' 已存在，正在检出并与远程同步..."
             git checkout "$BRANCH_NAME"
             git reset --hard "origin/$BRANCH_NAME"
           else
-            echo "分支 '$BRANCH_NAME' 不存在于远程 'origin'。"
-            echo "正在创建新的孤立分支 '$BRANCH_NAME'..."
+            echo "分支 '$BRANCH_NAME' 不存在，正在创建新的孤立分支..."
             git checkout --orphan "$BRANCH_NAME"
-            echo "清理工作目录以创建空白分支..."
             git rm -rf .
-            echo "创建初始空提交..."
             git commit --allow-empty -m "feat: Initialize new orphan branch $BRANCH_NAME"
-            echo "将新的孤立分支 '$BRANCH_NAME' 推送到远程 'origin'..."
             git push -u origin "$BRANCH_NAME"
           fi
           echo "当前分支已设置为 '$BRANCH_NAME'."
-          git status
 
-      - name: 从 powerfullz/override-rules 同步到 '${{ env.TARGET_BRANCH_NAME }}' 分支
-        # 如果 powerfullz/override-rules 是私有的，你需要一个 PAT
-        # env:
-        #   SOURCE_REPO_URL_WITH_PAT: "https://${{ secrets.POWERFULLZ_OVERRIDE_PAT }}@github.com/powerfullz/override-rules.git"
+      - name: 从 Keywos/rule 同步到 '${{ env.TARGET_BRANCH_NAME }}' 分支
         run: |
           set -e
-          FINAL_SOURCE_URL=${SOURCE_REPO_URL_WITH_PAT:-${{ env.SOURCE_REPO_URL }}}
-
-          echo "添加源仓库 (powerfullz/override-rules) 的远程地址..."
-          git remote add source_repo "$FINAL_SOURCE_URL"
-
-          echo "从源仓库的 '${{ env.SOURCE_REPO_BRANCH }}' 分支拉取最新提交 (确保完整历史)..."
-          # --- 修改点 ---
-          # 确保获取完整历史
+          git remote add source_repo "${{ env.SOURCE_REPO_URL }}"
           git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
-          # -------------
-
-          echo "尝试将 source_repo/${{ env.SOURCE_REPO_BRANCH }} 合并到本地 ${{ env.TARGET_BRANCH_NAME }} 分支..."
-          MERGE_COMMIT_MSG="Merge: 同步来自 powerfullz/override-rules (${{ env.SOURCE_REPO_BRANCH }}) 的更新到 ${{ env.TARGET_BRANCH_NAME }}"
           
-          # 可选：在推送前检查本地仓库对象完整性
-          # echo "检查本地仓库对象完整性..."
-          # git fsck --full || true # 使用 || true 避免 fsck 报告的非致命问题导致 Action 失败
-
+          MERGE_COMMIT_MSG="Merge: 同步来自 Keywos/rule (${{ env.SOURCE_REPO_BRANCH }}) 的更新"
           if git merge "source_repo/${{ env.SOURCE_REPO_BRANCH }}" --no-ff --no-edit -m "$MERGE_COMMIT_MSG" --allow-unrelated-histories; then
-            echo "合并成功，推送更改到 origin/${{ env.TARGET_BRANCH_NAME }}..."
+            echo "合并成功，正在推送更改..."
             git push origin "${{ env.TARGET_BRANCH_NAME }}"
           else
-            echo "合并失败！可能存在冲突。请手动解决冲突。"
-            git status
-            exit 1 # 标记 Action 失败
+            echo "合并失败！可能存在冲突。"
+            exit 1
           fi
+          git remote remove source_repo
 
-          echo "移除源仓库 (powerfullz/override-rules) 的远程地址..."
+  # 任务2: 同步到 'override-rules' 分支 (包含存档逻辑)
+  sync_to_override_rules_branch:
+    name: 同步 powerfullz/override-rules 并存档工作流
+    runs-on: ubuntu-latest
+    env:
+      TARGET_BRANCH_NAME: "override-rules"
+      SOURCE_REPO_URL: "https://github.com/powerfullz/override-rules.git"
+      SOURCE_REPO_BRANCH: "main"
+    steps:
+      - name: 检出目标仓库 (默认分支)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取完整历史
+
+      - name: 配置 Git 用户信息
+        run: |
+          git config --global user.name 'GitHub Actions 同步机器人'
+          git config --global user.email 'actions-sync@users.noreply.github.com'
+
+      - name: 检查并创建目标分支 (如果不存在)
+        run: |
+          set -e
+          BRANCH_NAME="${{ env.TARGET_BRANCH_NAME }}"
+          
+          if git rev-parse --verify "origin/$BRANCH_NAME" >/dev/null 2>&1; then
+            echo "分支 '$BRANCH_NAME' 已存在，正在检出并与远程同步..."
+            git checkout "$BRANCH_NAME"
+            git reset --hard "origin/$BRANCH_NAME"
+          else
+            echo "分支 '$BRANCH_NAME' 不存在，正在创建新的孤立分支..."
+            git checkout --orphan "$BRANCH_NAME"
+            git rm -rf .
+            git commit --allow-empty -m "feat: Initialize new orphan branch $BRANCH_NAME"
+            git push -u origin "$BRANCH_NAME"
+          fi
+          echo "当前分支已设置为 '$BRANCH_NAME'."
+
+      - name: 从 powerfullz/override-rules 同步并存档工作流
+        run: |
+          set -e
+          git remote add source_repo "${{ env.SOURCE_REPO_URL }}"
+          git fetch source_repo "${{ env.SOURCE_REPO_BRANCH }}" --no-tags --prune
+
+          MERGE_COMMIT_MSG="Merge: 同步来自 powerfullz/override-rules (${{ env.SOURCE_REPO_BRANCH }}) 的更新"
+          if git merge "source_repo/${{ env.SOURCE_REPO_BRANCH }}" --no-ff --no-edit -m "$MERGE_COMMIT_MSG" --allow-unrelated-histories; then
+            echo "合并成功。"
+
+            UPSTREAM_WF_DIR=".github/workflows"
+            ARCHIVE_WF_DIR="archived_workflows" # 存档目录
+
+            if [ -d "$UPSTREAM_WF_DIR" ] && [ "$(ls -A $UPSTREAM_WF_DIR)" ]; then
+              echo "发现上游工作流文件，正在将它们移动到 '$ARCHIVE_WF_DIR' 目录..."
+              mkdir -p "$ARCHIVE_WF_DIR"
+              
+              files_moved=false
+              for filepath in "$UPSTREAM_WF_DIR"/*; do
+                if [ -f "$filepath" ]; then
+                  filename=$(basename "$filepath")
+                  new_path="$ARCHIVE_WF_DIR/$filename.txt"
+                  
+                  echo "存档: $filepath -> $new_path"
+                  git mv "$filepath" "$new_path"
+                  files_moved=true
+                fi
+              done
+
+              if [ "$files_moved" = true ]; then
+                echo "修正合并提交，将文件移动操作包含进去..."
+                git commit --amend --no-edit
+                echo "提交已修正。"
+              fi
+            else
+              echo "未发现上游工作流目录，无需处理。"
+            fi
+            
+            echo "推送最终更改..."
+            git push origin "${{ env.TARGET_BRANCH_NAME }}"
+          else
+            echo "合并失败！可能存在冲突。"
+            exit 1
+          fi
           git remote remove source_repo
