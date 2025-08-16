@@ -39,8 +39,7 @@ DOMAIN-SUFFIX,namesilo.com
 DOMAIN,porkbun.com
 DOMAIN-SUFFIX,reddit.com
 DOMAIN-KEYWORD,fanbox
-DOMAIN,x.com
-DOMAIN,twitter.com
+DOMAIN-SUFFIX,x.com
 DOMAIN,www.everauto.net
 DOMAIN-SUFFIX,gamer.com.tw
 DOMAIN-SUFFIX,dropbox.com
