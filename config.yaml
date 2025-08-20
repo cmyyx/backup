@@ -138,6 +138,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CloudFlare WARP
       - 手动切换
       - 全球直连
   - name: Telegram
@@ -160,6 +161,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CloudFlare WARP
       - 手动切换
       - 全球直连
   - name: YouTube
@@ -171,6 +173,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CloudFlare WARP
       - 手动切换
       - 全球直连
   - name: E-Hentai
