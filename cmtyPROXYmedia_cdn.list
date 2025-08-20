@@ -1,3 +1,3 @@
-# 个人维护规则,代理;适用于均衡负载的媒体CDN
+# 个人维护规则,代理;适用于均衡负载的媒体CDN(可以使用带宽更大的节点,IP质量可以低一些;例如低倍率节点)
 DOMAIN-SUFFIX,googlevideo.com
 DOMAIN-SUFFIX,iwara.tv
