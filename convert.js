@@ -20,7 +20,7 @@ const loadBalance = parseBool(inArg.loadbalance) || false,
 
 function buildBaseLists({ landing, lowCost, countryInfo }) {
     const countryGroupNames = countryInfo
-        .filter(item => item.count > 2)
+        .filter(item => item.count > 0)
         .map(item => item.country + "节点");
 
     // defaultSelector (节点选择 组里展示的候选) 
@@ -301,7 +301,7 @@ const countriesMeta = {
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png"
     },
     "CloudFlare WARP": {
-    pattern: "WARP",
+    pattern: "(?i)WARP",
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
     },
 };
@@ -440,7 +440,8 @@ function buildProxyGroups({
             "name": "手动切换",
             "icon": "https://cdn.jsdmirror.com/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
             "include-all": true,
-            "type": "select"
+            "type": "select",
+            "exclude-filter": "Info-"
         },
         (landing) ? {
             "name": "前置代理",
@@ -465,7 +466,8 @@ function buildProxyGroups({
             "proxies": defaultFallback,
             "interval": 180,
             "tolerance": 20,
-            //"lazy": false
+            //"lazy": false,
+            "exclude-filter": "Info-"
         },
         {
             "name": "静态资源",
