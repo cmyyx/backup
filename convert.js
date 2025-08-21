@@ -236,6 +236,10 @@ const geoxURL = {
 
 // 地区元数据
 const countriesMeta = {
+    "CloudFlare WARP": {
+    pattern: "(?i)WARP",
+        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
+    },
     "香港": {
     pattern: "(?i)香港|港|HK|hk|Hong Kong|HongKong|hongkong|🇭🇰",
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
@@ -299,10 +303,6 @@ const countriesMeta = {
     "马来西亚": {
     pattern: "(?i)马来西亚|马来|MY|Malaysia|🇲🇾",
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png"
-    },
-    "CloudFlare WARP": {
-    pattern: "(?i)WARP",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
     },
 };
 
