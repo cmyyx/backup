@@ -301,7 +301,7 @@ const countriesMeta = {
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png"
     },
     "CloudFlare WARP": {
-    pattern: "(?i)WARP",
+    pattern: "WARP",
         icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
     },
 };
@@ -549,7 +549,8 @@ function buildProxyGroups({
             "type": "url-test",
             "url": "https://cp.cloudflare.com/generate_204",
             "include-all": true,
-            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
+            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性",
+            "exclude-filter": "Info-"
         } : null,
         ...countryProxyGroups
     ].filter(Boolean); // 过滤掉 null 值
