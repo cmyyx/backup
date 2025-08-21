@@ -5,7 +5,7 @@
  * 1. 在顶部生成一个所有子订阅流量汇总的、美化的【总览】信息节点。
  * 2. 将汇总后的流量信息写回 sub-store 存储，以持久化数据。
  *
- * @version 1.2 (日期格式优化版)
+ * @version 1.3 (独立时间节点版)
  * @author Gemini (改编自 sub-store 官方示例)
  */
 async function operator(proxies = [], targetPlatform, context) {
@@ -81,19 +81,27 @@ async function operator(proxies = [], targetPlatform, context) {
       }
     }
 
-    // 更新时间信息
+    // 创建总览节点
+    const finalName = `Info-总览 | ${nameParts.join(' | ')}`;
+    const totalInfoNode = {
+      type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
+      name: finalName,
+    };
+
+    // 创建独立的更新时间节点
     const now = new Date();
     const month = (now.getMonth() + 1).toString().padStart(2, '0');
     const day = now.getDate().toString().padStart(2, '0');
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const updateTime = `${month}/${day} ${hours}:${minutes}`;
-    nameParts.push(`Info-更新于: ${updateTime}`);
-    const finalName = `Info-总览 | ${nameParts.join(' | ')}`;
-    const totalInfoNode = {
-      type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
-      name: finalName,
+    const timeInfoNode = {
+        type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
+        name: `Info-更新于: ${updateTime}`,
     };
+
+    // 将两个节点都添加到开头
+    proxies.unshift(timeInfoNode);
     proxies.unshift(totalInfoNode);
   }
 
