@@ -106,7 +106,7 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/aihdde/Rules@master/icon/Color/Yin_Yang.png
     type: select
     include-all: true
-    filter: "Info-" # 这是一个独特的“接头暗号”
+    filter: "Info-"
   - name: 节点选择
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
     type: select
@@ -125,7 +125,7 @@ proxy-groups:
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png
     type: url-test
     include-all: true
-    exclude-filter: (?i)家宽|家庭|商宽|落地
+    exclude-filter: (?i)家宽|家庭|商宽|落地|Info-
     interval: 300
     tolerance: 20
     # lazy: false
@@ -185,6 +185,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CloudFlare WARP
       - 手动切换
       - 全球直连
   - name: 游戏平台
@@ -196,6 +197,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - CloudFlare WARP
       - 手动切换
       - 全球直连
   - name: 静态资源
@@ -243,8 +245,8 @@ proxy-groups:
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png
     type: select
     proxies:
-      - 节点选择
       - 全球直连
+      - 节点选择
   - name: 故障转移
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png
     type: fallback

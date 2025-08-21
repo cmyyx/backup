@@ -8,10 +8,10 @@
  * @author Gemini
  *
  * @param {string} [providerName] - 自定义在节点名称中显示的服务商名称。若不提供，则自动使用订阅本身的名称。
- * @param {boolean} [showRemaining=false] - 是否显示剩余流量而非已用流量。
+ * @param {boolean} [showRemaining=false] - 是否显示剩余流量(显示剩 xx GB)而非已用流量(显示 xx GB / yy GB , xx=已用, yy=全部)。
  * @param {boolean} [hideExpire=false] - 是否隐藏到期时间信息。
  * @param {number} [resetDay] - 每月的流量重置日 (例如: 1)。
- * @param {string} [startDate] - 计费周期的开始日期 (格式: 'YYYY-MM-DD')。
+ * @param {string} [startDate] - 计费周期的开始日期 (格式: 'YYYY-MM-DD')。(和上面的二选一)
  * @param {number} [cycleDays] - 计费周期的天数 (例如: 30)。
  * @param {boolean} [noReset=false] - 设置为 true 可完全禁用重置日倒计时的计算和显示。
  * @param {boolean} [noFlow=false] - 完全跳过流量信息的获取和显示。

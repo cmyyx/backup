@@ -81,6 +81,14 @@ async function operator(proxies = [], targetPlatform, context) {
       }
     }
 
+    // 更新时间信息
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const updateTime = `${month}/${day} ${hours}:${minutes}`;
+    nameParts.push(`Info-更新于: ${updateTime}`);
     const finalName = `Info-总览 | ${nameParts.join(' | ')}`;
     const totalInfoNode = {
       type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
