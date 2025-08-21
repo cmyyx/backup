@@ -77,27 +77,27 @@ const ruleProviders = {
     },
     "EHentai": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
         "path": "./ruleset/EHentai.list"
     },
     "SteamFix": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
         "path": "./ruleset/SteamFix.list"
     },
     "GoogleFCM": {
         "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
         "path": "./ruleset/FirebaseCloudMessaging.list",
-        "url": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list",
     },
     "AdditionalFilter": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list",
         "path": "./ruleset/AdditionalFilter.list"
     },
     "AdditionalCDNResources": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/ruleset/AdditionalCDNResources.list",
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalCDNResources.list",
         "path": "./ruleset/AdditionalCDNResources.list"
     },
     "ProxyGFWlist": {
@@ -112,27 +112,27 @@ const ruleProviders = {
     },
     "cmtyPROXYrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYrules.list",
+        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYrules.list",
         "path": "./ruleset/cmtyPROXYrules.list"
     },
     "cmtyDIRECTrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/cmyyx/backup@cmty-rules/rules/cmtyDIRECTrules.list",
+        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyDIRECTrules.list",
         "path": "./ruleset/cmtyDIRECTrules.list"
     },
     "cmtyPROXYmedia_cdn": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYmedia_cdn.list",
+        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYmedia_cdn.list",
         "path": "./ruleset/cmtyPROXYmedia_cdn.list"
     },
     "cmtyJPrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/cmyyx/backup@cmty-rules/rules/cmtyJPrules.list",
+        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyJPrules.list",
         "path": "./ruleset/cmtyJPrules.list"
     },
     "cmtyREJECTrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdmirror.com/gh/cmyyx/backup@cmty-rules/rules/cmtyREJECTrules.list",
+        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyREJECTrules.list",
         "path": "./ruleset/cmtyREJECTrules.list"
     },
 }
@@ -228,81 +228,81 @@ const dnsConfig = {
 };
 
 const geoxURL = {
-    "geoip": "https://cdn.jsdmirror.com/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
-    "geosite": "https://cdn.jsdmirror.com/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
-    "mmdb": "https://cdn.jsdmirror.com/gh/Loyalsoldier/geoip@release/Country.mmdb",
-    "asn": "https://cdn.jsdmirror.com/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+    "geoip": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
+    "geosite": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat",
+    "mmdb": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb",
+    "asn": "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
 };
 
 // 地区元数据
 const countriesMeta = {
     "CloudFlare WARP": {
     pattern: "(?i)WARP",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
     },
     "香港": {
     pattern: "(?i)香港|港|HK|hk|Hong Kong|HongKong|hongkong|🇭🇰",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
     },
     "澳门": {
     pattern: "(?i)澳门|MO|Macau|🇲🇴",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Macao.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Macao.png"
     },
     "台湾": {
     pattern: "(?i)台|新北|彰化|TW|Taiwan|🇹🇼",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png"
     },
     "新加坡": {
     pattern: "(?i)新加坡|坡|狮城|SG|Singapore|🇸🇬",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
     },
     "日本": {
     pattern: "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|🇯🇵",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Japan.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png"
     },
     "韩国": {
     pattern: "(?i)KR|Korea|KOR|首尔|韩|韓|🇰🇷",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Korea.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png"
     },
     "美国": {
     pattern: "(?i)美国|美|US|United States|🇺🇸",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/United_States.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png"
     },
     "加拿大": {
     pattern: "(?i)加拿大|Canada|CA|🇨🇦",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Canada.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Canada.png"
     },
     "英国": {
     pattern: "(?i)英国|United Kingdom|UK|伦敦|London|🇬🇧",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png"
     },
     "澳大利亚": {
     pattern: "(?i)澳洲|澳大利亚|AU|Australia|🇦🇺",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Australia.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Australia.png"
     },
     "德国": {
     pattern: "(?i)德国|德|DE|Germany|🇩🇪",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Germany.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Germany.png"
     },
     "法国": {
     pattern: "(?i)法国|法|FR|France|🇫🇷",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/France.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/France.png"
     },
     "俄罗斯": {
     pattern: "(?i)俄罗斯|俄|RU|Russia|🇷🇺",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Russia.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Russia.png"
     },
     "泰国": {
     pattern: "(?i)泰国|泰|TH|Thailand|🇹🇭",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Thailand.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Thailand.png"
     },
     "印度": {
     pattern: "(?i)印度|IN|India|🇮🇳",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/India.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/India.png"
     },
     "马来西亚": {
     pattern: "(?i)马来西亚|马来|MY|Malaysia|🇲🇾",
-        icon: "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png"
+        icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png"
     },
 };
 
@@ -432,20 +432,20 @@ function buildProxyGroups({
         },
         {
             "name": "节点选择",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
             "type": "select",
             "proxies": defaultSelector
         },
         {
             "name": "手动切换",
-            "icon": "https://cdn.jsdmirror.com/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
+            "icon": "https://cdn.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
             "include-all": true,
             "type": "select",
             "exclude-filter": "Info-"
         },
         (landing) ? {
             "name": "前置代理",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Area.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png",
             "type": "select",
             "include-all": true,
             "exclude-filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
@@ -453,14 +453,14 @@ function buildProxyGroups({
         } : null,
         (landing) ? {
             "name": "落地节点",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
             "type": "select",
             "include-all": true,
             "filter": "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地",
         } : null,
         {
             "name": "故障转移",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Bypass.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png",
             "type": "fallback",
             "url": "https://cp.cloudflare.com/generate_204",
             "proxies": defaultFallback,
@@ -471,67 +471,67 @@ function buildProxyGroups({
         },
         {
             "name": "静态资源",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png",
             "type": "select",
             "proxies": defaultProxies,
         },
         {
             "name": "媒体CDN",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Filter.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Filter.png",
             "type": "select",
             "proxies": defaultProxies,
         },
         {
             "name": "AI",
-            "icon": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/icons/chatgpt.svg",
+            "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/chatgpt.svg",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "Telegram",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
             "type": "select",
             "proxies": defaultProxies
         },
         //{
         //    "name": "YouTube",
-        //    "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
+        //    "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
         //    "type": "select",
         //    "proxies": defaultProxies
         //},
         {
             "name": "Google",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "Netflix",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "Spotify",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Spotify.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Spotify.png",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "E-Hentai",
-            "icon": "https://cdn.jsdmirror.com/gh/powerfullz/override-rules@master/icons/Ehentai.png",
+            "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "SSH(22端口)",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Server.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
             "type": "select",
             "proxies": defaultProxies
         },
         {
             "name": "直连",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
             "type": "select",
             "proxies": [
                 "DIRECT", "节点选择"
@@ -539,7 +539,7 @@ function buildProxyGroups({
         },
         {
             "name": "广告拦截",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
             "type": "select",
             "proxies": [
                 "REJECT", "直连"
@@ -547,7 +547,7 @@ function buildProxyGroups({
         },
         (lowCost) ? {
             "name": "低倍率节点",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Lab.png",
             "type": "url-test",
             "url": "https://cp.cloudflare.com/generate_204",
             "include-all": true,
@@ -591,7 +591,7 @@ function main(config) {
     proxyGroups.push(
         {
             "name": "GLOBAL",
-            "icon": "https://cdn.jsdmirror.com/gh/Koolson/Qure@master/IconSet/Color/Global.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
             "include-all": true,
             "type": "select",
             "proxies": globalProxies
