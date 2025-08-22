@@ -1,4 +1,3 @@
 # 个人维护规则,直连
-DOMAIN-SUFFIX,bilivideo.cn #我不知道为啥要加,这个怎么想都不会命中到代理规则吧,但是当时加了肯定有加的道理
-DOMAIN-SUFFIX,mcdn.bilivideo.cn #未知，仍然匹配到了ads组而不是直连
-AND,((DOMAIN,github.com),(DST-PORT,22)) #远程仓库路径为git而非https时会走22端口,走代理时稳定性概率不如直连(虽然直连慢)
+#有个ADBlock规则组屏蔽mcdn
+DOMAIN-SUFFIX,mcdn.bilivideo.cn

@@ -80,16 +80,6 @@ const ruleProviders = {
         "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
         "path": "./ruleset/EHentai.list"
     },
-    "SteamFix": {
-        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
-        "path": "./ruleset/SteamFix.list"
-    },
-    "GoogleFCM": {
-        "type": "http", "behavior": "classical", "interval": 86400, "format": "text",
-        "path": "./ruleset/FirebaseCloudMessaging.list",
-        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/FirebaseCloudMessaging.list",
-    },
     "AdditionalFilter": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/AdditionalFilter.list",
@@ -112,27 +102,27 @@ const ruleProviders = {
     },
     "cmtyPROXYrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYrules.list",
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyPROXYrules.list",
         "path": "./ruleset/cmtyPROXYrules.list"
     },
     "cmtyDIRECTrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyDIRECTrules.list",
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyDIRECTrules.list",
         "path": "./ruleset/cmtyDIRECTrules.list"
     },
     "cmtyPROXYmedia_cdn": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyPROXYmedia_cdn.list",
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyPROXYmedia_cdn.list",
         "path": "./ruleset/cmtyPROXYmedia_cdn.list"
     },
     "cmtyJPrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyJPrules.list",
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyJPrules.list",
         "path": "./ruleset/cmtyJPrules.list"
     },
     "cmtyREJECTrules": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
-        "url": "https://cdn.jsdelivr.net/gh/cmyyx/backup@cmty-rules/rules/cmtyREJECTrules.list",
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyREJECTrules.list",
         "path": "./ruleset/cmtyREJECTrules.list"
     },
 }
@@ -151,8 +141,6 @@ const rules = [
     "RULE-SET,AdditionalCDNResources,静态资源",
     "RULE-SET,AI,AI",
     "RULE-SET,EHentai,E-Hentai",
-    //"RULE-SET,SteamFix,直连",
-    //"RULE-SET,GoogleFCM,直连",
     "GEOSITE,GOOGLE-PLAY@CN,直连",
     "GEOSITE,TELEGRAM,Telegram",
     //"GEOSITE,YOUTUBE@CN,直连",
