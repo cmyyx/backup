@@ -467,7 +467,6 @@ function buildProxyGroups({
             "interval": 180,
             "tolerance": 20,
             //"lazy": false,
-            "exclude-filter": "Info-"
         },
         {
             "name": "静态资源",
@@ -527,7 +526,7 @@ function buildProxyGroups({
             "name": "SSH(22端口)",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
             "type": "select",
-            "proxies": defaultProxies
+            "proxies": defaultProxiesDirect
         },
         {
             "name": "直连",
