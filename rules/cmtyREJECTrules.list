@@ -1,2 +1,4 @@
 # 个人维护规则,拦截(不一定是广告)
 DOMAIN,edgedl.me.gvt1.com #edge自动更新的下载地址
+DOMAIN,1d.tlu.dl.delivery.mp.microsoft.com #不知道微软下什么的,通通禁掉
+DOMAIN-SUFFIX,office.net #这个也是跑下载

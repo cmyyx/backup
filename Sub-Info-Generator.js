@@ -66,9 +66,11 @@ async function operator(proxies = [], targetPlatform, context) {
     console.error(`获取订阅 ${sub.name} 流量信息时出错:`, e);
   }
 
+  const displayName = args.providerName || sub.name;
+  const nameParts = [];
+
   if (subInfo) {
     const { expires, total, usage: { upload, download } } = parseFlowHeaders(subInfo);
-    const nameParts = [];
     const expiryDateObj = expires ? new Date(expires * 1000) : null;
 
     // 流量信息
@@ -115,17 +117,18 @@ async function operator(proxies = [], targetPlatform, context) {
         } catch (e) { /* 忽略计算错误 */ }
       }
     }
-
-    const displayName = args.providerName || sub.name;
-    const finalName = `Info-${displayName} | ${nameParts.join(' | ')}`;
-
-    const infoNode = {
-      type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
-      name: finalName,
-    };
-    
-    prefixedProxies.unshift(infoNode);
   }
+  
+  const finalName = nameParts.length > 0
+    ? `Info-${displayName} | ${nameParts.join(' | ')}`
+    : `Info-${displayName}`;
+
+  const infoNode = {
+    type: 'ss', server: 'info.local', port: 1, cipher: 'none', password: 'info',
+    name: finalName,
+  };
+  
+  prefixedProxies.unshift(infoNode);
 
   return prefixedProxies;
 }
