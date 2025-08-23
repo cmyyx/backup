@@ -539,7 +539,6 @@ function buildProxyGroups({
             "include-all": true,
             "filter": "自建",
             "exclude-filter": "Info-"
-            ]
         },
         (lowCost) ? {
             "name": "低倍率节点",
