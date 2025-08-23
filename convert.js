@@ -228,6 +228,9 @@ const countriesMeta = {
     pattern: "(?i)WARP",
         icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png"
     },
+    "自建": {
+    pattern: "自建"
+    },
     "香港": {
     pattern: "(?i)香港|港|HK|hk|Hong Kong|HongKong|hongkong|🇭🇰",
         icon: "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
