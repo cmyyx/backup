@@ -537,7 +537,7 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
             "type": "select",
             "include-all": true,
-            "filter": "自建"
+            "filter": "自建",
             "exclude-filter": "Info-"
             ]
         },
