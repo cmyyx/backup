@@ -1,3 +1,3 @@
 # 个人维护规则,直连
-#有个ADBlock规则组屏蔽mcdn
-DOMAIN-SUFFIX,mcdn.bilivideo.cn
+#有个ADBlock规则组屏蔽mcdn,但是这会导致无法下载视频
+AND,((DOMAIN-SUFFIX,mcdn.bilivideo.cn),(PROCESS-NAME,com.junkfood.seal))
