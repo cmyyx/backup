@@ -35,7 +35,7 @@ function buildBaseLists({ landing, lowCost, countryInfo }) {
     // 节点选择, 各地区节点, 低倍率节点(可选), 手动切换, 直连
     const defaultProxies = ["节点选择", ...countryGroupNames];
     if (lowCost) defaultProxies.push("低倍率节点");
-    defaultProxies.push("手动切换", "直连");
+    defaultProxies.push("手动切换", "直连", "自建节点");
 
     // direct 优先的列表
     const defaultProxiesDirect = ["直连", ...countryGroupNames, "节点选择", "手动切换"]; // 直连优先
