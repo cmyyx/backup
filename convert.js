@@ -49,7 +49,7 @@ function buildBaseLists({ landing, lowCost, countryInfo }) {
     defaultFallback.push(...countryGroupNames);
     if (lowCost) defaultFallback.push("低倍率节点");
     // 可选是否加入 手动切换 / DIRECT；按容灾语义加入。
-    defaultFallback.push("手动切换", "DIRECT");
+    defaultFallback.push("手动切换", "DIRECT", "自建节点");
 
     return { defaultProxies, defaultProxiesDirect, defaultSelector: selector, defaultFallback, countryGroupNames };
 }
