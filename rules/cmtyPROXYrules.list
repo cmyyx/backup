@@ -7,7 +7,7 @@ DOMAIN-SUFFIX,github.com
 DOMAIN-SUFFIX,archive.org
 DOMAIN-KEYWORD,discord
 DOMAIN-SUFFIX,www.nodeseek.com
-DOMAIN-KEYWORD,cloudflare
+DOMAIN-SUFFIX,cloudflare.com
 DOMAIN-SUFFIX,files.pythonhosted.org
 DOMAIN-SUFFIX,duckduckgo.com
 DOMAIN-SUFFIX,greasyfork.org
