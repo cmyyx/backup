@@ -38,7 +38,6 @@ DOMAIN-SUFFIX,clawcloudrun.com
 DOMAIN-SUFFIX,namesilo.com
 DOMAIN-SUFFIX,porkbun.com
 DOMAIN-SUFFIX,reddit.com
-DOMAIN-KEYWORD,fanbox
 DOMAIN-SUFFIX,x.com
 DOMAIN-SUFFIX,www.everauto.net
 DOMAIN-SUFFIX,gamer.com.tw
@@ -64,3 +63,4 @@ DOMAIN-SUFFIX,torrentmac.net
 DOMAIN-SUFFIX,gy888.xyz
 DOMAIN-SUFFIX,cosplaytele.com
 DOMAIN-SUFFIX,candy.ai
+DOMAIN-KEYWORD,render
