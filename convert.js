@@ -125,6 +125,11 @@ const ruleProviders = {
         "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyREJECTrules.list",
         "path": "./ruleset/cmtyREJECTrules.list"
     },
+    "cmtyGAMErules": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyGAMErules.list",
+        "path": "./ruleset/cmtyGAMErules.list"
+    },
 }
 
 const rules = [
@@ -132,6 +137,7 @@ const rules = [
     "RULE-SET,cmtyDIRECTrules,直连",
     "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN",
     "RULE-SET,cmtyJPrules,日本节点",
+    "RULE-SET,cmtyGAMErules,游戏代理",
     "RULE-SET,cmtyREJECTrules,广告拦截",
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
@@ -534,10 +540,17 @@ function buildProxyGroups({
         },
         {
             "name": "自建节点",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
             "type": "select",
             "include-all": true,
             "filter": "自建",
+            "exclude-filter": "Info-"
+        },
+        {
+            "name": "游戏代理",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png",
+            "type": "select",
+            "include-all": true,
             "exclude-filter": "Info-"
         },
         (lowCost) ? {
