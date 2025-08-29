@@ -554,7 +554,8 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png",
             "type": "select",
             "include-all": true,
-            "exclude-filter": "Info-"
+            "exclude-filter": "Info-",
+            "proxies": defaultProxiesDirect
         },
         (lowCost) ? {
             "name": "低倍率节点",
