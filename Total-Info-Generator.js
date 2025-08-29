@@ -100,9 +100,9 @@ async function operator(proxies = [], targetPlatform, context) {
         name: `Info-更新于: ${updateTime}`,
     };
 
-    // 将两个节点都添加到开头
-    proxies.unshift(timeInfoNode);
+    // 将两个节点都添加到开头，并确保时间节点在最前
     proxies.unshift(totalInfoNode);
+    proxies.unshift(timeInfoNode);
   }
 
   // --- 3. 持久化数据 ---
