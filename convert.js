@@ -546,7 +546,7 @@ function buildProxyGroups({
             "filter": "自建",
             "exclude-filter": "Info-",
             "proxies": [
-                "DIRECT", "节点选择"
+                "DIRECT"
             ]
         },
         {
