@@ -418,11 +418,19 @@ function buildProxyGroups({
 
     return [
         {
-            "name": "订阅信息",
+            "name": "更新时间",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Loop.png",
+            "type": "select",
+            "include-all": true,
+            "filter": "(?i)Info-更新时间"
+        },
+        {
+            "name": "流量信息",
             "icon": "https://testingcf.jsdelivr.net/gh/aihdde/Rules@master/icon/Color/Yin_Yang.png",
             "type": "select",
             "include-all": true,
-            "filter": "(?i)Info-"
+            "filter": "(?i)Info-",
+            "exclude-filter": "更新时间"
         },
         {
             "name": "节点选择",
@@ -540,7 +548,7 @@ function buildProxyGroups({
         },
         {
             "name": "自建节点",
-            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Star.png",
             "type": "select",
             "include-all": true,
             "filter": "自建",

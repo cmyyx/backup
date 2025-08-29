@@ -31,7 +31,7 @@ async function operator(proxies = [], targetPlatform, context) {
   };
 
   // --- 1. 前置清洁工 ---
-  const junkNodeRegex = /(套餐|到期|有效|剩余|版本|已用|过期|失联|测试|关注|官方|网址|备用|群|TEST|客服|网站|获取|订阅|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|官网)/i; /* |流量| */
+  const junkNodeRegex = /(套餐|到期|有效|剩余|版本|已用|过期|失联|测试|关注|官方|网址|备用|群|TEST|客服|网站|获取|订阅|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|官网|公益|请用)/i; /* |流量| */
   const cleanedProxies = proxies.filter(p => {
     return !p.name.startsWith('Info-') && !junkNodeRegex.test(p.name);
   });
