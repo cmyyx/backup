@@ -117,5 +117,23 @@ async function operator(proxies = [], targetPlatform, context) {
     console.log(`Total-Info-Generator: 已将汇总流量信息写回组合订阅 '${collection.name}'。`);
   }
   
+  // --- 4. 全局排序 ---
+  const getSortPriority = (proxy) => {
+      const name = proxy.name || '';
+      if (name.startsWith('Info-更新于')) return 1;
+      if (name.startsWith('Info-总览')) return 3;
+      if (name.startsWith('Info-')) return 2;
+      return 4;
+  };
+
+  proxies.sort((a, b) => {
+      const priorityA = getSortPriority(a);
+      const priorityB = getSortPriority(b);
+      if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+      }
+      return (a.name || '').localeCompare(b.name || '');
+  });
+
   return proxies;
 }
