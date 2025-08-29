@@ -430,7 +430,7 @@ function buildProxyGroups({
             "type": "select",
             "include-all": true,
             "filter": "(?i)Info-",
-            "exclude-filter": "更新时间"
+            "exclude-filter": "(?i)Info-更新于"
         },
         {
             "name": "节点选择",

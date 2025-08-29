@@ -121,8 +121,8 @@ async function operator(proxies = [], targetPlatform, context) {
   const getSortPriority = (proxy) => {
       const name = proxy.name || '';
       if (name.startsWith('Info-更新于')) return 1;
-      if (name.startsWith('Info-总览')) return 3;
-      if (name.startsWith('Info-')) return 2;
+      if (name.startsWith('Info-总览')) return 2;
+      if (name.startsWith('Info-')) return 3;
       return 4;
   };
 
