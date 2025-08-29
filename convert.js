@@ -542,6 +542,7 @@ function buildProxyGroups({
             "name": "自建节点",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
             "type": "select",
+            "proxies": defaultProxiesDirect,
             "include-all": true,
             "filter": "自建",
             "exclude-filter": "Info-"
