@@ -422,7 +422,7 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Loop.png",
             "type": "select",
             "include-all": true,
-            "filter": "(?i)Info-更新时间"
+            "filter": "(?i)Info-更新于"
         },
         {
             "name": "流量信息",
