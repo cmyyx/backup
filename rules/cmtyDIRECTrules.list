@@ -3,3 +3,5 @@
 AND,((DOMAIN-SUFFIX,mcdn.bilivideo.cn),(PROCESS-NAME,com.junkfood.seal))
 # Steam登录服务器
 DOMAIN-SUFFIX,steamserver.net
+# 阿里百炼相关API,被当作ads拦截
+DOMAIN,dashscope.aliyuncs.con
