@@ -216,8 +216,8 @@ const dnsConfig = {
         "119.29.29.29",
         "223.5.5.5",
         "114.114.114.114",
-        "1.1.1.1# 节点选择",
-        "8.8.8.8# 节点选择"
+        "1.1.1.1#节点选择",
+        "8.8.8.8#节点选择"
     ],
     "nameserver": [
         "quic://223.5.5.5",
@@ -225,14 +225,14 @@ const dnsConfig = {
         "tls://dns.alidns.com",
         "https://doh.pub/dns-query",
         "https://dns.alidns.com/dns-query",
-        "https://8.8.8.8/dns-query# 节点选择",
-        "https://1.1.1.1/dns-query# 节点选择"
+        "https://8.8.8.8/dns-query#节点选择",
+        "https://1.1.1.1/dns-query#节点选择"
     ],
     "fallback": [
-        "tls://1.1.1.1# 节点选择",
-        "tls://8.8.8.8# 节点选择",
-        "https://8.8.8.8/dns-query# 节点选择",
-        "https://1.1.1.1/dns-query# 节点选择"
+        "tls://1.1.1.1#节点选择",
+        "tls://8.8.8.8#节点选择",
+        "https://8.8.8.8/dns-query#节点选择",
+        "https://1.1.1.1/dns-query#节点选择"
     ]
 };
 
