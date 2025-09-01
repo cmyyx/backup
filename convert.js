@@ -194,30 +194,45 @@ const dnsConfig = {
     "enable": true,
     "ipv6": ipv6Enabled,
     "prefer-h3": true,
-    "enhanced-mode": "redir-host",
+    "enhanced-mode": "fake-ip",
+    "fake-ip-filter-mode": "blacklist",
+    "fake-ip-range": "198.18.0.1/16",
+    "fake-ip-filter": [
+        "*.lan",
+        "localhost.ptlogin2.qq.com",
+        "+.srv.nintendo.net",
+        "+.stun.playstation.net",
+        "+.msftconnecttest.com",
+        "+.msftncsi.com",
+        "+.xboxlive.com",
+        "xbox.*.microsoft.com",
+        "*.battlenet.com.cn",
+        "*.battlenet.com",
+        "*.blzstatic.cn",
+        "*.battle.net",
+    ],
     "cache-algorithm": "arc",
     "default-nameserver": [
         "119.29.29.29",
         "223.5.5.5",
         "114.114.114.114",
-        "tls://1.12.12.12:853",
-        "tls://223.5.5.5:853"
+        "1.1.1.1# 节点选择",
+        "8.8.8.8# 节点选择"
     ],
     "nameserver": [
-        "system",
         "quic://223.5.5.5",
         "tls://dot.pub",
         "tls://dns.alidns.com",
+        "https://doh.pub/dns-query",
+        "https://dns.alidns.com/dns-query",
+        "https://8.8.8.8/dns-query# 节点选择",
+        "https://1.1.1.1/dns-query# 节点选择"
     ],
     "fallback": [
-        "tls://1.1.1.1:853",
-        "https://dns.google/dns-query",
-        "tls://dns.google",
-        "quic://dns0.eu",
-        "https://dns.cloudflare.com/dns-query",
-        "https://dns.sb/dns-query",
-        "tcp://208.67.222.222",
-        "tcp://8.26.56.2"
+        "tls://1.1.1.1# 节点选择",
+        "tls://8.8.8.8# 节点选择",
+        "https://8.8.8.8/dns-query# 节点选择",
+        "https://1.1.1.1/dns-query# 节点选择"
     ]
 };
 
