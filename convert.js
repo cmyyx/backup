@@ -196,8 +196,10 @@ const dnsConfig = {
     "prefer-h3": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-filter-mode": "blacklist",
-    "fake-ip-range": "198.18.0.1/16",
+    "fake-ip-range": "28.0.0.1/8",
     "fake-ip-filter": [
+        "GEOSITE:CN,PRIVATE",
+        "GEOIP:CN,PRIVATE",
         "*.lan",
         "localhost.ptlogin2.qq.com",
         "+.srv.nintendo.net",
@@ -214,23 +216,20 @@ const dnsConfig = {
     "cache-algorithm": "arc",
     "default-nameserver": [
         "119.29.29.29",
-        "223.5.5.5",
         "114.114.114.114",
         "1.1.1.1#节点选择",
         "8.8.8.8#节点选择"
     ],
     "nameserver": [
-        "quic://223.5.5.5",
         "tls://dot.pub",
-        "tls://dns.alidns.com",
         "https://doh.pub/dns-query",
-        "https://dns.alidns.com/dns-query",
         "https://8.8.8.8/dns-query#节点选择",
-        "https://1.1.1.1/dns-query#节点选择"
+        "https://1.1.1.1/dns-query#节点选择",
+        "system"
     ],
     "fallback": [
-        "tls://1.1.1.1#节点选择",
-        "tls://8.8.8.8#节点选择",
+        "1.1.1.1#节点选择",
+        "8.8.8.8#节点选择",
         "https://8.8.8.8/dns-query#节点选择",
         "https://1.1.1.1/dns-query#节点选择"
     ]
