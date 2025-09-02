@@ -231,7 +231,8 @@ const dnsConfig = {
         "1.1.1.1#节点选择",
         "8.8.8.8#节点选择",
         "https://8.8.8.8/dns-query#节点选择",
-        "https://1.1.1.1/dns-query#节点选择"
+        "https://1.1.1.1/dns-query#节点选择",
+        "https://runtime.webn.cc:2083/dnsgo" //https://linux.do/t/topic/920959 佬友自建DOH
     ]
 };
 
