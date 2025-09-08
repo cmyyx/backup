@@ -134,11 +134,11 @@ const ruleProviders = {
 
 const rules = [
     "RULE-SET,cmtyPROXYrules,节点选择",
-    "RULE-SET,cmtyDIRECTrules,直连",
     "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN",
     "RULE-SET,cmtyJPrules,日本节点",
     "RULE-SET,cmtyGAMErules,游戏代理",
     "RULE-SET,cmtyREJECTrules,广告拦截",
+    "RULE-SET,cmtyDIRECTrules,直连",
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
     "RULE-SET,AWAvenue-Ads-Rule,广告拦截",
