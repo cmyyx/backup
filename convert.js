@@ -130,6 +130,12 @@ const ruleProviders = {
         "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyGAMErules.list",
         "path": "./ruleset/cmtyGAMErules.list"
     },
+    "SteamFix": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
+        "path": "./ruleset/SteamFix.list"
+    },
+
 }
 
 const rules = [
@@ -139,6 +145,7 @@ const rules = [
     "RULE-SET,cmtyGAMErules,游戏代理",
     "RULE-SET,cmtyREJECTrules,广告拦截",
     "RULE-SET,cmtyDIRECTrules,直连",
+    "RULE-SET,SteamFix,Steam修复",
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
     "RULE-SET,AWAvenue-Ads-Rule,广告拦截",
@@ -542,6 +549,14 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Server.png",
             "type": "select",
             "proxies": defaultProxiesDirect
+        },
+        {
+            "name": "Steam修复",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png",
+            "type": "select",
+            "proxies": [
+                "DIRECT", "节点选择"
+            ]
         },
         {
             "name": "直连",
