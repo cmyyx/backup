@@ -230,7 +230,7 @@ const dnsConfig = {
     "nameserver": [
         "tls://dot.pub",
         "https://doh.pub/dns-query",
-        "system"
+        "1.1.1.1",
     ],
     "fallback": [
         "1.1.1.1#节点选择",
