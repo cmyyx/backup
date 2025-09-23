@@ -4,13 +4,15 @@ socks-port: 7891 # SOCKS代理端口
 #redir-port: 7892 # 透明代理端口，用于 Linux 和 MacOS
 mixed-port: 7893 # HTTP(S) 和 SOCKS 代理混合端口
 #tproxy-port: 7894
-allow-lan: false # 允许局域网连接
+allow-lan: true # 允许局域网连接
+authentication:
+- "cmty:0d000721"
 bind-address: "*" # 绑定地址，* 表示所有地址
 mode: rule # 代理模式，rule表示规则模式
 log-level: info # 日志级别
 ipv6: false
 #  控制面板
-external-controller: 0.0.0.0:9093 # RESTful API 监听地址
+external-controller: 0.0.0.0:9090 # RESTful API 监听地址
 # external-controller-tls: 0.0.0.0:9443 # RESTful API HTTPS 监听地址，需要配置 tls 部分配置文件
 secret: "cmty-config-lite-for-linux"
 external-ui: ui
