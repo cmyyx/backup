@@ -128,7 +128,6 @@ proxy-groups:
 # rule-providers:
 
 rules:
-  - "GEOSITE,proxy,节点选择"
   - "GEOSITE,gfw,节点选择"
   - "GEOSITE,CN,全球直连"
   - "GEOSITE,PRIVATE,全球直连"
