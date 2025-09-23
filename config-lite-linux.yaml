@@ -6,7 +6,7 @@ mixed-port: 7893 # HTTP(S) 和 SOCKS 代理混合端口
 #tproxy-port: 7894
 allow-lan: true # 允许局域网连接
 authentication:
-- "cmty:0d000721"
+  - "cmty:0d000721"
 bind-address: "*" # 绑定地址，* 表示所有地址
 mode: rule # 代理模式，rule表示规则模式
 log-level: info # 日志级别
