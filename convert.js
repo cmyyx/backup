@@ -157,7 +157,7 @@ const rules = [
     "GEOSITE,GOOGLE-PLAY@CN,直连",
     "GEOSITE,TELEGRAM,Telegram",
     //"GEOSITE,YOUTUBE@CN,直连",
-    //"GEOSITE,YOUTUBE,YouTube",
+    "GEOSITE,YOUTUBE,YouTube",
     "GEOSITE,GOOGLE,Google",
     "GEOSITE,NETFLIX,Netflix",
     "GEOSITE,SPOTIFY,Spotify",
@@ -514,12 +514,12 @@ function buildProxyGroups({
             "type": "select",
             "proxies": defaultProxies
         },
-        //{
-        //    "name": "YouTube",
-        //    "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
-        //    "type": "select",
-        //    "proxies": defaultProxies
-        //},
+        {
+            "name": "YouTube",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
+            "type": "select",
+            "proxies": defaultProxies
+        },
         {
             "name": "Google",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
