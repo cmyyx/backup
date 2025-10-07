@@ -201,7 +201,8 @@ const dnsConfig = {
     "enable": true,
     "ipv6": ipv6Enabled,
     "prefer-h3": true,
-    "enhanced-mode": "fake-ip",
+    "enhanced-mode": "redir-host",
+    /*
     "fake-ip-filter-mode": "blacklist",
     "fake-ip-range": "28.0.0.1/8",
     "fake-ip-filter": [
@@ -220,6 +221,7 @@ const dnsConfig = {
         "*.blzstatic.cn",
         "*.battle.net",
     ],
+    */
     "cache-algorithm": "arc",
     "default-nameserver": [
         "119.29.29.29",
