@@ -169,8 +169,8 @@ const rules = [
     "GEOIP,NETFLIX,Netflix,no-resolve",
     "GEOIP,TELEGRAM,Telegram,no-resolve",
     "RULE-SET,ProxyGFWlist,节点选择",
-    "GEOIP,CN,直连",
-    "GEOIP,PRIVATE,直连",
+    "GEOIP,CN,直连,no-resolve",
+    "GEOIP,PRIVATE,直连,no-resolve",
     "DST-PORT,22,SSH(22端口)",
     "MATCH,直连"
 ];
