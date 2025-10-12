@@ -131,6 +131,7 @@ proxy-groups:
 # rule-providers:
 
 rules:
+  - "DOMAIN-SUFFIX,cmtyx.top,全球直连"
   - "GEOSITE,gfw,节点选择"
   - "GEOSITE,CN,全球直连"
   - "GEOSITE,PRIVATE,全球直连"
