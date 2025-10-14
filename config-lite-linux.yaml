@@ -27,7 +27,8 @@ tcp-concurrent: true # TCP 并发
 #  - strict, 默认，由 mihomo 判断是否开启
 #  - off, 不匹配进程，推荐在路由器上使用此模式
 find-process-mode: always
-global-client-fingerprint: chrome
+# https://t.me/vps_xhq/755
+# global-client-fingerprint: chrome
 
 #  TCP keep alive interval
 #  这个选项大概用不到
