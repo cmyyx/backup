@@ -65,7 +65,7 @@ dns:
   nameserver:
     - "tls://dot.pub"
     - "https://doh.pub/dns-query"
-    - "1.1.1.1"
+    - "tls://1.1.1.1"
   fallback:
     - "1.1.1.1#节点选择"
     - "8.8.8.8#节点选择"
@@ -131,6 +131,7 @@ proxy-groups:
 # rule-providers:
 
 rules:
+  - "DOMAIN-SUFFIX,sdwfger.edu.kg,全球直连"
   - "DOMAIN-SUFFIX,cmtyx.top,全球直连"
   - "GEOSITE,gfw,节点选择"
   - "GEOSITE,CN,全球直连"
