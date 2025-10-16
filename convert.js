@@ -75,6 +75,11 @@ const ruleProviders = {
         "url": "https://ruleset.skk.moe/Clash/non_ip/ai.txt",
         "path": "./ruleset/AI.txt"
     },
+    "Global": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/non_ip/global.txt",
+        "path": "./ruleset/global_non_ip.txt"
+    },
     "EHentai": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
@@ -169,6 +174,7 @@ const rules = [
     "GEOIP,NETFLIX,Netflix,no-resolve",
     "GEOIP,TELEGRAM,Telegram,no-resolve",
     "RULE-SET,ProxyGFWlist,节点选择",
+    "RULE-SET,Global,节点选择",
     "GEOIP,CN,直连,no-resolve",
     "GEOIP,PRIVATE,直连,no-resolve",
     "DST-PORT,22,SSH(22端口)",

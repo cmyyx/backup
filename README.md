@@ -14,3 +14,6 @@
 
 DNS:
 - https://blog.skk.moe/post/lets-talk-about-dns-cdn-fake-ip/
+    - https://blog.skk.moe/post/i-have-my-unique-surge-setup/
+    - https://blog.skk.moe/post/i-have-my-unique-dns-setup/
+    - https://blog.skk.moe/post/what-happend-to-dns-in-proxy/

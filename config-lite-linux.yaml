@@ -133,6 +133,8 @@ proxy-groups:
 
 rules:
   - "DOMAIN-SUFFIX,chatgpt.com,手动切换"
+  - "DOMAIN-SUFFIX,lmarena.ai,手动切换"
+  - "DOMAIN-KEYWORD,google.com,手动切换"
   - "DOMAIN-SUFFIX,openai.com,手动切换"
   - "DOMAIN-SUFFIX,sdwfger.edu.kg,全球直连"
   - "DOMAIN-SUFFIX,cmtyx.top,全球直连"
