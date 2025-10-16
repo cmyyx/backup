@@ -7,3 +7,4 @@ AND,((DOMAIN-SUFFIX,mcdn.bilivideo.cn),(PROCESS-NAME,com.junkfood.seal))
 DOMAIN-SUFFIX,aliyuncs.com
 DOMAIN-SUFFIX,mp.microsoft.com
 DOMAIN-SUFFIX,bing.com
+DOMAIN-SUFFIX,linux.do
