@@ -201,8 +201,7 @@ const dnsConfig = {
     "enable": true,
     "ipv6": ipv6Enabled,
     "prefer-h3": true,
-    "enhanced-mode": "redir-host",
-    /*
+    "enhanced-mode": "fake-ip",
     "fake-ip-filter-mode": "blacklist",
     "fake-ip-range": "28.0.0.1/8",
     "fake-ip-filter": [
@@ -221,7 +220,6 @@ const dnsConfig = {
         "*.blzstatic.cn",
         "*.battle.net",
     ],
-    */
     "cache-algorithm": "arc",
     "default-nameserver": [
         "119.29.29.29",
@@ -231,9 +229,12 @@ const dnsConfig = {
     ],
     "nameserver": [
         "tls://dot.pub",
-        "https://doh.pub/dns-query",
-        "tls://1.1.1.1",
+        //"https://doh.pub/dns-query",
+        //"tls://1.1.1.1",
+        "quic://223.5.5.5",
+        "system",
     ],
+    /*
     "fallback": [
         "1.1.1.1#节点选择",
         "8.8.8.8#节点选择",
@@ -241,6 +242,7 @@ const dnsConfig = {
         "https://1.1.1.1/dns-query#节点选择",
         "https://runtime.webn.cc:2083/dnsgo" //https://linux.do/t/topic/920959 佬友自建DOH
     ]
+    */
 };
 
 const geoxURL = {
