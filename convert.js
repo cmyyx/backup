@@ -207,6 +207,8 @@ const dnsConfig = {
     "enable": true,
     "ipv6": ipv6Enabled,
     "prefer-h3": true,
+    //"use-hosts": true,
+    //"use-system-hosts": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-filter-mode": "blacklist",
     "fake-ip-range": "28.0.0.1/8",
