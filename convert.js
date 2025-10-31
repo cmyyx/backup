@@ -237,7 +237,7 @@ const dnsConfig = {
     ],
     "nameserver": [
         "tls://dot.pub",
-        //"https://doh.pub/dns-query",
+        "https://doh.pub/dns-query",
         "tls://1.1.1.1",
         "tls://8.8.8.8",
         //"quic://223.5.5.5",
