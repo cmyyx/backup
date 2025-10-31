@@ -241,7 +241,7 @@ const dnsConfig = {
         "tls://1.1.1.1",
         "tls://8.8.8.8",
         //"quic://223.5.5.5",
-        //"system",
+        "system",
     ],
     /*
     "fallback": [
