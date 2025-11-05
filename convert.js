@@ -140,6 +140,11 @@ const ruleProviders = {
         "url": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/SteamFix.list",
         "path": "./ruleset/SteamFix.list"
     },
+    "speedtest": {
+        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
+        "url": "https://ruleset.skk.moe/Clash/domainset/speedtest.txt",
+        "path": "./ruleset/speedtest.txt"
+    },
 
 }
 
@@ -160,18 +165,19 @@ const rules = [
     "RULE-SET,AI,AI",
     "RULE-SET,EHentai,E-Hentai",
     "GEOSITE,GOOGLE-PLAY@CN,直连",
+    "RULE-SET,speedtest,测速节点",
     "GEOSITE,TELEGRAM,Telegram",
     //"GEOSITE,YOUTUBE@CN,直连",
     "GEOSITE,YOUTUBE,YouTube",
     "GEOSITE,GOOGLE,Google",
-    "GEOSITE,NETFLIX,Netflix",
-    "GEOSITE,SPOTIFY,Spotify",
+    //"GEOSITE,NETFLIX,Netflix",
+    //"GEOSITE,SPOTIFY,Spotify",
     "GEOSITE,CATEGORY-SCHOLAR-CN,直连",
     "GEOSITE,MICROSOFT@CN,直连",
     //"GEOSITE,GFW,节点选择",
     "GEOSITE,CN,直连",
     "GEOSITE,PRIVATE,直连",
-    "GEOIP,NETFLIX,Netflix,no-resolve",
+    //"GEOIP,NETFLIX,Netflix,no-resolve",
     "GEOIP,TELEGRAM,Telegram,no-resolve",
     "RULE-SET,ProxyGFWlist,节点选择",
     "RULE-SET,Global,节点选择",
@@ -232,16 +238,16 @@ const dnsConfig = {
     "default-nameserver": [
         "119.29.29.29",
         "114.114.114.114",
-        "1.1.1.1#节点选择",
-        "8.8.8.8#节点选择"
+        //"1.1.1.1#节点选择",
+        //"8.8.8.8#节点选择"
     ],
     "nameserver": [
         "tls://dot.pub",
-        "https://doh.pub/dns-query",
+        //"https://doh.pub/dns-query",
         "tls://1.1.1.1",
         "tls://8.8.8.8",
         //"quic://223.5.5.5",
-        //"system",
+        "system",
     ],
     /*
     "fallback": [
@@ -516,6 +522,13 @@ function buildProxyGroups({
             "proxies": defaultProxies,
         },
         {
+            "name": "测速节点",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png",
+            "type": "select",
+            "include-all": true,
+            "filter": "(?i)Info-",
+        },
+        {
             "name": "AI",
             "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/chatgpt.svg",
             "type": "select",
@@ -539,6 +552,7 @@ function buildProxyGroups({
             "type": "select",
             "proxies": defaultProxies
         },
+        /*
         {
             "name": "Netflix",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
@@ -551,6 +565,7 @@ function buildProxyGroups({
             "type": "select",
             "proxies": defaultProxies
         },
+        */
         {
             "name": "E-Hentai",
             "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
