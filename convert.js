@@ -526,7 +526,7 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png",
             "type": "select",
             "include-all": true,
-            "filter": "(?i)Info-",
+            "exclude-filter": "(?i)Info-",
         },
         {
             "name": "AI",
