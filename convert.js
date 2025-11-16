@@ -184,7 +184,7 @@ const rules = [
     "GEOIP,CN,直连,no-resolve",
     "GEOIP,PRIVATE,直连,no-resolve",
     "DST-PORT,22,SSH(22端口)",
-    "MATCH,直连"
+    "MATCH,漏网之鱼"
 ];
 
 const snifferConfig = {
@@ -589,6 +589,14 @@ function buildProxyGroups({
         {
             "name": "直连",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
+            "type": "select",
+            "proxies": [
+                "DIRECT", "节点选择"
+            ]
+        },
+        {
+            "name": "漏网之鱼",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png",
             "type": "select",
             "proxies": [
                 "DIRECT", "节点选择"
