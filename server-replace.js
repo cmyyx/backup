@@ -12,20 +12,13 @@
  *   192.168.1.1=10.0.0.1&expired.com=active.com
  */
 
-// ==================== 脚本逻辑（无需修改）====================
-
-function main(config) {
-    if (!config.proxies || !Array.isArray(config.proxies)) {
-        console.log("[警告] 没有找到节点配置");
-        return config;
-    }
-
+function operator(proxies = [], targetPlatform, context) {
     // 获取传入的参数
     const serverReplace = typeof $arguments !== 'undefined' ? $arguments : {};
     
     if (Object.keys(serverReplace).length === 0) {
         console.log("[提示] 未传入替换参数，跳过处理");
-        return config;
+        return proxies;
     }
 
     // 显示替换规则
@@ -36,9 +29,9 @@ function main(config) {
     console.log("");
 
     let replacedCount = 0;
-    const totalCount = config.proxies.length;
+    const totalCount = proxies.length;
 
-    config.proxies.forEach(proxy => {
+    proxies.forEach(proxy => {
         if (proxy.server && serverReplace[proxy.server]) {
             const oldServer = proxy.server;
             proxy.server = serverReplace[proxy.server];
@@ -49,5 +42,5 @@ function main(config) {
 
     console.log(`\n[完成] 共 ${totalCount} 个节点，替换了 ${replacedCount} 个服务器地址\n`);
 
-    return config;
+    return proxies;
 }
