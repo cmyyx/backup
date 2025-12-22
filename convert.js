@@ -56,9 +56,9 @@ function buildBaseLists({ landing, lowCost, countryInfo }) {
 
 const ruleProviders = {
     "ADBlock": {
-        "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
-        "url": "https://adrules.top/adrules_domainset.txt",
-        "path": "./ruleset/ADBlock.txt"
+        "type": "http", "behavior": "domain", "format": "mrs", "interval": 86400,
+        "url": "https://adrules.top/adrules-mihomo.mrs",
+        "path": "./ruleset/ADBlock.mrs"
     },
     "StaticResources": {
         "type": "http", "behavior": "domain", "format": "text", "interval": 86400,
@@ -258,6 +258,10 @@ const dnsConfig = {
         "https://runtime.webn.cc:2083/dnsgo" //https://linux.do/t/topic/920959 佬友自建DOH
     ]
     */
+};
+
+const hostsConfig = {
+    "www.sky.weyolo.com": "120.232.220.162"
 };
 
 const geoxURL = {
@@ -607,7 +611,7 @@ function buildProxyGroups({
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
             "type": "select",
             "proxies": [
-                "REJECT", "直连"
+                "REJECT", "REJECT-DROP", "直连"
             ]
         },
         {
@@ -708,6 +712,7 @@ function main(config) {
         "rules": rules,
         "sniffer": snifferConfig,
         "dns": dnsConfig,
+        "hosts": hostsConfig,
         "geodata-mode": true,
         "geox-url": geoxURL,
     });

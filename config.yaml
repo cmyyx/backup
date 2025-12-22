@@ -68,9 +68,6 @@ sniffer:
     - "dlg.io.mi.com"
     - "+.push.apple.com"
 
-hosts:
-  www.sky.weyolo.com: 120.232.220.162
-
 dns:
   enable: true
   ipv6: false
