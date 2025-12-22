@@ -249,6 +249,11 @@ const dnsConfig = {
         //"quic://223.5.5.5",
         "system",
     ],
+    "proxy-server-nameserver:": [
+        "tls://dot.pub",
+        "tls://1.1.1.1",
+        "tls://8.8.8.8",
+    ],
     /*
     "fallback": [
         "1.1.1.1#节点选择",
@@ -261,7 +266,7 @@ const dnsConfig = {
 };
 
 const hostsConfig = {
-    "www.sky.weyolo.com": "120.232.220.162"
+    "www.sky.weyolo.com": "165.101.123.7"
 };
 
 const geoxURL = {
@@ -681,7 +686,6 @@ function main(config) {
             "name": "GLOBAL",
             "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png",
             "include-all": true,
-            "type": "select",
             "proxies": globalProxies
         }
     );
