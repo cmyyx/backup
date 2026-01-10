@@ -64,8 +64,8 @@ DOMAIN-SUFFIX,gy888.xyz
 DOMAIN-SUFFIX,cosplaytele.com
 DOMAIN-SUFFIX,candy.ai
 DOMAIN-KEYWORD,render
-DOMAIN-KEYWORD,sendgrid.com
-DOMAIN-KEYWORD,resend.com
+DOMAIN-SUFFIX,sendgrid.com
+DOMAIN-SUFFIX,resend.com
 DOMAIN-SUFFIX,xn--mes358a9urctx.com
 DOMAIN-SUFFIX,ffqla.com
 DOMAIN-SUFFIX,cacapex.com
@@ -114,3 +114,4 @@ DOMAIN-SUFFIX,thunderstore.io
 DOMAIN-SUFFIX,idcflare.com
 DOMAIN-SUFFIX,56idc.net
 DOMAIN-SUFFIX,browserleaks.com
+DOMAIN-SUFFIX,netlify.com

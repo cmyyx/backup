@@ -249,7 +249,7 @@ const dnsConfig = {
         //"quic://223.5.5.5",
         "system",
     ],
-    "proxy-server-nameserver:": [
+    "proxy-server-nameserver": [
         "tls://dot.pub",
         "tls://1.1.1.1",
         "tls://8.8.8.8",
