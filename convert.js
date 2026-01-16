@@ -212,6 +212,7 @@ const snifferConfig = {
 const dnsConfig = {
     "enable": true,
     "ipv6": ipv6Enabled,
+    "cache-algorithm": "arc",
     "prefer-h3": true,
     //"use-hosts": true,
     //"use-system-hosts": true,
@@ -234,7 +235,6 @@ const dnsConfig = {
         "*.blzstatic.cn",
         "*.battle.net",
     ],
-    "cache-algorithm": "arc",
     "default-nameserver": [
         "119.29.29.29",
         "114.114.114.114",
