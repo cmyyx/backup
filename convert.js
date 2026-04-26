@@ -151,7 +151,7 @@ const ruleProviders = {
 const rules = [
     "RULE-SET,cmtyPROXYrules,节点选择",
     "RULE-SET,cmtyPROXYmedia_cdn,媒体CDN",
-    "RULE-SET,cmtyJPrules,日本节点",
+    "RULE-SET,cmtyJPrules,JP分流",
     "RULE-SET,cmtyGAMErules,游戏代理",
     "RULE-SET,cmtyREJECTrules,广告拦截",
     "RULE-SET,cmtyDIRECTrules,直连",
@@ -578,6 +578,12 @@ function buildProxyGroups({
         {
             "name": "E-Hentai",
             "icon": "https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
+            "type": "select",
+            "proxies": defaultProxies
+        },
+        {
+            "name": "JP分流",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png",
             "type": "select",
             "proxies": defaultProxies
         },
