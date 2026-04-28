@@ -220,6 +220,7 @@ const dnsConfig = {
     "fake-ip-filter-mode": "blacklist",
     "fake-ip-range": "28.0.0.1/8",
     "fake-ip-filter": [
+        "localhost",
         "GEOSITE:CN,PRIVATE",
         "GEOIP:CN,PRIVATE",
         "*.lan",
