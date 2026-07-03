@@ -14,7 +14,7 @@ ipv6: false
 #  控制面板
 external-controller: 0.0.0.0:9090 # RESTful API 监听地址
 # external-controller-tls: 0.0.0.0:9443 # RESTful API HTTPS 监听地址，需要配置 tls 部分配置文件
-secret: "cmty-config-lite-for-linux"
+# secret: "cmty-config-lite-for-linux"
 external-ui: ui
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
