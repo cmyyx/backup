@@ -243,11 +243,13 @@ const dnsConfig = {
         //"8.8.8.8#节点选择"
     ],
     "nameserver": [
-        "tls://dot.pub",
-        //"https://doh.pub/dns-query",
-        "tls://1.1.1.1",
-        "tls://8.8.8.8",
+        //"tls://dos.pub",
+        "https://doh.pub/dns-query",
+        //"tls://1.1.1.1",
+        //"tls://8.8.8.8",
         //"quic://223.5.5.5",
+        "quic://dns.pub",
+        "119.29.29.29",
         "system",
     ],
     "proxy-server-nameserver": [
