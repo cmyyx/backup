@@ -1,0 +1,41 @@
+# 个人维护规则,IP检测站点
+# 基础查IP
+DOMAIN-SUFFIX,ip.sb
+DOMAIN-SUFFIX,ipinfo.io
+DOMAIN-SUFFIX,ip-api.com
+DOMAIN-SUFFIX,ipapi.co
+DOMAIN-SUFFIX,ipify.org
+DOMAIN-SUFFIX,icanhazip.com
+DOMAIN-SUFFIX,ifconfig.me
+DOMAIN-SUFFIX,ident.me
+DOMAIN-SUFFIX,myip.com
+DOMAIN-SUFFIX,whatismyipaddress.com
+DOMAIN-SUFFIX,whatismyip.com
+# IP库/归属地
+DOMAIN-SUFFIX,ip2location.com
+DOMAIN-SUFFIX,ip2location.io
+DOMAIN-SUFFIX,maxmind.com
+DOMAIN-SUFFIX,db-ip.com
+DOMAIN-SUFFIX,iplocation.net
+DOMAIN-SUFFIX,ipdata.co
+DOMAIN-SUFFIX,ipgeolocation.io
+DOMAIN-SUFFIX,ipregistry.co
+# 纯净度/风控/泄露检测
+DOMAIN-SUFFIX,ping0.cc
+DOMAIN-SUFFIX,scamalytics.com
+DOMAIN-SUFFIX,ipqualityscore.com
+DOMAIN-SUFFIX,whoer.net
+DOMAIN-SUFFIX,ipleak.net
+DOMAIN-SUFFIX,browserleaks.com
+DOMAIN-SUFFIX,browserscan.net
+DOMAIN-SUFFIX,pixelscan.net
+DOMAIN-SUFFIX,iphey.com
+DOMAIN-SUFFIX,dnsleaktest.com
+# 国内及IPv6检测
+DOMAIN-SUFFIX,ip111.cn
+DOMAIN-SUFFIX,ip125.com
+DOMAIN-SUFFIX,cip.cc
+DOMAIN-SUFFIX,ipip.net
+DOMAIN-SUFFIX,ip138.com
+DOMAIN-SUFFIX,ipw.cn
+DOMAIN-SUFFIX,test-ipv6.com

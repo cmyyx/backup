@@ -115,6 +115,11 @@ const ruleProviders = {
         "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyDIRECTrules.list",
         "path": "./ruleset/cmtyDIRECTrules.list"
     },
+    "cmtyIPCHECKrules": {
+        "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
+        "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyIPCHECKrules.list",
+        "path": "./ruleset/cmtyIPCHECKrules.list"
+    },
     "cmtyPROXYmedia_cdn": {
         "type": "http", "behavior": "classical", "format": "text", "interval": 86400,
         "url": "https://raw.githubusercontent.com/cmyyx/backup/refs/heads/cmty-rules/rules/cmtyPROXYmedia_cdn.list",
@@ -155,6 +160,7 @@ const rules = [
     "RULE-SET,cmtyGAMErules,游戏代理",
     "RULE-SET,cmtyREJECTrules,广告拦截",
     "RULE-SET,cmtyDIRECTrules,直连",
+    "RULE-SET,cmtyIPCHECKrules,IP检测",
     "RULE-SET,SteamFix,Steam修复",
     "RULE-SET,ADBlock,广告拦截",
     "RULE-SET,AdditionalFilter,广告拦截",
@@ -373,7 +379,7 @@ function hasLowCost(config) {
 
 function parseCountries(config) {
     const proxies = config.proxies || [];
-    const ispRegex = /家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地/i;   // 需要排除的关键字
+    const ispRegex = /家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地|Info-/i;   // 需要排除的关键字
 
     // 用来累计各国节点数
     const countryCounts = Object.create(null);
@@ -539,6 +545,14 @@ function buildProxyGroups({
             "type": "select",
             "include-all": true,
             "exclude-filter": "(?i)Info-",
+        },
+        {
+            "name": "IP检测",
+            "icon": "https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available.png",
+            "type": "select",
+            "include-all": true,
+            "exclude-filter": "(?i)Info-",
+            "proxies": defaultProxies
         },
         {
             "name": "AI",
