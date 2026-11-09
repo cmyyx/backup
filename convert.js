@@ -205,7 +205,7 @@ const snifferConfig = {
             "ports": [443, 8443],
         }
     },
-    "override-destination": false,
+    "override-destination": true,
     "enable": true,
     "force-dns-mapping": true,
     "skip-domain": [
